@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react';
-import './App.css';
+// import './App.css';
 import HomePage from './pages/UserPage/HomePage';
-// import 'bootstrap/dist/css/bootstrap.min.css'; 
-import './assets/styles/ajax-loader.gif';
-import './assets/styles/bootstrap.min.css';
-import './assets/styles/vendor.css';
+// import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   useEffect(() => {
@@ -18,9 +15,9 @@ function App() {
     }
   }, []);
   return (
-    <div className="App">
-      <HomePage />
-    </div>
+      <div className="App">
+        <HomePage/>
+      </div>
   );
 }
 

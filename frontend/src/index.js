@@ -1,8 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import './index.css';
+// import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+import './assets/styles/ajax-loader.gif';
+import './assets/styles/bootstrap.min.css';
+import './assets/styles/vendor.css';
+import './assets/styles/style.css';
+
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(

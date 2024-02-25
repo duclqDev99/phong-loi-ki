@@ -10,7 +10,7 @@ function Header() {
             <img src={logo} alt="Logo" className="footer-logo" />
           </a>
           <button className="navbar-toggler d-flex d-lg-none order-3 p-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar" aria-expanded="false" aria-label="Toggle navigation">Menu</button>
-          <div className="offcanvas offcanvas-end" tabindex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
+          <div className="offcanvas offcanvas-end" tabIndex="-1" id="bdNavbar" aria-labelledby="bdNavbarOffcanvasLabel">
             <div className="offcanvas-header px-4 pb-0">
               <a className="navbar-brand" href="index.html">
                     <img src={logo} alt="Logo" className="footer-logo" />
@@ -69,13 +69,13 @@ function Header() {
                 </ul>
                 
                 <a className="navbar-brand d-none d-lg-block me-0" href="index.html">
-                  <img src="images/main-logo.png" className="logo"/>
+                  <img src={logo} alt="Logo" className="mb-2"/>
                 </a>
 
                 <ul className="list-unstyled d-lg-flex justify-content-between align-items-center">
                   <li className="nav-item search-item">
                     <div id="search-bar" className="border-right d-none d-lg-block">
-                      <form action="" autocomplete="on">
+                      <form action="" autoComplete="on">
                         <input id="search" className="text-dark" name="search" type="text" placeholder="Search Here..."/>
                         <a type="submit" className="nav-link text-uppercase me-0" href="#">Search</a>
                       </form>
