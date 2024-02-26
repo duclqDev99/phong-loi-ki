@@ -16,9 +16,7 @@ function FormRegister() {
             </div>
             <label className="py-3">
                 <input type="checkbox" required="" className="d-inline"/>
-                <span className="label-body">I agree to the <a
-                    href="https://demo.templatesjungle.com/micas/login.html#"
-                    className="fw-bold">Privacy Policy</a></span>
+                <span className="label-body">I agree to the Privacy Policy</span>
             </label>
             <button type="submit" name="submit" className="btn btn-dark w-100 my-3">Register
             </button>

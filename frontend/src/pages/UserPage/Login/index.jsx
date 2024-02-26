@@ -1,4 +1,5 @@
 import React from 'react';
+import { Navbar, Nav, Container } from 'react-bootstrap';
 import Header from '../../UserPage/Header';
 import Footer from '../../UserPage/Footer';
 

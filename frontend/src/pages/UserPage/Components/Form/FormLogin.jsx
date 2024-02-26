@@ -16,12 +16,8 @@ function FormLogin() {
             <label className="py-3">
                 <input type="checkbox" required="" className="d-inline"/>
                 <span className="label-body">Remember Me</span>
-                <span className="label-body"><a
-                    href="https://demo.templatesjungle.com/micas/login.html#"
-                    className="fw-bold">Forgot Password</a></span>
             </label>
-            <button type="submit" name="submit" className="btn btn-dark w-100 my-3">Login
-            </button>
+            <button type="submit" name="submit" className="btn btn-dark w-100 my-3">Login</button>
         </form>
     );
 }

@@ -1,5 +1,6 @@
 import React from 'react';
-import logo from '../../../assets/images/main-logo.png'; // Đảm bảo bạn đã import hình ảnh
+import logo from '../../../assets/images/main-logo.png';
+import {NavLink} from "react-router-dom";
 
 function Footer() {
     return (
@@ -21,16 +22,24 @@ function Footer() {
                                     <h4 className="widget-title pb-2">Quick Links</h4>
                                     <ul className="menu-list list-unstyled">
                                         <li className="menu-item text-uppercase pb-2">
-                                            <a href="about.html">About</a>
+                                            <NavLink to="/" >
+                                                Home
+                                            </NavLink>
                                         </li>
                                         <li className="menu-item text-uppercase pb-2">
-                                            <a href="shop.html">Shop</a>
+                                            <NavLink to="/shop" >
+                                                Shop
+                                            </NavLink>
                                         </li>
                                         <li className="menu-item text-uppercase pb-2">
-                                            <a href="contact.html">Contact</a>
+                                            <NavLink to="/cart" >
+                                                Cart
+                                            </NavLink>
                                         </li>
                                         <li className="menu-item text-uppercase pb-2">
-                                            <a href="login.html">Account</a>
+                                            <NavLink to="/login" >
+                                                Account
+                                            </NavLink>
                                         </li>
                                     </ul>
                                 </div>
