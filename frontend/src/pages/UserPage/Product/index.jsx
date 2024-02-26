@@ -3,29 +3,16 @@ import Header from '../../UserPage/Header';
 import Footer from '../../UserPage/Footer';
 
 // Import các section khác như Banner, Products, etc.
+import Breadcrumb from "../Components/Breadcrumb";
+import ProductRelated from "../Components/Product/ProductRelated";
 
 function Product() {
+    const breadcrumbItems = ["Home", "Single Product"];
+
     return (
         <div>
             <Header/>
-            <section
-                className="hero-section bg-gray d-flex align-items-center justify-content-center padding-medium pb-5">
-                <div className="hero-content">
-                    <div className="container">
-                        <div className="row">
-                            <div className="text-center padding-medium no-padding-bottom">
-                                <h1>Single Product</h1>
-                                <div className="breadcrumbs">
-                            <span className="item">
-                                <a href="https://demo.templatesjungle.com/micas/index.html">Home &gt;</a>
-                            </span>
-                                    <span className="item">Single Product</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <Breadcrumb items={breadcrumbItems}/>
             <section className="single-product padding-large">
                 <div className="container">
                     <div className="row">
@@ -84,27 +71,27 @@ function Product() {
                                     <div className="rating-container d-flex align-items-center">
                                         <div className="rating" data-rating="1" onclick="rate(1)">
                                             <svg className="bi" width="16" height="16">
-                                                {/*<use xlink:href="#star-fill"></use>*/}
+                                                <use xlinkHref="#star-fill"></use>
                                             </svg>
                                         </div>
                                         <div className="rating" data-rating="1" onclick="rate(1)">
                                             <svg className="bi" width="16" height="16">
-                                                {/*<use xlink:href="#star-fill"></use>*/}
+                                                <use xlinkHref="#star-fill"></use>
                                             </svg>
                                         </div>
                                         <div className="rating" data-rating="1" onclick="rate(1)">
                                             <svg className="bi" width="16" height="16">
-                                                {/*<use xlink:href="#star-fill"></use>*/}
+                                                <use xlinkHref="#star-fill"></use>
                                             </svg>
                                         </div>
                                         <div className="rating" data-rating="1" onclick="rate(1)">
                                             <svg className="bi" width="16" height="16">
-                                                {/*<use xlink:href="#star-half"></use>*/}
+                                                <use xlinkHref="#star-half"></use>
                                             </svg>
                                         </div>
                                         <div className="rating" data-rating="1" onclick="rate(1)">
                                             <svg className="bi" width="16" height="16">
-                                                {/*<use xlink:href="#star-empty"></use>*/}
+                                                <use xlinkHref="#star-empty"></use>
                                             </svg>
                                         </div>
                                         <span className="rating-count lh-normal">(3.5)</span>
@@ -130,7 +117,7 @@ function Product() {
                                                 <button type="button" className="quantity-left-minus" data-type="minus"
                                                         data-field="">
                                                     <svg width="16" height="16">
-                                                        {/*<use xlink:href="#minus"></use>*/}
+                                                        <use xlinkHref="#minus"></use>
                                                     </svg>
                                                 </button>
                                             </span>
@@ -143,7 +130,7 @@ function Product() {
                                                 <button type="button" className="quantity-right-plus" data-type="plus"
                                                         data-field="">
                                                     <svg width="16" height="16">
-                                                        {/*<use xlink:href="#plus"></use>*/}
+                                                        <use xlinkHref="#plus"></use>
                                                     </svg>
                                                 </button>
                                             </span>
@@ -316,27 +303,27 @@ function Product() {
                                                 <div className="rating-container d-flex align-items-center">
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <span className="rating-count">(5.0)</span>
@@ -358,27 +345,27 @@ function Product() {
                                                 <div className="rating-container d-flex align-items-center">
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <div className="rating">
                                                         <svg className="bi" width="16" height="16">
-                                                            {/*<use xlink:href="#star-fill"></use>*/}
+                                                            <use xlinkHref="#star-fill"></use>
                                                         </svg>
                                                     </div>
                                                     <span className="rating-count">(5.0)</span>
@@ -401,27 +388,27 @@ function Product() {
                                             <div className="rating-container d-flex align-items-center">
                                                 <div className="rating">
                                                     <svg className="bi" width="16" height="16">
-                                                        {/*<use xlink:href="#star-empty"></use>*/}
+                                                        <use xlinkHref="#star-empty"></use>
                                                     </svg>
                                                 </div>
                                                 <div className="rating">
                                                     <svg className="bi" width="16" height="16">
-                                                        {/*<use xlink:href="#star-empty"></use>*/}
+                                                        <use xlinkHref="#star-empty"></use>
                                                     </svg>
                                                 </div>
                                                 <div className="rating">
                                                     <svg className="bi" width="16" height="16">
-                                                        {/*<use xlink:href="#star-empty"></use>*/}
+                                                        <use xlinkHref="#star-empty"></use>
                                                     </svg>
                                                 </div>
                                                 <div className="rating">
                                                     <svg className="bi" width="16" height="16">
-                                                        {/*<use xlink:href="#star-empty"></use>*/}
+                                                        <use xlinkHref="#star-empty"></use>
                                                     </svg>
                                                 </div>
                                                 <div className="rating">
                                                     <svg className="bi" width="16" height="16">
-                                                        {/*<use xlink:href="#star-empty"></use>*/}
+                                                        <use xlinkHref="#star-empty"></use>
                                                     </svg>
                                                 </div>
                                             </div>
@@ -459,84 +446,7 @@ function Product() {
                     </div>
                 </div>
             </section>
-            <section id="products" className="product-store padding-xlarge">
-                <div className="container">
-                    <div className="display-header d-flex flex-wrap justify-content-between align-items-center pb-4">
-                        <h3 className="mt-3">Related Products</h3>
-                        <a href="https://demo.templatesjungle.com/micas/shop.html" className="btn">View all items →</a>
-                    </div>
-                    <div className="row">
-                        <div className="col-md-3 product-card mb-3">
-                            <div className="image-holder">
-                                <img src="./product_files/product-item1.jpg" alt="product-item" className="img-fluid"/>
-                            </div>
-                            <div className="card-detail text-center pt-3 pb-2">
-                                <h5 className="card-title fs-4 text-uppercase m-0">
-                                    <a href="https://demo.templatesjungle.com/micas/single-product.html">Matt Black</a>
-                                </h5>
-                                <span className="item-price text-primary fs-4">$870</span>
-                                <div className="cart-button mt-1">
-                                    <a href="https://demo.templatesjungle.com/micas/single-product.html#"
-                                       className="btn">Add
-                                        to
-                                        cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3 product-card mb-3">
-                            <div className="image-holder">
-                                <img src="./product_files/product-item2.jpg" alt="product-item" className="img-fluid"/>
-                            </div>
-                            <div className="card-detail text-center pt-3 pb-2">
-                                <h5 className="card-title fs-4 text-uppercase m-0">
-                                    <a href="https://demo.templatesjungle.com/micas/single-product.html">Matt Black</a>
-                                </h5>
-                                <span className="item-price text-primary fs-4">$870</span>
-                                <div className="cart-button mt-1">
-                                    <a href="https://demo.templatesjungle.com/micas/single-product.html#"
-                                       className="btn">Add
-                                        to
-                                        cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3 product-card mb-3">
-                            <div className="image-holder">
-                                <img src="./product_files/product-item3.jpg" alt="product-item" className="img-fluid"/>
-                            </div>
-                            <div className="card-detail text-center pt-3 pb-2">
-                                <h5 className="card-title fs-4 text-uppercase m-0">
-                                    <a href="https://demo.templatesjungle.com/micas/single-product.html">Matt Black</a>
-                                </h5>
-                                <span className="item-price text-primary fs-4">$870</span>
-                                <div className="cart-button mt-1">
-                                    <a href="https://demo.templatesjungle.com/micas/single-product.html#"
-                                       className="btn">Add
-                                        to
-                                        cart</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-md-3 product-card mb-3">
-                            <div className="image-holder">
-                                <img src="./product_files/product-item4.jpg" alt="product-item" className="img-fluid"/>
-                            </div>
-                            <div className="card-detail text-center pt-3 pb-2">
-                                <h5 className="card-title fs-4 text-uppercase m-0">
-                                    <a href="https://demo.templatesjungle.com/micas/single-product.html">Matt Black</a>
-                                </h5>
-                                <span className="item-price text-primary fs-4">$870</span>
-                                <div className="cart-button mt-1">
-                                    <a href="https://demo.templatesjungle.com/micas/single-product.html#"
-                                       className="btn">Add
-                                        to
-                                        cart</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            <ProductRelated/>
             <Footer/>
         </div>
 );

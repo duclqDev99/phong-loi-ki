@@ -4,11 +4,10 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import './assets/styles/ajax-loader.gif';
+/*import './assets/styles/vendor.css';
 import './assets/styles/bootstrap.min.css';
-import './assets/styles/vendor.css';
 import './assets/styles/style.css';
-
+import './assets/styles/ajax-loader.gif';*/
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
