@@ -32,9 +32,9 @@ function CartTotal({isCheckoutStep = false}) {
             </div>
             { !isCheckoutStep && (
                 <div className="button-wrap">
-                    <a href="https://demo.templatesjungle.com/micas/shop.html"
+                    <a href="/"
                        className="btn btn-dark me-2 mb-2">Continue Shopping</a>
-                    <a href="https://demo.templatesjungle.com/micas/checkout.html"
+                    <a href="/checkout"
                        className="btn btn-primary me-2 mb-2">Proceed to checkout</a>
                 </div>
             )}

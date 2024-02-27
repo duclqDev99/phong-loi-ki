@@ -15,7 +15,7 @@ function Checkout() {
         <div>
             <Header/>
             <Breadcrumb items={breadcrumbItems}/>
-            <section className="shopify-cart checkout-wrap padding-large">
+            <section className="shopify-cart checkout-wrap padding-medium">
                 <div className="container">
                     <form className="form-group">
                         <div className="row d-flex flex-wrap">

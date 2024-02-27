@@ -12,7 +12,7 @@ function CartItem() {
                     </div>
                     <div className="card-detail ps-3">
                         <h5 className="card-title fs-4 text-uppercase">
-                            <a href="https://demo.templatesjungle.com/micas/single-product.html">Scarlet
+                            <a href="/product">Scarlet
                                 Secrets</a>
                         </h5>
                         <span className="item-price text-primary fs-4">$870</span>
@@ -46,7 +46,7 @@ function CartItem() {
             <td className="align-middle border-0"><span
                 className="item-price text-primary fs-3 fw-medium">$750</span></td>
             <td className="align-middle border-0 cart-remove">
-                <a href="https://demo.templatesjungle.com/micas/cart.html#">
+                <a href="/cart">
                     <svg width="32px" height="32px">
                         <use xlinkHref="#baseline-clear"></use>
                     </svg>

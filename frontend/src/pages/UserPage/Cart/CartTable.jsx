@@ -21,9 +21,8 @@ function CartTable() {
             </table>
             <div
                 className="cart-bottom d-flex flex-wrap justify-content-between align-items-center pt-2">
-                <a href="https://demo.templatesjungle.com/micas/cart.html#"
-                   className="btn btn-dark mb-2">Update
-                    cart</a>
+                <a href="/cart"
+                   className="btn btn-dark mb-2">Update cart</a>
             </div>
         </div>
     );

@@ -13,7 +13,7 @@ function BestSelling() {
     };
 
     return (
-        <section id="products" className="product-store position-relative padding-xlarge pb-0">
+        <section id="products" className="product-store position-relative padding-medium pb-0">
             <div className="container display-header d-flex flex-wrap justify-content-between pb-4">
                 <h3 className="mt-3">Best selling Items</h3>
                 <div className="btn-right d-flex flex-wrap align-items-center">

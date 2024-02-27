@@ -1,6 +1,10 @@
 import React from 'react';
 import Header from '../../UserPage/Header';
 import Footer from '../../UserPage/Footer';
+import thumbnail1 from "../../../assets/images/product-thumbnail-1.png";
+import thumbnail2 from "../../../assets/images/product-thumbnail-2.png";
+import image1 from "../../../assets/images/product-large-1.png";
+import image2 from "../../../assets/images/product-large-2.png";
 
 // Import các section khác như Banner, Products, etc.
 import Breadcrumb from "../Components/Breadcrumb";
@@ -26,13 +30,13 @@ function Product() {
                                         <div
                                             className="swiper-slide swiper-slide-visible swiper-slide-active swiper-slide-thumb-active"
                                             style={{ width: 141 }} role="group" aria-label="1 / 2">
-                                            <img src="./product_files/product-thumbnail-1.png" alt=""
+                                            <img src={thumbnail1} alt=""
                                                  className="img-fluid"/>
                                         </div>
                                         <div className="swiper-slide swiper-slide-visible swiper-slide-next"
                                              role="group"
                                              aria-label="2 / 2" style={{ width: 141 }}>
-                                            <img src="./product_files/product-thumbnail-2.png" alt=""
+                                            <img src={thumbnail2} alt=""
                                                  className="img-fluid"/>
                                         </div>
                                     </div>
@@ -46,12 +50,12 @@ function Product() {
                                         <div className="swiper-slide swiper-slide-visible swiper-slide-active"
                                              style={{ width: 483, opacity: 1, transform: 'translate3d(0, 0, 0)' }}
                                              role="group" aria-label="1 / 2">
-                                            <img src="./product_files/product-large-1.png" alt="single-product"
+                                            <img src={image1} alt="single-product"
                                                  className="img-fluid" />
                                         </div>
                                         <div className="swiper-slide swiper-slide-next" role="group" aria-label="2 / 2"
                                              style={{ width: 483, opacity: 0, transform: 'translate3d(-483, 0, 0)' }}>
-                                            <img src="./product_files/product-large-2.png" alt="single-product"
+                                            <img src={image2} alt="single-product"
                                                  className="img-fluid" />
                                         </div>
                                     </div>
@@ -63,10 +67,7 @@ function Product() {
                         <div className="col-lg-6">
                             <div className="product-info mt-3">
                                 <div className="element-header">
-                                    <div className="author"><a
-                                        href="https://demo.templatesjungle.com/micas/author.html">By
-                                        Karim
-                                        Archard</a></div>
+                                    <div className="author">By Karim Archard</div>
                                     <h3 className="product-title">Musical by Karim</h3>
                                     <div className="rating-container d-flex align-items-center">
                                         <div className="rating" data-rating="1" onclick="rate(1)">
@@ -139,9 +140,9 @@ function Product() {
                                             </div>
                                         </div>
                                         <div className="action-buttons my-4 d-flex flex-wrap">
-                                            <a href="https://demo.templatesjungle.com/micas/single-product.html#"
+                                            <a href="/checkout"
                                                className="btn btn-dark me-2 mb-1">Buy now</a>
-                                            <a href="https://demo.templatesjungle.com/micas/single-product.html#"
+                                            <a href="/cart"
                                                className="btn btn-dark">Add to cart</a>
                                         </div>
                                     </div>
@@ -157,28 +158,14 @@ function Product() {
                                                 <span className="text-uppercase me-2">Category:</span>
                                                 <ul className="select-list list-unstyled d-flex mb-0">
                                                     <li data-value="S" className="select-item">
-                                                        <a href="https://demo.templatesjungle.com/micas/single-product.html#">Happy</a>,
+                                                        <a href="/shop">Happy</a>,
                                                     </li>
                                                     <li data-value="S" className="select-item">
                                                         <a
-                                                            href="https://demo.templatesjungle.com/micas/single-product.html#">Tutorial</a>,
+                                                            href="/shop">Tutorial</a>,
                                                     </li>
                                                     <li data-value="S" className="select-item">
-                                                        <a href="https://demo.templatesjungle.com/micas/single-product.html#">Tips</a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <div className="meta-item d-flex mb-1">
-                                                <span className="text-uppercase me-2">Tags:</span>
-                                                <ul className="select-list list-unstyled d-flex mb-0">
-                                                    <li data-value="S" className="select-item">
-                                                        <a href="https://demo.templatesjungle.com/micas/single-product.html#">Music</a>,
-                                                    </li>
-                                                    <li data-value="S" className="select-item">
-                                                        <a href="https://demo.templatesjungle.com/micas/single-product.html#">Voice</a>,
-                                                    </li>
-                                                    <li data-value="S" className="select-item">
-                                                        <a href="https://demo.templatesjungle.com/micas/single-product.html#">Happy</a>
+                                                        <a href="/shop">Tips</a>
                                                     </li>
                                                 </ul>
                                             </div>

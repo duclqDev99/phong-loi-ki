@@ -11,11 +11,11 @@ function ProductItem({ classItem }) {
             <div className="card-detail text-center pt-3 pb-2">
                 <h5 className="card-title fs-4 text-uppercase m-0">
                     <a
-                        href="https://demo.templatesjungle.com/micas/single-product.html">Whispersong</a>
+                        href="/product">Whispersong</a>
                 </h5>
                 <span className="item-price text-primary fs-4">$870</span>
                 <div className="cart-button mt-1">
-                    <a href="https://demo.templatesjungle.com/micas/shop.html#"
+                    <a href="/cart"
                        className="btn">Add to cart</a>
                 </div>
             </div>

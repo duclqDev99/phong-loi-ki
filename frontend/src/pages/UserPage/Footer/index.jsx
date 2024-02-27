@@ -4,7 +4,7 @@ import {NavLink} from "react-router-dom";
 
 function Footer() {
     return (
-        <footer id="footer" className="overflow-hidden padding-xlarge pb-0">
+        <footer id="footer" className="overflow-hidden padding-medium pb-0">
             <div className="container">
                 <div className="row">
                     <div className="footer-top-area pb-5">

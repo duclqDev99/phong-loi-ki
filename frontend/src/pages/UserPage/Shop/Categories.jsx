@@ -8,16 +8,16 @@ function Categories() {
                     <h5 className="widget-title text-uppercase">Categories</h5>
                     <ul className="product-categories sidebar-list list-unstyled">
                         <li className="cat-item">
-                            <a href="https://demo.templatesjungle.com/micas/shop.html#">All</a>
+                            <a href="/shop">All</a>
                         </li>
                         <li className="cat-item">
-                            <a href="https://demo.templatesjungle.com/micas/shop.html#">Spiritual</a>
+                            <a href="/shop">Spiritual</a>
                         </li>
                         <li className="cat-item">
-                            <a href="https://demo.templatesjungle.com/micas/shop.html#">Money</a>
+                            <a href="/shop">Money</a>
                         </li>
                         <li className="cat-item">
-                            <a href="https://demo.templatesjungle.com/micas/shop.html#">Life</a>
+                            <a href="/shop">Life</a>
                         </li>
                     </ul>
                 </div>

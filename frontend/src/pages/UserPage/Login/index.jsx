@@ -36,7 +36,7 @@ function Login() {
         <div>
             <Header/>
             <Breadcrumb items={breadcrumbItems}/>
-            <section className="login-tabs padding-xlarge">
+            <section className="login-tabs padding-small">
                 <div className="container">
                     <div className="row">
                         <TabsListing tabNav={tabNavs} tabContent={tabContents}/>

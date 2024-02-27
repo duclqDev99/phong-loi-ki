@@ -15,7 +15,7 @@ function Shop() {
         <div>
             <Header/>
             <Breadcrumb items={breadcrumbItems}/>
-            <div className="shopify-grid padding-large">
+            <div className="shopify-grid padding-small">
                 <div className="container">
                     <div className="row">
                         <main className="col-md-9">

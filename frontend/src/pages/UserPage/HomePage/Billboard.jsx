@@ -16,7 +16,7 @@ function Billboard() {
     };
 
     return (
-        <section id="billboard" className="bg-gray padding-large">
+        <section id="billboard" className="bg-gray padding-medium">
             <Swiper {...params}>
                 <BillboardSlide imageSrc={image1}/>
                 <BillboardSlide imageSrc={image2}/>

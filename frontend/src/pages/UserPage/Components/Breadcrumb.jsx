@@ -13,7 +13,7 @@ function Breadcrumb({ items }) {
                                 {items.map((item, index) => (
                                     <span key={index} className="item">
                                         {index < items.length - 1 ? (
-                                            <a href="https://demo.templatesjungle.com/micas/index.html">{ item } &gt; </a>
+                                            <a href="/">{ item } &gt; </a>
                                         ) : (
                                             item
                                         )}
