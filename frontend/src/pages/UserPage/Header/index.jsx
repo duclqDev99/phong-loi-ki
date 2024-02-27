@@ -19,7 +19,7 @@ function Header() {
                     <div className="offcanvas offcanvas-end" tabIndex="-1" id="bdNavbar"
                          aria-labelledby="bdNavbarOffcanvasLabel">
                         <div className="offcanvas-header px-4 pb-0">
-                            <a className="navbar-brand" href="index.html">
+                            <a className="navbar-brand" href="/">
                                 <img src={logo} alt="Logo" className="footer-logo"/>
                             </a>
                             <button type="button" className="btn-close btn-close-black" data-bs-dismiss="offcanvas"
@@ -53,17 +53,36 @@ function Header() {
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>
-                                            <Dropdown.Item href="/shop">Category1</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category2</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category3</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category4</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category5</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category6</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category7</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category8</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category9</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category10</Dropdown.Item>
-                                            <Dropdown.Item href="/shop">Category11</Dropdown.Item>
+                                            <Dropdown.Item>
+                                                <NavLink to="/shop" >
+                                                    Category 01
+                                                </NavLink>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="/shop">
+                                                <NavLink to="/shop" >
+                                                    Category 02
+                                                </NavLink>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="/shop">
+                                                <NavLink to="/shop" >
+                                                    Category 03
+                                                </NavLink>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="/shop">
+                                                <NavLink to="/shop" >
+                                                    Category 04
+                                                </NavLink>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="/shop">
+                                                <NavLink to="/shop" >
+                                                    Category 05
+                                                </NavLink>
+                                            </Dropdown.Item>
+                                            <Dropdown.Item href="/shop">
+                                                <NavLink to="/shop" >
+                                                    Category 06
+                                                </NavLink>
+                                            </Dropdown.Item>
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </ul>
