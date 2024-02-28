@@ -1,15 +1,11 @@
 import React from 'react';
-import { Navbar, Nav, Container } from 'react-bootstrap';
-import Header from '../../UserPage/Header';
-import Footer from '../../UserPage/Footer';
 
 // Import các section khác như Banner, Products, etc.
-import Breadcrumb from "../Components/Breadcrumb";
-import TabsListing from "../Components/TabsListing";
-import TabNav from "../Components/TabNav";
-import TabContent from "../Components/TabContent";
-import FormRegister from "../Components/Form/FormRegister";
-import FormLogin from "../Components/Form/FormLogin";
+import TabsListing from "../../../components/user/TabsListing";
+import TabNav from "../../../components/user/TabNav";
+import TabContent from "../../../components/user/TabContent";
+import FormRegister from "../../../components/user/Form/FormRegister";
+import FormLogin from "../../../components/user/Form/FormLogin";
 
 function Login() {
     const breadcrumbItems = ["Home", "Account"];
@@ -33,18 +29,13 @@ function Login() {
     ];
 
     return (
-        <div>
-            <Header/>
-            <Breadcrumb items={breadcrumbItems}/>
-            <section className="login-tabs padding-small">
-                <div className="container">
-                    <div className="row">
-                        <TabsListing tabNav={tabNavs} tabContent={tabContents}/>
-                    </div>
+        <section className="login-tabs padding-small">
+            <div className="container">
+                <div className="row">
+                    <TabsListing tabNav={tabNavs} tabContent={tabContents}/>
                 </div>
-            </section>
-            <Footer/>
-        </div>
+            </div>
+        </section>
     );
 }
 

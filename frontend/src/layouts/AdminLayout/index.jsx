@@ -1,7 +1,7 @@
 import { useState } from 'react';
-import './App.css';
-import Header from './Header';
-import Sidebar from './Sidebar';
+import '../../assets/admin/styles/App.css';
+import Header from '../../components/admin/Header';
+import Sidebar from '../../components/admin/Sidebar';
 
 function Admin({page}) {
   const [openSidebarToggle, setOpenSidebarToggle] = useState(false)

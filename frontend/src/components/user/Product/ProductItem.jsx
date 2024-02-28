@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../../../assets/images/product-item1.jpg";
+import image from "../../../assets/user/images/product-item1.jpg";
 
 function ProductItem({ classItem }) {
     return (

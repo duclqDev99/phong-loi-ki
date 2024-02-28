@@ -1,5 +1,5 @@
 import React from "react";
-import ProductItem from "../Components/Product/ProductItem";
+import ProductItem from "../../../components/user/Product/ProductItem";
 import Swiper from 'react-id-swiper';
 
 function BestSelling() {

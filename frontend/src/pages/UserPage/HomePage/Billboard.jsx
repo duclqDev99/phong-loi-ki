@@ -1,7 +1,7 @@
 import React from 'react';
-import image1 from "../../../assets/images/book1.png";
-import image2 from "../../../assets/images/book2.png";
-import image3 from "../../../assets/images/book3.png";
+import image1 from "../../../assets/user/images/book1.png";
+import image2 from "../../../assets/user/images/book2.png";
+import image3 from "../../../assets/user/images/book3.png";
 import BillboardSlide from "./BillboardSlide";
 import Swiper from 'react-id-swiper';
 

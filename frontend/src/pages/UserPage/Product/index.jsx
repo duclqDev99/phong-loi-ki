@@ -1,22 +1,15 @@
 import React from 'react';
-import Header from '../../UserPage/Header';
-import Footer from '../../UserPage/Footer';
-import thumbnail1 from "../../../assets/images/product-thumbnail-1.png";
-import thumbnail2 from "../../../assets/images/product-thumbnail-2.png";
-import image1 from "../../../assets/images/product-large-1.png";
-import image2 from "../../../assets/images/product-large-2.png";
+import thumbnail1 from "../../../assets/user/images/product-thumbnail-1.png";
+import thumbnail2 from "../../../assets/user/images/product-thumbnail-2.png";
+import image1 from "../../../assets/user/images/product-large-1.png";
+import image2 from "../../../assets/user/images/product-large-2.png";
 
 // Import các section khác như Banner, Products, etc.
-import Breadcrumb from "../Components/Breadcrumb";
-import ProductRelated from "../Components/Product/ProductRelated";
+import ProductRelated from "../../../components/user/Product/ProductRelated";
 
 function Product() {
-    const breadcrumbItems = ["Home", "Single Product"];
-
     return (
         <div>
-            <Header/>
-            <Breadcrumb items={breadcrumbItems}/>
             <section className="single-product padding-large">
                 <div className="container">
                     <div className="row">
@@ -434,7 +427,6 @@ function Product() {
                 </div>
             </section>
             <ProductRelated/>
-            <Footer/>
         </div>
 );
 }
