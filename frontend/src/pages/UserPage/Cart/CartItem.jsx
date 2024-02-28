@@ -1,5 +1,5 @@
 import React from "react";
-import image from "../../../assets/images/cart-img2.jpg";
+import image from "../../../assets/user/images/cart-img2.jpg";
 
 function CartItem() {
     return (

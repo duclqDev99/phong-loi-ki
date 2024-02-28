@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from '../../../assets/images/main-logo.png';
+import logo from '../../../assets/user/images/main-logo.png';
 import { NavLink } from 'react-router-dom';
 import { Dropdown } from "react-bootstrap";
-import MiniCart from "../Components/Cart/MiniCart";
+import MiniCart from "../Cart/MiniCart";
 
 function Header() {
     return (

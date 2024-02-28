@@ -1,14 +1,8 @@
 import React from 'react';
-import Header from '../../UserPage/Header';
-import Footer from '../../UserPage/Footer';
 
 // Import các section khác như Banner, Products, etc.
-import Breadcrumb from "../Components/Breadcrumb";
-import CartTotal from "../Cart/CartTotal";
 
 function BillingDetail() {
-    const breadcrumbItems = ["Home", "Checkout"];
-
     return (
 
         <div className="col-lg-6">
