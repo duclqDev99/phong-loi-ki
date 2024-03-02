@@ -1,6 +1,23 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import categoryApi from "../../../apis/categoryApi";
+import {NavLink} from "react-router-dom";
 
 function Categories() {
+    const [categories, setCategories] = useState([]);
+
+    const fetch = async () => {
+        await categoryApi.getList().then((response) => {
+            setCategories(response);
+        }).catch((error) => {
+            console.log(error);
+            setCategories([]);
+        });
+    };
+
+    useEffect(() => {
+        fetch();
+    }, [])
+
     return (
         <aside className="col-md-3">
             <div className="sidebar">
@@ -8,17 +25,17 @@ function Categories() {
                     <h5 className="widget-title text-uppercase">Categories</h5>
                     <ul className="product-categories sidebar-list list-unstyled">
                         <li className="cat-item">
-                            <a href="/shop">All</a>
+                            <NavLink to={`/shop`}>
+                                All
+                            </NavLink>
                         </li>
-                        <li className="cat-item">
-                            <a href="/shop">Spiritual</a>
-                        </li>
-                        <li className="cat-item">
-                            <a href="/shop">Money</a>
-                        </li>
-                        <li className="cat-item">
-                            <a href="/shop">Life</a>
-                        </li>
+                        {categories.map((category, index) => (
+                            <li className="cat-item">
+                                <NavLink key={index} to={`/shop/${category.id}`}>
+                                    {category.title}
+                                </NavLink>
+                            </li>
+                        ))}
                     </ul>
                 </div>
             </div>

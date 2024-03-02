@@ -13,6 +13,9 @@ const productApi = {
     delete: (productId) => {
         return baseDelele(`/deleteData/${productId}`);
     },
+    getProduct: (productId) => {
+        return baseGet(`/${productId}`);
+    },
 };
 
 export default productApi;
