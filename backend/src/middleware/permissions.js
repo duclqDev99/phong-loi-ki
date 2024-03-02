@@ -1,6 +1,3 @@
-// myMiddleware.js
-export default function(req, res, next) {
-    console.log('Middleware được thực thi');
-    next();
-  };
-  
+module.exports = function(req, res, next) {
+  next(); // Quan trọng: phải gọi next() để chuyển tiếp
+};
