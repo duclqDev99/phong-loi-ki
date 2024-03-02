@@ -1,118 +1,111 @@
-import React, { useState } from 'react';
-import { Table, Button, Modal, Form } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import ProductForm from "./ProductForm";
 import ProductTable from "./ProductTable";
+import productApi from "../../../apis/productApi";
+import DialogWrapper from '../../../components/admin/dialogWapper';
 
 function AdminProduct() {
-    const [products, setProducts] = useState([
-        { id: 1, name: 'Product 1', price: 20 },
-        { id: 2, name: 'Product 2', price: 30 },
-    ]);
-
+    const [products, setProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [newProduct, setNewProduct] = useState({ name: '', price: '', quantity: '', author: '', rating: '' });
+    const [editValues, setEditValues] = useState(null);
 
-    const handleAddProduct = () => {
-        setProducts([...products, { id: products.length + 1, ...newProduct }]);
-        setNewProduct({ name: '', price: '', quantity: '', author: '', rating: '' });
+    const fetch = async () => {
+        await productApi.getList().then((response) => {
+            setProducts(response);
+        }).catch((error) => {
+            console.log(error);
+            setProducts([]);
+        });
+    };
+
+    const handleCreate = async (formData) => {
+        await productApi.create(formData).then((response) => {
+            setProducts((prev) => [...prev, response]);
+        }).catch((error) => {
+            console.log(error);
+        });
         setShowModal(false);
     };
 
-    function createData(
-        name: string,
-        price: number,
-        quantity: number,
-        author: string,
-        rating: number,
-    ) {
-        return { name, price, quantity, author, rating };
-    }
+    const handleDelete = async (id) => {
+        await productApi.delete(id).then((response) => {
+            if (response) {
+                setProducts((prev) => {
+                    return prev.filter((prev) => prev.id !== id);
+                });
+            }
+        });
+    };
 
-    const rows = [
-        createData('Book 1', 159, 6.0, "Author 01", 4.0),
-        createData('Book 2', 237, 9.0, "Author 02", 4.3),
-        createData('Book 3', 262, 16.0, "Author 03", 6.0),
-        createData('Book 4', 305, 3.0, "Author 04", 4.3),
-        createData('Book 5', 356, 16.0, "Author 05", 3.9),
-    ];
+    const handleSaveEdit = async (formData, id) => {
+        await productApi.update(formData, id).then((response) => {
+            if (response) {
+                setProducts((prev) => {
+                    return prev.map((item) => {
+                        if (item.id === id) {
+                            return response;
+                        }
+                        return item;
+                    });
+                });
+                setEditValues(null);
+            }
+        });
+        setShowModal(false);
+    };
+
+    const handleReset = () => {
+        setEditValues(null);
+        setShowModal(false);
+    };
+
+    const handleClose = () => {
+        setShowModal(false);
+    };
+
+    const handleEdit = (values) => {
+        setEditValues(values);
+        setShowModal(true);
+    };
+
+    useEffect(() => {
+        fetch();
+    }, []);
 
     return (
         <main className="main-container" >
-
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px' }}>
                 <span style={{ fontSize: 24, color: "black" }}>Manage Product</span>
                 <div className="add-product-button">
-                    <Button variant="primary" onClick={() => setShowModal(true)}>
-                        Add Product
+                    <Button
+                        onClick={() => setShowModal(true)}
+                        endIcon={<Add />}
+                    >
+                        Create
                     </Button>
                 </div>
             </div>
 
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Product</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="productName">
-                            <Form.Label style={{ fontWeight: 'bold' }}>Name</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter product name"
-                                value={newProduct.name}
-                                onChange={(e) => setNewProduct({ ...newProduct, name: e.target.value })}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="productPrice">
-                            <Form.Label style={{ fontWeight: 'bold' }}>Price</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter product price"
-                                value={newProduct.price}
-                                onChange={(e) => setNewProduct({ ...newProduct, price: e.target.value })}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="productQuantity">
-                            <Form.Label style={{ fontWeight: 'bold' }}>Quantity</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter product quantity"
-                                value={newProduct.quantity}
-                                onChange={(e) => setNewProduct({ ...newProduct, quantity: e.target.value })}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="productAuthor">
-                            <Form.Label style={{ fontWeight: 'bold' }}>Author</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter product author"
-                                value={newProduct.author}
-                                onChange={(e) => setNewProduct({ ...newProduct, author: e.target.value })}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="productRating">
-                            <Form.Label style={{ fontWeight: 'bold' }}>Rating</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter product rating"
-                                value={newProduct.rating}
-                                onChange={(e) => setNewProduct({ ...newProduct, rating: e.target.value })}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleAddProduct}>
-                        Add Product
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            <DialogWrapper
+                title={editValues ? 'Edit' : 'Create'}
+                open={showModal}
+                onClose={handleClose}
+            >
+                <ProductForm
+                    editValues={editValues}
+                    onCreateProduct={handleCreate}
+                    onSaveEdit={handleSaveEdit}
+                    onReset={handleReset}
+                />
+            </DialogWrapper>
 
-            <ProductTable rows={rows}/>
+            <ProductTable
+                rows={products}
+                onDeleteProduct={handleDelete}
+                onEdit={handleEdit}
+            />
         </main>
     );
 };

@@ -1,138 +1,113 @@
-import React, { useState } from 'react';
-import { Table, Button, Modal, Form, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
+import { Add } from '@mui/icons-material';
+import CustomerForm from "./CustomerForm";
 import CustomerTable from "./CustomerTable";
+import customerApi from "../../../apis/customerApi";
+import DialogWrapper from '../../../components/admin/dialogWapper';
 
 function AdminCategory() {
+    const [customers, setCustomers] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [editValues, setEditValues] = useState(null);
 
-    const [customers, setCustomers] = useState([
-        { username: 'User01', name: 'Category 1', description: '', status: 'On'},
-        { username: 'User02', name: 'Category 2', description: '', status: 'Off'},
-    ]);
+    const fetch = async () => {
+        await customerApi.getList().then((response) => {
+            setCustomers(response);
+        }).catch((error) => {
+            console.log(error);
+            setCustomers([]);
+        });
+    };
 
-    const [newCustomer, setNewCustomer] = useState({ id: '', title: '', description: '', status: '' });
 
-    const handleAddCategory = () => {
-        setCustomers([...customers, { id: customers.length + 1, ...newCustomer }]);
-        setNewCustomer({ username: '', email: '', phoneNumber: '', status: '', createdAt: '' });
+    const handleCreate = async (formData) => {
+        await customerApi.create(formData).then((response) => {
+            setCustomers((prev) => [...prev, response]);
+        }).catch((error) => {
+            console.log(error);
+        });
         setShowModal(false);
     };
 
-    function createData(
-        username: string,
-        email: string,
-        phoneNumber: string,
-        status: string,
-        createdAt: string,
-    ) {
-        return { username, email, phoneNumber, status, createdAt };
-    }
-
-    const rows = [
-        createData('User01', 'Email 01', '0987654321', 'On', '18:00:00 20-02-2024'),
-        createData('User02', 'Email 02', '0987654321', 'On', '18:00:00 20-02-2024'),
-        createData('User03', 'Email 03', '0987654321', 'Off', '18:00:00 20-02-2024'),
-        createData('User04', 'Email 04', '0987654321', 'On', '18:00:00 20-02-2024'),
-        createData('User05', 'Email 05', '0987654321', 'Off', '18:00:00 20-02-2024'),
-    ];
-
-    const handleStatusChange = (value) => {
-        setNewCustomer({ ...newCustomer, status: value });
+    const handleDelete = async (id) => {
+        await customerApi.delete(id).then((response) => {
+            if (response) {
+                setCustomers((prev) => {
+                    return prev.filter((prev) => prev.id !== id);
+                });
+            }
+        });
     };
+
+    const handleSaveEdit = async (formData, id) => {
+        await customerApi.update(formData, id).then((response) => {
+            if (response) {
+                setCustomers((prev) => {
+                    return prev.map((item) => {
+                        if (item.id === id) {
+                            return response;
+                        }
+                        return item;
+                    });
+                });
+                setEditValues(null);
+            }
+        });
+        setShowModal(false);
+    };
+
+    const handleReset = () => {
+        setEditValues(null);
+        setShowModal(false);
+    };
+
+    const handleClose = () => {
+        setShowModal(false);
+    };
+
+    const handleEdit = (values) => {
+        setEditValues(values);
+        setShowModal(true);
+    };
+
+    useEffect(() => {
+        fetch();
+    }, []);
 
     return (
         <main className="main-container">
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px'}}>
                 <span style={{fontSize: 24, color: "black"}}>Manage Customer</span>
 
-                <Button variant="primary" onClick={() => setShowModal(true)}>
-                    Add Customer
-                </Button>
-            </div>
-
-            <div className="row">
-                <CustomerTable rows={rows}/>
-            </div>
-
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Customer</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="customerUsername">
-                            <Form.Label style={{fontWeight: 'bold'}}>Username</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter customer username"
-                                value={newCustomer.username}
-                                onChange={(e) => setNewCustomer({...newCustomer, username: e.target.value})}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="customerEmail">
-                            <Form.Label style={{fontWeight: 'bold'}}>Email</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter customer email"
-                                value={newCustomer.email}
-                                onChange={(e) => setNewCustomer({...newCustomer, email: e.target.value})}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="customerPhoneNumber">
-                            <Form.Label style={{fontWeight: 'bold'}}>Phone Number</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter customer phone number"
-                                value={newCustomer.phoneNumber}
-                                onChange={(e) => setNewCustomer({...newCustomer, phoneNumber: e.target.value})}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="customerStatus" style={{ paddingTop: 25 }}>
-                            <Form.Label style={{ fontWeight: 'bold' }}>Status</Form.Label>
-                            <ToggleButtonGroup
-                                type="radio"
-                                name="status"
-                                value={newCustomer.status}
-                                onChange={handleStatusChange}
-                                style={{ marginBottom: '10px', display: 'flex', gap: '10px' }}
-                            >
-                                <ToggleButton
-                                    value="on"
-                                    variant={newCustomer.status === 'on' ? 'success' : 'outline-success'}
-                                    style={{ flex: 1, textAlign: 'center', fontSize: '14px' }}
-                                >
-                                    On
-                                </ToggleButton>
-                                <ToggleButton
-                                    value="off"
-                                    variant={newCustomer.status === 'off' ? 'danger' : 'outline-danger'}
-                                    style={{ flex: 1, textAlign: 'center', fontSize: '14px' }}
-                                >
-                                    Off
-                                </ToggleButton>
-                            </ToggleButtonGroup>
-                        </Form.Group>
-                        <Form.Group controlId="customerCreatedAt">
-                            <Form.Label style={{fontWeight: 'bold'}}>Created At</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter customer created at"
-                                value={newCustomer.createdAt}
-                                onChange={(e) => setNewCustomer({...newCustomer, createdAt: e.target.value})}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleAddCategory}>
-                        Add Customer
+                <div className="add-product-button">
+                    <Button
+                        onClick={() => setShowModal(true)}
+                        endIcon={<Add/>}
+                    >
+                        Create
                     </Button>
-                </Modal.Footer>
-            </Modal>
+                </div>
+            </div>
+
+            <DialogWrapper
+                title={editValues ? 'Edit' : 'Create'}
+                open={showModal}
+                onClose={handleClose}
+            >
+                <CustomerForm
+                    editValues={editValues}
+                    onCreate={handleCreate}
+                    onSaveEdit={handleSaveEdit}
+                    onReset={handleReset}
+                />
+            </DialogWrapper>
+
+            <CustomerTable
+                rows={customers}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+            />
         </main>
     );
 };

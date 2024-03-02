@@ -1,117 +1,113 @@
-import React, { useState } from 'react';
-import { Table, Button, Modal, Form, ToggleButton, ToggleButtonGroup } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Button } from '@mui/material';
+import { Add } from '@mui/icons-material';
 import CategoryTable from "./CategoryTable";
+import CategoryForm from "./CategoryForm";
+import categoryApi from "../../../apis/productApi";
+import DialogWrapper from '../../../components/admin/dialogWapper';
 
 function AdminCategory() {
+    const [categories, setCategories] = useState([]);
     const [showModal, setShowModal] = useState(false);
-
-    const [categories, setCategories] = useState([
-        { id: 1, name: 'Category 1', description: '', status: 'On'},
-        { id: 2, name: 'Category 2', description: '', status: 'Off'},
-    ]);
+    const [editValues, setEditValues] = useState(null);
 
     const [newCategory, setNewCategory] = useState({ id: '', title: '', description: '', status: '' });
 
-    const handleAddCategory = () => {
-        setCategories([...categories, { id: categories.length + 1, ...newCategory }]);
-        setNewCategory({ id: '', title: '', description: '', status: '' });
+    const fetch = async () => {
+        await categoryApi.getList().then((response) => {
+            setCategories(response);
+        }).catch((error) => {
+            console.log(error);
+            setCategories([]);
+        });
+    };
+
+    const handleCreate = async (formData) => {
+        await categoryApi.create(formData).then((response) => {
+            setCategories((prev) => [...prev, response]);
+        }).catch((error) => {
+            console.log(error);
+        });
         setShowModal(false);
     };
 
-    function createData(
-        id: number,
-        title: string,
-        description: string,
-        status: string,
-    ) {
-        return { id, title, description, status };
-    }
-
-    const rows = [
-        createData(1, 'Category 01', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incidi...', 'On'),
-        createData(2, 'Category 02', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incidi...', 'On'),
-        createData(3, 'Category 03', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incidi...', 'Off'),
-        createData(4, 'Category 04', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incidi...', 'On'),
-        createData(5, 'Category 05', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incidi...', 'Off'),
-    ];
-
-    const handleStatusChange = (value) => {
-        setNewCategory({ ...newCategory, status: value });
+    const handleDelete = async (id) => {
+        await categoryApi.delete(id).then((response) => {
+            if (response) {
+                setCategories((prev) => {
+                    return prev.filter((prev) => prev.id !== id);
+                });
+            }
+        });
     };
+
+    const handleSaveEdit = async (formData, id) => {
+        await categoryApi.update(formData, id).then((response) => {
+            if (response) {
+                setCategories((prev) => {
+                    return prev.map((item) => {
+                        if (item.id === id) {
+                            return response;
+                        }
+                        return item;
+                    });
+                });
+                setEditValues(null);
+            }
+        });
+        setShowModal(false);
+    };
+
+    const handleReset = () => {
+        setEditValues(null);
+        setShowModal(false);
+    };
+
+    const handleClose = () => {
+        setShowModal(false);
+    };
+
+    const handleEdit = (values) => {
+        setEditValues(values);
+        setShowModal(true);
+    };
+
+    useEffect(() => {
+        fetch();
+    }, []);
 
     return (
         <main className="main-container">
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px'}}>
                 <span style={{fontSize: 24, color: "black"}}>Manage Category</span>
-
-                <Button variant="primary" onClick={() => setShowModal(true)}>
-                    Add Category
-                </Button>
-            </div>
-
-            <div className="row">
-                <CategoryTable rows={rows}/>
-            </div>
-
-            <Modal show={showModal} onHide={() => setShowModal(false)}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Add Category</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="categoryTitle">
-                            <Form.Label style={{fontWeight: 'bold'}}>Title</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter category title"
-                                value={newCategory.title}
-                                onChange={(e) => setNewCategory({...newCategory, title: e.target.value})}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="categoryDescription">
-                            <Form.Label style={{fontWeight: 'bold'}}>Description</Form.Label>
-                            <Form.Control
-                                type="text"
-                                placeholder="Enter category title"
-                                value={newCategory.description}
-                                onChange={(e) => setNewCategory({...newCategory, description: e.target.value})}
-                                style={{ fontSize: '0.9em', borderBottom: '1px solid #000' }}
-                            />
-                        </Form.Group>
-                        <Form.Group controlId="categoryStatus" style={{ paddingTop: 25 }}>
-                            <Form.Label style={{ fontWeight: 'bold' }}>Status</Form.Label>
-                            <ToggleButtonGroup
-                                type="radio"
-                                name="status"
-                                value={newCategory.status}
-                                onChange={handleStatusChange}
-                                style={{ marginBottom: '10px', display: 'flex', gap: '10px' }}
-                            >
-                                <ToggleButton
-                                    value="on"
-                                    variant={newCategory.status === 'on' ? 'success' : 'outline-success'}
-                                    style={{ flex: 1, textAlign: 'center', fontSize: '14px' }}
-                                >
-                                    On
-                                </ToggleButton>
-                                <ToggleButton
-                                    value="off"
-                                    variant={newCategory.status === 'off' ? 'danger' : 'outline-danger'}
-                                    style={{ flex: 1, textAlign: 'center', fontSize: '14px' }}
-                                >
-                                    Off
-                                </ToggleButton>
-                            </ToggleButtonGroup>
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="primary" onClick={handleAddCategory}>
-                        Add Category
+                <div className="add-product-button">
+                    <Button
+                        onClick={() => setShowModal(true)}
+                        endIcon={<Add/>}
+                    >
+                        Create
                     </Button>
-                </Modal.Footer>
-            </Modal>
+                </div>
+            </div>
+
+            <DialogWrapper
+                title={editValues ? 'Edit' : 'Create'}
+                open={showModal}
+                onClose={handleClose}
+            >
+                <CategoryForm
+                    editValues={editValues}
+                    onCreate={handleCreate}
+                    onSaveEdit={handleSaveEdit}
+                    onReset={handleReset}
+                />
+            </DialogWrapper>
+
+            <CategoryTable
+                rows={categories}
+                onDelete={handleDelete}
+                onEdit={handleEdit}
+            />
         </main>
     );
 };
