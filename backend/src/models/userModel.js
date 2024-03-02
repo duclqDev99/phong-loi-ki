@@ -1,8 +1,9 @@
 const knex = require('knex');
 const knexConfig = require('./knex');
+const db = knex(knexConfig.development);
+
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
-const db = knex(knexConfig.development);
 
 const tableName = 'users';
 
