@@ -9,9 +9,53 @@ const getAllProducts = async (req, res) => {
   }
 };
 
+const filterProductWithCategory = async (req, res) => {
+  try {
+    const { category_id } = req.params;
+
+    if (!category_id) {
+      return res.status(400).send({ message: 'Category ID is required' });
+    }
+
+    const products = await ProductModel.filterProductWithCategory(category_id);
+
+    return res.status(200).json(products);
+  } catch (error) {
+    console.error('Error fetching products:', error);
+    return res.status(500).send({ message: 'Error fetching products' });
+  }
+};
+
 const getProductById = async (req, res) => {
   try {
     const product = await ProductModel.getProductById(req.params.id);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).send('Product not found');
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+const getProductPuslish = async (req, res) => {
+  try {
+    console.log('req', req.params);
+    const product = await ProductModel.getProductPuslish(req.params.status);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).send('Product not found');
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+const getProductByUser = async (req, res) => {
+  try {
+    const product = await ProductModel.getProductByUser(req.params.user_id);
     if (product) {
       res.json(product);
     } else {
@@ -54,5 +98,8 @@ const createProduct = async (req, res) => {
     getProductById,
     createProduct,
     updateProduct,
-    deleteProduct
+    deleteProduct,
+    filterProductWithCategory,
+    getProductByUser,
+    getProductPuslish
   };
