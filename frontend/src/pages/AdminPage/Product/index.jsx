@@ -22,7 +22,7 @@ function AdminProduct() {
 
     const handleCreate = async (formData) => {
         await productApi.create(formData).then((response) => {
-            setProducts((prev) => [...prev, response]);
+            fetch();
         }).catch((error) => {
             console.log(error);
         });
@@ -42,14 +42,15 @@ function AdminProduct() {
     const handleSaveEdit = async (formData, id) => {
         await productApi.update(formData, id).then((response) => {
             if (response) {
-                setProducts((prev) => {
+                /*setProducts((prev) => {
                     return prev.map((item) => {
                         if (item.id === id) {
                             return response;
                         }
                         return item;
                     });
-                });
+                });*/
+                fetch();
                 setEditValues(null);
             }
         });

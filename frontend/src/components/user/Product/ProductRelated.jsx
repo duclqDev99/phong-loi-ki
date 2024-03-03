@@ -1,7 +1,7 @@
 import React from "react";
 import ProductItem from "./ProductItem";
 
-function ProductRelated() {
+function ProductRelated( category_id ) {
     return (
         <section id="products" className="product-store padding-small">
             <div className="container">

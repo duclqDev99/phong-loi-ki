@@ -1,10 +1,26 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import logo from '../../../assets/user/images/main-logo.png';
 import { NavLink } from 'react-router-dom';
 import { Dropdown } from "react-bootstrap";
 import MiniCart from "../Cart/MiniCart";
+import categoryApi from "../../../apis/categoryApi";
 
 function Header() {
+    const [categories, setCategories] = useState([]);
+
+    const fetch = async () => {
+        await categoryApi.getList().then((response) => {
+            setCategories(response);
+        }).catch((error) => {
+            console.log(error);
+            setCategories([]);
+        });
+    };
+
+    useEffect(() => {
+        fetch();
+    }, [])
+
     return (
         <header className="site-header bg-white">
             <nav id="header-nav" className="navbar navbar-expand-lg px-3">
@@ -53,36 +69,13 @@ function Header() {
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>
-                                            <Dropdown.Item>
-                                                <NavLink to="/shop" >
-                                                    Category 01
-                                                </NavLink>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href="/shop">
-                                                <NavLink to="/shop" >
-                                                    Category 02
-                                                </NavLink>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href="/shop">
-                                                <NavLink to="/shop" >
-                                                    Category 03
-                                                </NavLink>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href="/shop">
-                                                <NavLink to="/shop" >
-                                                    Category 04
-                                                </NavLink>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href="/shop">
-                                                <NavLink to="/shop" >
-                                                    Category 05
-                                                </NavLink>
-                                            </Dropdown.Item>
-                                            <Dropdown.Item href="/shop">
-                                                <NavLink to="/shop" >
-                                                    Category 06
-                                                </NavLink>
-                                            </Dropdown.Item>
+                                            {categories.map((category, index) => (
+                                                <Dropdown.Item key={index}>
+                                                    <NavLink to={`/shop/${category.id}`} >
+                                                        {category.title}
+                                                    </NavLink>
+                                                </Dropdown.Item>
+                                            ))}
                                         </Dropdown.Menu>
                                     </Dropdown>
                                 </ul>

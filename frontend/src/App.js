@@ -32,11 +32,12 @@ function App() {
             <Router>
                 <Routes>
                     <Route path="/" element={<UserLayout page={<HomePage/>} breadcrumbItems={[]}/>}/>
+                    <Route path="/shop/:id" element={<UserLayout page={<Shop/>} breadcrumbItems={["Home", "Shop"]}/>}/>
                     <Route path="/shop" element={<UserLayout page={<Shop/>} breadcrumbItems={["Home", "Shop"]}/>}/>
                     <Route path="/login" element={<UserLayout page={<Login/>} breadcrumbItems={["Home", "Login"]}/>}/>
                     <Route path="/cart" element={<UserLayout page={<Cart/>} breadcrumbItems={["Home", "Cart"]}/>}/>
                     <Route path="/checkout" element={<UserLayout page={<Checkout/>} breadcrumbItems={["Home", "Checkout"]}/>}/>
-                    <Route path="/product" element={<UserLayout page={<Product/>} breadcrumbItems={["Home", "Product"]}/>}/>
+                    <Route path="/product/:id" element={<UserLayout page={<Product/>} breadcrumbItems={["Home", "Product"]}/>}/>
 
                     <Route path="/admin" element={<AdminLayout page={<AdminHome />}/>}/>
                     <Route path="/admin-product" element={<AdminLayout page={<AdminProduct />}/>}/>

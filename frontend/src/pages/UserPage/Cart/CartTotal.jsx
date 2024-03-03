@@ -1,28 +1,20 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import {NavLink} from "react-router-dom";
 
-function CartTotal({isCheckoutStep = false}) {
+function CartTotal({ isCheckoutStep = false, total }) {
+
     return (
-        <div className="cart-totals padding-medium">
+        <div >
             <h3 className="pb-4">Cart Total</h3>
             <div className="total-price pb-5">
                 <table cellSpacing="0" className="table text-uppercase">
                     <tbody>
-                    <tr className="subtotal pt-2 pb-2 border-top border-bottom border-gray">
-                        <th className="fw-light">Subtotal</th>
-                        <td className="align-middle border-0" data-title="Subtotal">
-                                        <span className="price-amount amount text-primary">
-                                            <bdi>
-                                                <span className="price-currency-symbol">$</span>2,370.00
-                                            </bdi>
-                                        </span>
-                        </td>
-                    </tr>
                     <tr className="order-total pt-2 pb-2 border-bottom border-gray">
                         <th className="fw-light">Total</th>
                         <td className="align-middle border-0" data-title="Total">
                                         <span className="price-amount amount text-primary">
                                             <bdi>
-                                                <span className="price-currency-symbol">$</span>2,370.00
+                                                <span className="price-currency-symbol">$</span>{ total }
                                             </bdi>
                                         </span>
                         </td>
@@ -32,10 +24,12 @@ function CartTotal({isCheckoutStep = false}) {
             </div>
             { !isCheckoutStep && (
                 <div className="button-wrap">
-                    <a href="/"
-                       className="btn btn-dark me-2 mb-2">Continue Shopping</a>
-                    <a href="/checkout"
-                       className="btn btn-primary me-2 mb-2">Proceed to checkout</a>
+                    <NavLink to={`/shop`} className="btn btn-dark me-2 mb-2">
+                        Continue Shopping
+                    </NavLink>
+                    <NavLink to={`/checkout`} className="btn btn-primary me-2 mb-2">
+                        Proceed to checkout
+                    </NavLink>
                 </div>
             )}
         </div>

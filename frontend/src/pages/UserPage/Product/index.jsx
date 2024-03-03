@@ -7,25 +7,21 @@ import image2 from "../../../assets/user/images/product-large-2.png";
 // Import các section khác như Banner, Products, etc.
 import ProductRelated from "../../../components/user/Product/ProductRelated";
 import productApi from "../../../apis/productApi";
+import {NavLink, useParams} from "react-router-dom";
+import { toast, ToastContainer } from 'react-toastify';
 
 function Product() {
+    const {id} = useParams();
+
     const [quantity, setQuantity] = useState(1);
-    const [product, setProduct] = useState({
-        id: 0,
-        name: 'Book 01',
-        price: 100,
-        quantity: 6,
-        description: 'Des 01',
-        status: '1',
-        image: 'none',
-        author: "Author 01",
-        rating: 4.0
-    });
+    const [product, setProduct] = useState([]);
+    const [cartItems, setCartItems] = useState([]);
+    const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const fetch = async () => {
-        await productApi.getList().then((response) => {
+        await productApi.getProduct(id).then((response) => {
+            console.log(response);
             setProduct(response);
-            // setProduct({ id: 0, name: 'Book 01', price: 100, quantity: 6, description: 'Des 01', status: '1', image: 'none', author: "Author 01", rating: 4.0 });
         }).catch((error) => {
             console.log(error);
             setProduct([]);
@@ -42,9 +38,41 @@ function Product() {
         }
     }
 
-    /*useEffect(() => {
+    const handleAddToCart = () => {
+        const existingItem = cartItems.find((item) => item.id === product.id);
+
+        if (existingItem) {
+            setCartItems((prevCartItems) =>
+                prevCartItems.map((item) =>
+                    item.id === existingItem.id ? { ...item, quantity: item.quantity + quantity } : item
+                )
+            );
+        } else {
+            setCartItems((prevCartItems) => [...prevCartItems, { ...product, quantity: quantity }]);
+        }
+        setShowSuccessMessage(true);
+        setQuantity(1);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    };
+
+    useEffect(() => {
         fetch();
-    }, []);*/
+    }, []);
+
+    useEffect(() => {
+        const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+        setCartItems(storedCartItems);
+    }, []);
+
+    useEffect(() => {
+        let timeout;
+        if (showSuccessMessage) {
+            timeout = setTimeout(() => {
+                setShowSuccessMessage(false);
+            }, 2000);
+        }
+        return () => clearTimeout(timeout);
+    }, [showSuccessMessage]);
 
     return (
         <div>
@@ -132,11 +160,15 @@ function Product() {
                                         </div>
                                     </div>
                                     <div className="action-buttons my-4 d-flex flex-wrap">
-                                        <a href="/checkout"
-                                           className="btn btn-dark me-2 mb-1">Buy now</a>
-                                        <a href="/cart"
-                                           className="btn btn-dark">Add to cart</a>
+                                        <button className="btn btn-dark" onClick={handleAddToCart}>
+                                            Add to cart
+                                        </button>
                                     </div>
+                                    {showSuccessMessage && (
+                                        <div className="btn btn-dark" role="alert">
+                                            Product added to cart successfully!
+                                        </div>
+                                    )}
                                 </div>
                                 <hr></hr>
                                 <div className="meta-product">
@@ -144,7 +176,9 @@ function Product() {
                                         <span className="text-uppercase me-2">Category:</span>
                                         <ul className="select-list list-unstyled d-flex mb-0">
                                             <li data-value="S" className="select-item">
-                                                <a href="/shop">Happy</a>
+                                                <NavLink to={`/shop/${product.category_id}`} >
+                                                    Happy
+                                                </NavLink>
                                             </li>
                                         </ul>
                                     </div>
@@ -154,7 +188,7 @@ function Product() {
                     </div>
                 </div>
             </section>
-            <ProductRelated/>
+            {/*<ProductRelated/>*/}
         </div>
     );
 }

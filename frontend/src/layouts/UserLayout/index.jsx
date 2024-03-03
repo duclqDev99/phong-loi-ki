@@ -8,7 +8,6 @@ import Footer from "../../components/user/Footer";
 import Breadcrumb from "../../components/user/Breadcrumb";
 
 function Index({page, breadcrumbItems}) {
-    /*const breadcrumbItems = ["Home", "Cart"];*/
 
     return (
         <div>

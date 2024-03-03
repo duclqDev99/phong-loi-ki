@@ -8,14 +8,10 @@ function BillingDetail() {
         <div className="col-lg-6">
             <h3 className="pb-4">Billing Details</h3>
             <div className="billing-details">
-                <div className="py-3">
-                    <label htmlFor="fname">First Name*</label>
-                    <input type="text" id="fname" name="firstname" className="w-100"/>
-                </div>
 
                 <div className="py-3">
-                    <label htmlFor="lname">Last Name*</label>
-                    <input type="text" id="lname" name="lastname" className="w-100"/>
+                    <label htmlFor="lname">Full Name*</label>
+                    <input type="text" id="lname" name="fullname" className="w-100"/>
                 </div>
 
                 <div className="py-3">
@@ -23,11 +19,6 @@ function BillingDetail() {
                     <input type="text" id="adr" name="address"
                            placeholder="House number and street name, district, ward and city"
                            className="w-100"/>
-                </div>
-
-                <div className="py-3">
-                    <label htmlFor="city">Town / City *</label>
-                    <input type="text" id="city" name="city" className="w-100"/>
                 </div>
 
                 <div className="py-3">
