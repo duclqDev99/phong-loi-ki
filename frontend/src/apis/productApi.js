@@ -8,6 +8,7 @@ const productApi = {
         return basePost('products/create', formData);
     },
     update: (productId, formData) => {
+        console.log(formData);
         return basePut(`products/update/${productId}`, formData);
     },
     delete: (productId) => {

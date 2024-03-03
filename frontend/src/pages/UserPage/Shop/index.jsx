@@ -43,7 +43,7 @@ function Shop() {
             <div className="container">
                 <div className="row">
                     <main className="col-md-9">
-                        <ProductFilter/>
+                        {/*<ProductFilter/>*/}
                         <div className="row product-content product-store">
                             {products.map((product, index) => (
                                 <ProductItem classItem={"col-lg-4 col-md-6"} product={product}/>

@@ -58,7 +58,10 @@ const Status = ({ status }) => {
 };
 
 Status.propTypes = {
-  status: PropTypes.string,
+  status: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number
+  ]),
 };
 
 export default Status;

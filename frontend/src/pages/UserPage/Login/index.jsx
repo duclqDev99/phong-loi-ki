@@ -16,16 +16,16 @@ function Login() {
                 dataBsTarget="#nav-sign-in"
                 isActive={true}
                 label="Sign In" />,
-        <TabNav id="nav-register-tab"
+        /*<TabNav id="nav-register-tab"
                 ariaControls="nav-register"
                 dataBsTarget="#nav-register"
                 isActive={false}
-                label="Register" />
+                label="Register" />*/
     ];
 
     const tabContents = [
         <TabContent id="nav-sign-in" ariaLabelledby="nav-sign-in-tab" isActive={true} form={<FormLogin/>}/>,
-        <TabContent id="nav-register" ariaLabelledby="nav-register-tab" isActive={false} form={<FormRegister/>}/>
+        /*<TabContent id="nav-register" ariaLabelledby="nav-register-tab" isActive={false} form={<FormRegister/>}/>*/
     ];
 
     return (

@@ -3,7 +3,7 @@ import { Button } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import CategoryTable from "./CategoryTable";
 import CategoryForm from "./CategoryForm";
-import categoryApi from "../../../apis/productApi";
+import categoryApi from "../../../apis/categoryApi";
 import DialogWrapper from '../../../components/admin/dialogWapper';
 
 function AdminCategory() {
@@ -11,10 +11,9 @@ function AdminCategory() {
     const [showModal, setShowModal] = useState(false);
     const [editValues, setEditValues] = useState(null);
 
-    const [newCategory, setNewCategory] = useState({ id: '', title: '', description: '', status: '' });
-
     const fetch = async () => {
         await categoryApi.getList().then((response) => {
+            console.log(response);
             setCategories(response);
         }).catch((error) => {
             console.log(error);
@@ -42,7 +41,7 @@ function AdminCategory() {
     };
 
     const handleSaveEdit = async (formData, id) => {
-        await categoryApi.update(formData, id).then((response) => {
+        await categoryApi.update(id, formData).then((response) => {
             if (response) {
                 setCategories((prev) => {
                     return prev.map((item) => {

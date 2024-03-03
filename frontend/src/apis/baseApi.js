@@ -9,7 +9,7 @@ export const basePost = (endpoint, body, headers) => {
 };
 
 export const basePut = (endpoint, body, headers) => {
-    return axiosClient.post(endpoint, { _method: 'PUT', ...body }, { headers });
+    return axiosClient.post(endpoint, body, { headers });
 };
 
 export const baseDelele = (endpoint, headers) => {

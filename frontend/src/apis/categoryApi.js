@@ -5,13 +5,13 @@ const categoryApi = {
         return baseGet('categoryRoutes', params);
     },
     create: (formData) => {
-        return basePost('/sendData', formData);
+        return basePost('categoryRoutes/create', formData);
     },
     update: (categoryId, formData) => {
-        return basePut(`/updateData/${categoryId}`, formData);
+        return basePut(`categoryRoutes/update/${categoryId}`, formData);
     },
     delete: (categoryId) => {
-        return baseDelele(`/deleteData/${categoryId}`);
+        return baseDelele(`categoryRoutes/delete/${categoryId}`);
     },
 };
 
