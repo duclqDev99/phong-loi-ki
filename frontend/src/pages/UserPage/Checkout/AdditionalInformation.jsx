@@ -7,13 +7,11 @@ function AdditionalInformation() {
 
     return (
         <div className="col-lg-6">
-            <h3 className="pb-4">Additional Information</h3>
+            {/*<h3 className="pb-4">Additional Information</h3>*/}
             <CartTotal isCheckoutStep={true}/>
             <div className="your-order mt-5">
                 <div className="total-price">
-                    <button type="submit" name="submit" className="btn btn-dark w-100">Place an
-                        order
-                    </button>
+                    <button type="submit" name="submit" className="btn btn-dark w-100">Place an order </button>
                 </div>
             </div>
         </div>

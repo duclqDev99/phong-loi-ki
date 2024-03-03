@@ -1,6 +1,8 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
 import ProductItem from "../../../components/user/Product/ProductItem";
 import Swiper from 'react-id-swiper';
+import productApi from "../../../apis/productApi";
+import {NavLink} from "react-router-dom";
 
 function BestSelling() {
     const params = {
@@ -12,48 +14,38 @@ function BestSelling() {
         },
     };
 
+    const [products, setProducts] = useState([]);
+
+    const fetch = async () => {
+        await productApi.getList().then((response) => {
+            console.log(response);
+            setProducts(response);
+        }).catch((error) => {
+            console.log(error);
+            setProducts([]);
+        });
+    };
+
+    useEffect(() => {
+        fetch();
+    }, [])
+
     return (
         <section id="products" className="product-store position-relative padding-medium pb-0">
             <div className="container display-header d-flex flex-wrap justify-content-between pb-4">
-                <h3 className="mt-3">Best selling Items</h3>
+                <h3 className="mt-3">newly released book</h3>
                 <div className="btn-right d-flex flex-wrap align-items-center">
-                    <a href="shop.html" className="btn me-5">View all items →</a>
-                    <div className="swiper-buttons">
-                        <button className="swiper-prev product-carousel-prev me-2">
-                            <svg width="41" height="41">
-                                <use xlinkHref="#angle-left"></use>
-                            </svg>
-                        </button>
-                        <button className="swiper-next product-carousel-next">
-                            <svg width="41" height="41">
-                                <use xlinkHref="#angle-right"></use>
-                            </svg>
-                        </button>
-                    </div>
+                    <NavLink to={`/shop/`}>
+                        View all items →
+                    </NavLink>
                 </div>
             </div>
             <Swiper {...params}>
-                <div className="swiper-slide">
-                    <ProductItem classItem={"product-card"}/>
-                </div>
-                <div className="swiper-slide">
-                    <ProductItem classItem={"product-card"}/>
-                </div>
-                <div className="swiper-slide">
-                    <ProductItem classItem={"product-card"}/>
-                </div>
-                <div className="swiper-slide">
-                    <ProductItem classItem={"product-card"}/>
-                </div>
-                <div className="swiper-slide">
-                    <ProductItem classItem={"product-card"}/>
-                </div>
-                <div className="swiper-slide">
-                    <ProductItem classItem={"product-card"}/>
-                </div>
-                <div className="swiper-slide">
-                    <ProductItem classItem={"product-card"}/>
-                </div>
+                {products.map((product, index) => (
+                    <li className="cat-item">
+                        <ProductItem classItem={"product-card"} product={product}/>
+                    </li>
+                ))}
             </Swiper>
         </section>
     );

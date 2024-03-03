@@ -1,7 +1,8 @@
 import React from "react";
 import CartItem from "./CartItem";
 
-function CartTable() {
+function CartTable({ cartItems, handleDelete }) {
+
     return (
         <div className="table-responsive">
             <table className="table">
@@ -14,16 +15,11 @@ function CartTable() {
                 </tr>
                 </thead>
                 <tbody className="border-top border-gray">
-                    <CartItem/>
-                    <CartItem/>
-                    <CartItem/>
+                    {cartItems.map((item, index) => (
+                        <CartItem product={item} handleDelete={handleDelete}/>
+                    ))}
                 </tbody>
             </table>
-            <div
-                className="cart-bottom d-flex flex-wrap justify-content-between align-items-center pt-2">
-                <a href="/cart"
-                   className="btn btn-dark mb-2">Update cart</a>
-            </div>
         </div>
     );
 }
