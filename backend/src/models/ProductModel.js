@@ -10,6 +10,13 @@ const getProductById = (id) => {
   return db('products').where('id', id).first();    
 };
 
+const filterProductWithCategory = async (category_id) => {
+    console.log('category_id', category_id);
+    return await db('products')
+    .where({ category_id: category_id })
+    .select('*');
+  };
+
 const createProduct = async (product) => {
     const trx = await db.transaction(); 
     try {
@@ -57,5 +64,6 @@ module.exports = {
   getProductById,
   createProduct,
   updateProduct,
-  deleteProduct
+  deleteProduct,
+  filterProductWithCategory
 };

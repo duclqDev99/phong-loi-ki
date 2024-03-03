@@ -25,7 +25,6 @@ const findById = (id) => {
 // };
 
 const create = async (order) => {
-    console.log('order',order);
     try {
       const result = await db.transaction(async trx => {
         const [orderId] = await trx('orders').insert({
@@ -40,7 +39,6 @@ const create = async (order) => {
           quantity: product.quantity,
           sub_total: 0 
         }));
-        console.log('orderDetails',orderDetails);
   
         await trx('order_detail').insert(orderDetails);
   
