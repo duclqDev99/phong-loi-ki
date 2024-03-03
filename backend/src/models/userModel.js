@@ -19,9 +19,13 @@ const getUsers = async () => {
 
 const getUserById = async (id) => {
   const row = await db(tableName).where('id', id).select('*').first();
-  return row; 
+  return row;
 };
 
+const getUserByUsername = async (username) => {
+  const row = await db(tableName).where('username', username).select('*').first();
+  return row;
+};
 
 const createUser = async (user) => {
   try {
@@ -30,7 +34,7 @@ const createUser = async (user) => {
     const insertedIds = await db.transaction(async (trx) => {
       const ids = await trx(tableName).insert({
         username: user.username,
-        password: hashedPassword, 
+        password: hashedPassword,
         fullname: user.fullname,
         email: user.email,
         phone: user.phone,
@@ -45,7 +49,7 @@ const createUser = async (user) => {
     return insertedId;
   } catch (error) {
     console.error('Error creating user:', error);
-    throw error; 
+    throw error;
   }
 };
 
@@ -56,7 +60,7 @@ const updateUser = async (id, user) => {
   try {
     await trx(tableName).where('id', id).update({
       username: user.username,
-      password: hashedPassword, 
+      password: hashedPassword,
       fullname: user.fullname,
       email: user.email,
       phone: user.phone,

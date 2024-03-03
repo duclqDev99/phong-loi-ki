@@ -1,4 +1,5 @@
 const knex = require('knex');
+const cors = require('cors');
 const knexConfig = require('./src/databases/knex');
 require('dotenv').config();
 const express = require('express');
@@ -14,6 +15,7 @@ db.raw('SELECT 1')
     });
 const PORT = process.env.PORT || 3000;
 
+app.use(cors())
 app.use(express.json())
 app.use('/api', routes);
 app.listen(PORT, () => {
