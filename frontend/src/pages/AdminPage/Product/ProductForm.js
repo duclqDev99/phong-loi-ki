@@ -124,8 +124,13 @@ const ProductForm = ({
             <FieldInput
                 label='Image'
                 name='image'
+                type='file'
+                accept='image/*'
                 value={formik.values.image}
-                onChangeField={formik.handleChange}
+                onChange={(event) => {
+                    formik.setFieldValue('image', event.currentTarget.files[0]);
+                }}
+                /*onChangeField={formik.handleChange}*/
                 error={
                     formik.touched.image && Boolean(formik.errors.image)
                         ? formik.errors.image

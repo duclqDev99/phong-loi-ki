@@ -6,7 +6,7 @@ const Status = ({ status }) => {
   const Comp = () => {
     switch (status) {
       case "active":
-      case '1': {
+      case 1: {
         return (
           <Chip
             icon={<Check />}
@@ -18,7 +18,7 @@ const Status = ({ status }) => {
         );
       }
       case "inactive":
-      case '0': {
+      case 0: {
         return (
           <Chip
             icon={<Close />}
