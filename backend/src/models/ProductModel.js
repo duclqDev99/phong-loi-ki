@@ -10,6 +10,15 @@ const getProductById = (id) => {
   return db('products').where('id', id).first();    
 };
 
+const getProductByUser = (user_id) => {
+    return db('products').where('user_id', user_id).select('*');    
+  };
+
+  const getProductPuslish = (status) => {
+    console.log('sad', db('products').where('status', 1).select('*'));
+    return db('products').where('status', status).select('*');    
+  };
+
 const filterProductWithCategory = async (category_id) => {
     console.log('category_id', category_id);
     return await db('products')
@@ -65,5 +74,7 @@ module.exports = {
   createProduct,
   updateProduct,
   deleteProduct,
-  filterProductWithCategory
+  filterProductWithCategory,
+  getProductByUser,
+  getProductPuslish
 };

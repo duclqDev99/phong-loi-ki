@@ -39,6 +39,33 @@ const getProductById = async (req, res) => {
   }
 };
 
+const getProductPuslish = async (req, res) => {
+  try {
+    console.log('req', req.params);
+    const product = await ProductModel.getProductPuslish(req.params.status);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).send('Product not found');
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+const getProductByUser = async (req, res) => {
+  try {
+    const product = await ProductModel.getProductByUser(req.params.user_id);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).send('Product not found');
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
 const createProduct = async (req, res) => {
     try {
       const id = await ProductModel.createProduct(req.body);
@@ -72,5 +99,7 @@ const createProduct = async (req, res) => {
     createProduct,
     updateProduct,
     deleteProduct,
-    filterProductWithCategory
+    filterProductWithCategory,
+    getProductByUser,
+    getProductPuslish
   };
