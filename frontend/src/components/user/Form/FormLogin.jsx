@@ -13,10 +13,6 @@ function FormLogin() {
                 <input type="password" minLength="2" name="password" placeholder="Your Password"
                        className="w-100" required=""/>
             </div>
-            <label className="py-3">
-                <input type="checkbox" required="" className="d-inline"/>
-                <span className="label-body">Remember Me</span>
-            </label>
             <button type="submit" name="submit" className="btn btn-dark w-100 my-3">Login</button>
         </form>
     );
