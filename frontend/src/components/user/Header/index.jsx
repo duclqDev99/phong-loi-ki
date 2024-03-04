@@ -1,12 +1,26 @@
 import React, {useEffect, useState} from 'react';
 import logo from '../../../assets/user/images/main-logo.png';
-import { NavLink } from 'react-router-dom';
+import {NavLink, useNavigate} from 'react-router-dom';
 import { Dropdown } from "react-bootstrap";
 import MiniCart from "../Cart/MiniCart";
 import categoryApi from "../../../apis/categoryApi";
 
 function Header() {
     const [categories, setCategories] = useState([]);
+    const [isLogged, setIsLogged] = useState(false);
+    const navigate = useNavigate();
+
+    const checkLoginStatus = () => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user || user.is_admin != 1) {
+            navigate('/login');
+        }
+        setIsLogged(true);
+    };
+
+    /*useEffect(() => {
+        checkLoginStatus();
+    }, []);*/
 
     const fetch = async () => {
         await categoryApi.getList().then((response) => {
@@ -15,6 +29,7 @@ function Header() {
             console.log(error);
             setCategories([]);
         });
+        checkLoginStatus();
     };
 
     useEffect(() => {
@@ -96,11 +111,23 @@ function Header() {
                                         </div>
                                     </li>
                                     <li className="nav-item">
-                                        <NavLink to="/login" className="nav-link text-uppercase me-0">
-                                            Account
+                                        {isLogged ? (
+                                            <NavLink to="/login" className="nav-link text-uppercase me-0">
+                                                Login
+                                            </NavLink>
+                                        ) : (
+                                            <NavLink to="/logout" className="nav-link text-uppercase me-0">
+                                                Logout
+                                            </NavLink>
+                                        )}
+
+                                    </li>
+                                    <li className="nav-item">
+                                        <NavLink to="/cart" className="nav-link text-uppercase me-0">
+                                            Cart
                                         </NavLink>
                                     </li>
-                                    <MiniCart/>
+                                    {/*<MiniCart/>*/}
                                 </ul>
                             </ul>
                         </div>

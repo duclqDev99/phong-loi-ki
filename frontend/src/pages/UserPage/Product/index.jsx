@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useReducer, useState} from 'react';
 import thumbnail1 from "../../../assets/user/images/product-thumbnail-1.png";
 import thumbnail2 from "../../../assets/user/images/product-thumbnail-2.png";
 import image1 from "../../../assets/user/images/product-large-1.png";
@@ -8,14 +8,13 @@ import image2 from "../../../assets/user/images/product-large-2.png";
 import ProductRelated from "../../../components/user/Product/ProductRelated";
 import productApi from "../../../apis/productApi";
 import {NavLink, useParams} from "react-router-dom";
-import { toast, ToastContainer } from 'react-toastify';
-
+import { cartReducer, initialState } from '../../../store/reducer/cart';
 function Product() {
     const {id} = useParams();
 
+    const [state, dispatch] = useReducer(cartReducer, initialState);
     const [quantity, setQuantity] = useState(1);
     const [product, setProduct] = useState([]);
-    const [cartItems, setCartItems] = useState([]);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
 
     const fetch = async () => {
@@ -39,30 +38,13 @@ function Product() {
     }
 
     const handleAddToCart = () => {
-        const existingItem = cartItems.find((item) => item.id === product.id);
-
-        if (existingItem) {
-            setCartItems((prevCartItems) =>
-                prevCartItems.map((item) =>
-                    item.id === existingItem.id ? { ...item, quantity: item.quantity + quantity } : item
-                )
-            );
-        } else {
-            setCartItems((prevCartItems) => [...prevCartItems, { ...product, quantity: quantity }]);
-        }
-        setShowSuccessMessage(true);
-        setQuantity(1);
-        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        dispatch({ type: 'ADD_TO_CART', payload: { product, quantity } });
     };
 
     useEffect(() => {
         fetch();
-    }, []);
-
-    useEffect(() => {
-        const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        setCartItems(storedCartItems);
-    }, []);
+        localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
+    }, [state.cartItems]);
 
     useEffect(() => {
         let timeout;

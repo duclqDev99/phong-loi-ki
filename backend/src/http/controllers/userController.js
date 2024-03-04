@@ -1,4 +1,5 @@
 const userModel = require('../../models/userModel');
+const bcrypt = require("bcrypt");
 
 const getUsers = async (req, res) => {
     try {
@@ -22,10 +23,11 @@ const getUsers = async (req, res) => {
     }
   };
 
-const getUserByUsername = async (req, res) => {
+const loginUser = async (req, res) => {
   try {
-    const user = await userModel.getUserByUsername(req.params.username);
-    if (user) {
+    const user = await userModel.getUserByUsername(req.body.username);
+    const pass = await req.body.password;
+    if (user && bcrypt.compare(pass + 10, user.password)) {
       res.json(user);
     } else {
       res.status(404).send('User not found');
@@ -66,6 +68,7 @@ module.exports = {
     getUsers,
     getUserById,
     createUser,
+    loginUser,
     updateUser,
     deleteUser
  };

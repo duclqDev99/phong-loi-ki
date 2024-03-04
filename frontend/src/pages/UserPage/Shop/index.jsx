@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
 // Import các section khác như Banner, Products, etc.
 import Categories from "./Categories";
-import ProductFilter from "../../../components/user/Product/ProductFilter";
 import Pagination from "../../../components/user/Pagination";
 import {useParams} from "react-router-dom";
 import productApi from "../../../apis/productApi";

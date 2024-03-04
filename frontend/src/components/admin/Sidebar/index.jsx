@@ -17,17 +17,17 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 </NavLink>
             </li>
             <li className='sidebar-list-item'>
-                <NavLink to="/admin-product" >
+                <NavLink to="/admin/product" >
                     <BsFillArchiveFill className='icon'/> Products
                 </NavLink>
             </li>
             <li className='sidebar-list-item'>
-                <NavLink to="/admin-category" >
+                <NavLink to="/admin/category" >
                     <BsFillGrid3X3GapFill className='icon'/> Categories
                 </NavLink>
             </li>
             <li className='sidebar-list-item'>
-                <NavLink to="/admin-customer" >
+                <NavLink to="/admin/customer" >
                     <BsPeopleFill className='icon'/> Customers
                 </NavLink>
             </li>
