@@ -5,7 +5,7 @@ const orderApi = {
         return baseGet('products', params);
     },
     create: (formData) => {
-        return basePost('/sendData', formData);
+        return basePost('orderRoutes/create', formData);
     },
     update: (productId, formData) => {
         return basePut(`/updateData/${productId}`, formData);

@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import "../../assets/user/styles/vendor.css";
 import "../../assets/user/styles/bootstrap.min.css";
 import "../../assets/user/styles/style.css";
@@ -6,8 +6,9 @@ import "../../assets/user/styles/style.css";
 import Header from "../../components/user/Header";
 import Footer from "../../components/user/Footer";
 import Breadcrumb from "../../components/user/Breadcrumb";
+import {Outlet} from "react-router-dom";
 
-function Index({page, breadcrumbItems}) {
+function Index({breadcrumbItems}) {
 
     return (
         <div>
@@ -15,7 +16,7 @@ function Index({page, breadcrumbItems}) {
             {breadcrumbItems && breadcrumbItems.length > 0 && (
                 <Breadcrumb items={breadcrumbItems}/>
             )}
-            {page}
+            <Outlet />
             <Footer/>
         </div>
     );

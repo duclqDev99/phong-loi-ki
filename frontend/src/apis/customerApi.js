@@ -4,8 +4,8 @@ const customerApi = {
     getList: (params) => {
         return baseGet('users', params);
     },
-    getUserByUsername: (username) => {
-        return baseGet(`users/login/${username}`);
+    login: (formData) => {
+        return basePost(`users/login`, formData);
     },
     create: (formData) => {
         return basePost('users/create', formData);

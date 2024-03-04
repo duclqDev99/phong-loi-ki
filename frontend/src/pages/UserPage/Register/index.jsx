@@ -4,19 +4,19 @@ import React from 'react';
 import TabsListing from "../../../components/user/TabsListing";
 import TabNav from "../../../components/user/TabNav";
 import TabContent from "../../../components/user/TabContent";
-import FormLogin from "../../../components/user/Form/FormLogin";
+import FormRegister from "../../../components/user/Form/FormRegister";
 
-function Login() {
+function Register() {
     const tabNavs = [
-        <TabNav id="nav-sign-in-tab"
-                ariaControls="nav-sign-in"
-                dataBsTarget="#nav-sign-in"
+        <TabNav id="nav-register-tab"
+                ariaControls="nav-register"
+                dataBsTarget="#nav-register"
                 isActive={true}
-                label="Sign In" />,
+                label="Register" />
     ];
 
     const tabContents = [
-        <TabContent id="nav-sign-in" ariaLabelledby="nav-sign-in-tab" isActive={true} form={<FormLogin/>}/>,
+        <TabContent id="nav-register" ariaLabelledby="nav-register-tab" isActive={true} form={<FormRegister/>}/>
     ];
 
     return (
@@ -30,4 +30,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

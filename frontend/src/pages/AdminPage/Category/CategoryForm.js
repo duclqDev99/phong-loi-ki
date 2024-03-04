@@ -1,5 +1,5 @@
 import {useFormik} from 'formik';
-import {string, number, object} from 'yup';
+import {string, object} from 'yup';
 import {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
