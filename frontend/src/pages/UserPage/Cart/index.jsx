@@ -4,9 +4,7 @@ import React, {useEffect, useState} from 'react';
 import CartTotal from "./CartTotal";
 import CartTable from "./CartTable";
 
-function Cart() {
-    const [cartItems, setCartItems] = useState([]);
-    const [total, setTotal] = useState(0);
+function Cart({isLogged, setIsLogged, cartItems, setCartItems}) {
 
     const handleDelete = (id) => {
         console.log(`Deleting item with ID: ${id}`);
@@ -15,25 +13,25 @@ function Cart() {
         localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         setCartItems(storedCartItems);
-    }, []);
+    }, []);*/
 
-    useEffect(() => {
+    /*useEffect(() => {
         let temp_total = 0;
         cartItems.forEach(item => {
             temp_total += item.price * item.quantity;
         })
         setTotal(temp_total);
-    }, [cartItems]);
+    }, [cartItems]);*/
 
     return (
         <section className="shopify-cart padding-large">
             <div className="container">
                 <div className="row">
                     <CartTable cartItems={cartItems} handleDelete={handleDelete}/>
-                    <CartTotal total={total}/>
+                    <CartTotal cartItems={cartItems}/>
                 </div>
             </div>
         </section>

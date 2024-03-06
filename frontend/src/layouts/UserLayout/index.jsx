@@ -8,11 +8,11 @@ import Footer from "../../components/user/Footer";
 import Breadcrumb from "../../components/user/Breadcrumb";
 import {Outlet} from "react-router-dom";
 
-function Index({breadcrumbItems}) {
+function Index({breadcrumbItems, isLogged = 0, cartItems, setCartItems}) {
 
     return (
         <div>
-            <Header/>
+            <Header isLogged={isLogged} cartItems={cartItems} setCartItems={setCartItems}/>
             {breadcrumbItems && breadcrumbItems.length > 0 && (
                 <Breadcrumb items={breadcrumbItems}/>
             )}

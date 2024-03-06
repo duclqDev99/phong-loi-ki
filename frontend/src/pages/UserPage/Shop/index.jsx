@@ -8,8 +8,6 @@ import ProductItem from "../../../components/user/Product/ProductItem";
 
 function Shop() {
     const { id } = useParams();
-
-
     const [products, setProducts] = useState([]);
 
     const fetch = async () => {

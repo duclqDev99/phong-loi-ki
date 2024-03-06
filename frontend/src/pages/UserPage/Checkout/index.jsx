@@ -3,23 +3,34 @@ import {cartReducer, initialState} from "../../../store/reducer/cart";
 import {useNavigate} from "react-router-dom";
 import orderApi from "../../../apis/orderApi";
 
-function Checkout() {
-    const [state, dispatch] = useReducer(cartReducer, initialState);
-    const [cartItems, setCartItems] = useState([]);
-    const [total, setTotal] = useState(0);
+function Checkout({isLogged, setIsLogged, cartItems}) {
+    console.log(isLogged);
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (!isLogged) {
+            navigate("/login");
+        }
+    }, [isLogged, navigate]);
+
+    const [total, setTotal] = useState((() => {
+        let temp_total = 0;
+        cartItems.forEach(item => {
+            temp_total += item.price * item.quantity;
+        });
+        return temp_total;
+    })());
     const [fullname, setFullname] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
-    const navigate = useNavigate();
 
     const handleOrder = (event) => {
         event.preventDefault();
 
         const user = JSON.parse(localStorage.getItem('user'));
-        if (!user) {
+        /*if (!user) {
             navigate("/login");
-        }
+        }*/
 
         const customerInfo = {
             id_user: user.id,
@@ -56,7 +67,7 @@ function Checkout() {
     };
 
 
-    useEffect(() => {
+    /*useEffect(() => {
         const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         dispatch({ type: 'INITIALIZE_CART', payload: storedCartItems });
 
@@ -66,7 +77,7 @@ function Checkout() {
             temp_total += item.price * item.quantity;
         });
         setTotal(temp_total);
-    }, []);
+    }, []);*/
 
     return (
         <section className="shopify-cart checkout-wrap padding-medium">
