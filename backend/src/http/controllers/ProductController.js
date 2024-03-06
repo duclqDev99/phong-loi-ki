@@ -67,6 +67,8 @@ const getProductByUser = async (req, res) => {
 };
 
 const createProduct = async (req, res) => {
+    console.log(req.file); // Thông tin file được tải lên
+    console.log(req.body); // Các trường dữ liệu khác
     try {
       const id = await ProductModel.createProduct(req.body);
       res.status(201).json({ id });

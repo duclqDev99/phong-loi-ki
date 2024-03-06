@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
-import { Add } from '@mui/icons-material';
+import { Add, CleaningServices } from '@mui/icons-material';
 import ProductForm from "./ProductForm";
 import ProductTable from "./ProductTable";
 import productApi from "../../../apis/productApi";
 import DialogWrapper from '../../../components/admin/dialogWapper';
+import axios from 'axios';
 
 function AdminProduct() {
     const [products, setProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [editValues, setEditValues] = useState(null);
+    const [editValues, setEditValues] = useState({});
 
     const fetch = async () => {
         await productApi.getList().then((response) => {
@@ -21,12 +22,21 @@ function AdminProduct() {
     };
 
     const handleCreate = async (formData) => {
+        console.log('formDataformData',formData)
+        // await axios.post('products/create', formData, {
+        //     headers: {
+        //       'Content-Type': 'multipart/form-data'
+        //     },
+        //     baseURL: `http://localhost:3001/api/`,
+        //   })
+        //   .then(response => fetch())
+        //   .catch(error => console.error(error));
         await productApi.create(formData).then((response) => {
             fetch();
         }).catch((error) => {
             console.log(error);
         });
-        setShowModal(false);
+        // setShowModal(false);
     };
 
     const handleDelete = async (id) => {
@@ -70,6 +80,7 @@ function AdminProduct() {
     };
 
     const handleEdit = (values) => {
+        console.log('values',values)
         setEditValues(values);
         setShowModal(true);
     };

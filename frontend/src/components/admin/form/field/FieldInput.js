@@ -16,7 +16,11 @@ const FieldInput = ({
     return (
         <div className={classes ?? 'mb-4'} style={style ? {...style} : {}}>
             {label && (
-                <label htmlFor='title' className='form-label'>
+                <label 
+                    htmlFor='title' 
+                    className='form-label'
+                    style={{ textTransform: 'capitalize' }} 
+                >
                     {label}
                 </label>
             )}
@@ -29,6 +33,7 @@ const FieldInput = ({
                 onChange={onChangeField}
                 id={name}
                 accept={accept ?? ''}
+                style={{ borderBottom: '1px solid #CED4DA' }} 
             />
             {error && <ValidateNotification message={error}/>}
         </div>

@@ -18,10 +18,7 @@ const ProductForm = ({
         name: string().required('Product\'s name is required'),
         price: number().required('Product\'s price is required'),
         quantity: number().required('Product\'s quantity is required'),
-        description: string().required('Product\'s description is required'),
         status: string().required('Product\'s status is required'),
-        image: string().required('Product\'s image is required'),
-        author: string().required('Product\'s author is required'),
         rating: number().required('Product\'s rating is required'),
     });
 
@@ -41,12 +38,18 @@ const ProductForm = ({
         enableReinitialize: true,
         validationSchema: validationSchema,
         onSubmit: async (values) => {
+            const formData = new FormData();
+            formData.append(
+                "myFile",
+                ...values,
+                values.image.name
+            );
             if (editValues) {
               onSaveEdit(values, editValues.id);
             } else {
-              onCreateProduct(values);
+              onCreateProduct(formData);
             }
-            formik.resetForm();
+            // formik.resetForm();
         },
     });
 
@@ -126,11 +129,10 @@ const ProductForm = ({
                 name='image'
                 type='file'
                 accept='image/*'
-                value={formik.values.image}
-                onChange={(event) => {
-                    formik.setFieldValue('image', event.currentTarget.files[0]);
+                onChangeField={(event) => {
+                    console.log('event.target.files[0]',event.target.files[0])
+                    formik.setFieldValue('image', event.target.files[0]);
                 }}
-                /*onChangeField={formik.handleChange}*/
                 error={
                     formik.touched.image && Boolean(formik.errors.image)
                         ? formik.errors.image
@@ -164,7 +166,7 @@ const ProductForm = ({
                 <Button
                     type='submit'
                     size='small'
-                    color='secondary'
+                    color='primary'
                     variant='contained'
                 >
                     {editValues ? 'Edit' : 'Save'}
@@ -172,7 +174,7 @@ const ProductForm = ({
                 <Button
                     onClick={handleReset}
                     size='small'
-                    color='warning'
+                    color='secondary'
                     variant='contained'
                 >
                     Close
