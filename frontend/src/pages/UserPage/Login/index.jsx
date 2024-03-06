@@ -6,7 +6,7 @@ import TabNav from "../../../components/user/TabNav";
 import TabContent from "../../../components/user/TabContent";
 import FormLogin from "../../../components/user/Form/FormLogin";
 
-function Login() {
+function Login({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
     const tabNavs = [
         <TabNav id="nav-sign-in-tab"
                 ariaControls="nav-sign-in"
@@ -16,7 +16,15 @@ function Login() {
     ];
 
     const tabContents = [
-        <TabContent id="nav-sign-in" ariaLabelledby="nav-sign-in-tab" isActive={true} form={<FormLogin/>}/>,
+        <TabContent id="nav-sign-in"
+                    ariaLabelledby="nav-sign-in-tab"
+                    isActive={true}
+                    form={
+            <FormLogin isLogged={isLogged}
+                       setIsLogged={setIsLogged}
+                       isAdmin={isAdmin}
+                       setIsAdmin={setIsAdmin}/>
+        }/>,
     ];
 
     return (

@@ -8,11 +8,9 @@ import image2 from "../../../assets/user/images/product-large-2.png";
 import ProductRelated from "../../../components/user/Product/ProductRelated";
 import productApi from "../../../apis/productApi";
 import {NavLink, useParams} from "react-router-dom";
-import { cartReducer, initialState } from '../../../store/reducer/cart';
-function Product() {
-    const {id} = useParams();
 
-    const [state, dispatch] = useReducer(cartReducer, initialState);
+function Product({cartItems, setCartItems}) {
+    const {id} = useParams();
     const [quantity, setQuantity] = useState(1);
     const [product, setProduct] = useState([]);
     const [showSuccessMessage, setShowSuccessMessage] = useState(false);
@@ -38,13 +36,30 @@ function Product() {
     }
 
     const handleAddToCart = () => {
-        dispatch({ type: 'ADD_TO_CART', payload: { product, quantity } });
+        const existingItem = cartItems && cartItems.length > 0 ? cartItems.find((item) => item.id === product.id) : null;
+        // const existingItem = cartItems.find((item) => item.id === product.id);
+
+        if (existingItem) {
+            setCartItems((prevCartItems) =>
+                prevCartItems.map((item) =>
+                    item.id === existingItem.id ? { ...item, quantity: item.quantity + quantity } : item
+                )
+            );
+        } else {
+            setCartItems((prevCartItems) => [...prevCartItems, { ...product, quantity: quantity }]);
+        }
+        setShowSuccessMessage(true);
+        setQuantity(1);
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
     };
 
     useEffect(() => {
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+    }, [cartItems]);
+
+    useEffect(() => {
         fetch();
-        localStorage.setItem('cartItems', JSON.stringify(state.cartItems));
-    }, [state.cartItems]);
+    }, []);
 
     useEffect(() => {
         let timeout;

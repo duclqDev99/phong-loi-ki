@@ -6,9 +6,9 @@ import AdminProduct from "../pages/AdminPage/Product";
 import AdminCategory from "../pages/AdminPage/Category";
 import AdminCustomer from "../pages/AdminPage/Customer";
 
-const AdminRoute = {
+const AdminRoute = ({isLogged, setIsLogged, isAdmin, setIsAdmin}) => ({
     path: '/admin',
-    element: <AdminLayout />,
+    element: <AdminLayout isLogged={isLogged} setIsLogged={setIsLogged} isAdmin={isAdmin} setIsAdmin={setIsAdmin}/>,
     children: [
         {
             path: "",
@@ -24,6 +24,6 @@ const AdminRoute = {
             element: <AdminProduct />
         },
     ]
-}
+})
 
 export default AdminRoute;

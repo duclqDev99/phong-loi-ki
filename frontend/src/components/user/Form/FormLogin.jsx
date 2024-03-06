@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import customerApi from "../../../apis/customerApi";
 import {useNavigate} from "react-router-dom";
 
-function FormLogin() {
+function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
@@ -14,20 +14,21 @@ function FormLogin() {
             username: username,
             password: password,
         }
-        console.log(fetch(formData));
+        fetch(formData);
     }
 
     const fetch = async (formData) => {
         await customerApi.login(formData).then((response) => {
             console.log(response);
             localStorage.setItem('user', JSON.stringify(response));
+            setIsLogged(1);
+            if (response.is_admin) {
+                setIsAdmin(1);
+            }
             navigate('/');
-            return true;
         }).catch((error) => {
             console.log(error);
-            return false;
         });
-        return false;
     };
 
     return (

@@ -5,22 +5,9 @@ import { Dropdown } from "react-bootstrap";
 import MiniCart from "../Cart/MiniCart";
 import categoryApi from "../../../apis/categoryApi";
 
-function Header() {
+function Header({ isLogged = 0, cartItems, setCartItems}) {
     const [categories, setCategories] = useState([]);
-    const [isLogged, setIsLogged] = useState(false);
     const navigate = useNavigate();
-
-    const checkLoginStatus = () => {
-        const user = JSON.parse(localStorage.getItem('user'));
-        if (!user || user.is_admin != 1) {
-            navigate('/login');
-        }
-        setIsLogged(true);
-    };
-
-    /*useEffect(() => {
-        checkLoginStatus();
-    }, []);*/
 
     const fetch = async () => {
         await categoryApi.getList().then((response) => {
@@ -29,7 +16,6 @@ function Header() {
             console.log(error);
             setCategories([]);
         });
-        checkLoginStatus();
     };
 
     useEffect(() => {
@@ -111,7 +97,7 @@ function Header() {
                                         </div>
                                     </li>
                                     <li className="nav-item">
-                                        {isLogged ? (
+                                        {!isLogged ? (
                                             <NavLink to="/login" className="nav-link text-uppercase me-0">
                                                 Login
                                             </NavLink>
@@ -122,12 +108,7 @@ function Header() {
                                         )}
 
                                     </li>
-                                    <li className="nav-item">
-                                        <NavLink to="/cart" className="nav-link text-uppercase me-0">
-                                            Cart
-                                        </NavLink>
-                                    </li>
-                                    {/*<MiniCart/>*/}
+                                    <MiniCart cartItems={cartItems}/>
                                 </ul>
                             </ul>
                         </div>

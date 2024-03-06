@@ -7,35 +7,15 @@ import Checkout from "../pages/UserPage/Checkout";
 import Product from "../pages/UserPage/Product";
 import React from "react";
 
-const MainRoute = {
-    path: "/",
-    element: <UserLayout breadcrumbItems={[]}/>,
+const MainRoute = (isLogged, setIsLogged, cartItems, setCartItems) => ({
+    path: "/shop",
+    element: <UserLayout breadcrumbItems={["Home", "Shop"]} isLogged={isLogged} cartItems={cartItems} setCartItems={setCartItems}/>,
     children: [
         {
             path: "",
-            element: <HomePage/>
+            element: <Shop />
         },
-        {
-            path: "/shop",
-            element: <Shop breadcrumbItems={["Home", "Shop"]}/>
-        },
-        {
-            path: "/login",
-            element: <Login breadcrumbItems={["Home", "Login"]}/>
-        },
-        {
-            path: "/cart",
-            element: <Cart breadcrumbItems={["Home", "Cart"]}/>
-        },
-        {
-            path: "/checkout",
-            element: <Checkout breadcrumbItems={["Home", "Checkout"]}/>
-        },
-        {
-            path: "/product",
-            element: <Product breadcrumbItems={["Home", "Product"]}/>
-        }
     ]
-}
+})
 
 export default MainRoute;
