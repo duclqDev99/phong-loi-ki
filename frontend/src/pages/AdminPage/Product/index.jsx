@@ -10,7 +10,7 @@ import axios from 'axios';
 function AdminProduct() {
     const [products, setProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [editValues, setEditValues] = useState({});
+    const [editValues, setEditValues] = useState(null);
 
     const fetch = async () => {
         await productApi.getList().then((response) => {
@@ -76,6 +76,7 @@ function AdminProduct() {
     };
 
     const handleClose = () => {
+        setEditValues(null);
         setShowModal(false);
     };
 

@@ -78,7 +78,7 @@ function Product({cartItems, setCartItems}) {
                     <div className="row">
                         <div className="col-lg-6">
                             <div className="row product-preview">
-                                <div
+                                {/*<div
                                     className="swiper thumb-swiper col-3 swiper-initialized swiper-horizontal swiper-backface-hidden swiper-thumbs">
                                     <div className="swiper-wrapper d-flex flex-wrap align-content-start"
                                          id="swiper-wrapper-3fdf9115f8c87405" aria-live="polite"
@@ -98,7 +98,7 @@ function Product({cartItems, setCartItems}) {
                                     </div>
                                     <span className="swiper-notification" aria-live="assertive"
                                           aria-atomic="true"></span>
-                                </div>
+                                </div>*/}
                                 <div
                                     className="swiper large-swiper overflow-hidden col-9 swiper-fade swiper-initialized swiper-horizontal swiper-watch-progress swiper-backface-hidden">
                                     <div className="swiper-wrapper" id="swiper-wrapper-dbd43c09e2210cda4"
@@ -106,14 +106,14 @@ function Product({cartItems, setCartItems}) {
                                         <div className="swiper-slide swiper-slide-visible swiper-slide-active"
                                              style={{width: 483, opacity: 1, transform: 'translate3d(0, 0, 0)'}}
                                              role="group" aria-label="1 / 2">
-                                            <img src={image1} alt="single-product"
+                                            <img src={product.image ? product.image : image1} alt="single-product"
                                                  className="img-fluid"/>
                                         </div>
-                                        <div className="swiper-slide swiper-slide-next" role="group" aria-label="2 / 2"
+                                        {/*<div className="swiper-slide swiper-slide-next" role="group" aria-label="2 / 2"
                                              style={{width: 483, opacity: 0, transform: 'translate3d(-483, 0, 0)'}}>
                                             <img src={image2} alt="single-product"
                                                  className="img-fluid"/>
-                                        </div>
+                                        </div>*/}
                                     </div>
                                     <span className="swiper-notification" aria-live="assertive"
                                           aria-atomic="true"></span>
