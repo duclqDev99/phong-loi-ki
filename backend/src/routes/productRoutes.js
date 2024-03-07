@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const upload = require('../middleware/uploadMiddleware');
 const ProductController = require('../http/controllers/ProductController');
 
 router.get('/', ProductController.getAllProducts);

@@ -12,23 +12,33 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
 
         <ul className='sidebar-list'>
             <li className='sidebar-list-item'>
-                <NavLink to="/admin" >
+                <NavLink to="/admin">
                     <BsGrid1X2Fill className='icon'/> Dashboard
                 </NavLink>
             </li>
             <li className='sidebar-list-item'>
-                <NavLink to="/admin/product" >
+                <NavLink to="/admin/product">
                     <BsFillArchiveFill className='icon'/> Products
                 </NavLink>
             </li>
             <li className='sidebar-list-item'>
-                <NavLink to="/admin/category" >
+                <NavLink to="/admin/category">
                     <BsFillGrid3X3GapFill className='icon'/> Categories
                 </NavLink>
             </li>
             <li className='sidebar-list-item'>
-                <NavLink to="/admin/customer" >
+                <NavLink to="/admin/customer">
                     <BsPeopleFill className='icon'/> Customers
+                </NavLink>
+            </li>
+            <li className='sidebar-list-item'>
+                <NavLink to="/">
+                    <BsGrid1X2Fill className='icon'/> Go to shopping
+                </NavLink>
+            </li>
+            <li className='sidebar-list-item'>
+                <NavLink to="/logout">
+                    <BsGrid1X2Fill className='icon'/> Logout
                 </NavLink>
             </li>
             {/*<li className='sidebar-list-item'>

@@ -1,6 +1,6 @@
 import {useFormik} from 'formik';
 import {string, number, object, mixed} from 'yup';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import FieldInput from '../../../components/admin/form/field/FieldInput';
@@ -25,6 +25,8 @@ const ProductForm = ({
         rating: number().required('Product\'s rating is required'),
     });
 
+    const [imageTmp, setImageTmp] = useState({});
+
     let initialValues = {
         name: '',
         price: 0,
@@ -41,18 +43,19 @@ const ProductForm = ({
         enableReinitialize: true,
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            /*const formData = new FormData();
-            formData.append(
+            const formData = new FormData();
+            /*formData.append(
                 "myFile",
                 ...values,
                 values.image.name
             );*/
+            console.log(values);
             if (editValues) {
               onSaveEdit(values, editValues.id);
             } else {
               onCreateProduct(values);
             }
-            // formik.resetForm();
+            formik.resetForm();
         },
     });
 
@@ -60,6 +63,17 @@ const ProductForm = ({
         onReset();
         formik.resetForm();
     };
+
+    /*const handleFileUpload = () => {
+        let reader = new FileReader();
+        let file = imageTmp;
+        reader.onloadend = () => {
+            this.setState({
+                file: reader.result
+            });
+        };
+        reader.readAsDataURL(file);
+    };*/
 
     useEffect(() => {
         if (editValues) {
@@ -132,15 +146,17 @@ const ProductForm = ({
                 name='image'
                 type='file'
                 accept='image/*'
-                /*onChangeField={(event) => {
-                    console.log('event.target.files[0]', event.target.files[0])
+                onChangeField={(event) => {
+                    console.log('event.target.files[0]', event.target.files[0]);
                     formik.setFieldValue('image', event.target.files[0]);
-                }}*/
+                    setImageTmp(event.target.files[0]);
+                }}
                 /*value={formik.values.image}
                 onChangeField={formik.handleChange}*/
-                onChangeField={(event) => {
+                /*onChangeField={(event) => {
                     formik.setFieldValue('image', event.target.files[0]);
-                }}
+                    setImageTmp(event.target.files[0]);
+                }}*/
                 error={
                     formik.touched.image && Boolean(formik.errors.image)
                         ? formik.errors.image
@@ -170,17 +186,6 @@ const ProductForm = ({
                         : ''
                 }
             />
-            {/*<div className='card mb-4'>
-                <div className='card-header'>
-                    <h4>Media</h4>
-                </div>
-                <div className='card-body'>
-                    <div className='input-upload'>
-                        <img src='/assets/admin/imgs/theme/upload.svg' alt=''/>
-                        <input className='form-control' type='file'/>
-                    </div>
-                </div>
-            </div>*/}
             <Box display='flex' justifyContent='right' gap='10px'>
                 <Button
                     type='submit'
