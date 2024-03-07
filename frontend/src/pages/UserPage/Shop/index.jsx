@@ -8,10 +8,21 @@ import ProductItem from "../../../components/user/Product/ProductItem";
 
 function Shop() {
     const { id } = useParams();
+    const { search } = useParams();
+    console.log(id);
     const [products, setProducts] = useState([]);
 
     const fetch = async () => {
-        if (id) {
+        if (search) {
+            await productApi.searchProduct(search).then((response) => {
+                console.log(response);
+                setProducts(response);
+            }).catch((error) => {
+                console.log(error);
+                setProducts([]);
+            });
+        }
+        else if (id) {
             await productApi.getProductsByCate(id).then((response) => {
                 console.log(response);
                 setProducts(response);
@@ -33,7 +44,7 @@ function Shop() {
 
     useEffect(() => {
         fetch();
-    }, []);
+    }, [id]);
 
     return (
         <div className="shopify-grid padding-small">
@@ -46,7 +57,7 @@ function Shop() {
                                 <ProductItem classItem={"col-lg-4 col-md-6"} product={product}/>
                             ))}
                         </div>
-                        <Pagination/>
+                        {/*<Pagination/>*/}
                     </main>
                     <Categories/>
                 </div>

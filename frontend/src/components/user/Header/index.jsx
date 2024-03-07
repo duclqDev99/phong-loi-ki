@@ -8,6 +8,17 @@ import categoryApi from "../../../apis/categoryApi";
 function Header({ isLogged = 0, cartItems, setCartItems}) {
     const [categories, setCategories] = useState([]);
     const navigate = useNavigate();
+    const [searchTerm, setSearchTerm] = useState('');
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+            handleSearch();
+        }
+    };
+
+    const handleSearch = () => {
+        navigate(`/shop/search/${searchTerm}`);
+    };
 
     const fetch = async () => {
         await categoryApi.getList().then((response) => {
@@ -72,7 +83,7 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
                                         <Dropdown.Menu>
                                             {categories.map((category, index) => (
                                                 <Dropdown.Item key={index}>
-                                                    <NavLink to={`/shop/${category.id}`} >
+                                                    <NavLink to={`/shop/cat/${category.id}`} >
                                                         {category.title}
                                                     </NavLink>
                                                 </Dropdown.Item>
@@ -88,9 +99,17 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
                                 <ul className="list-unstyled d-lg-flex justify-content-between align-items-center">
                                     <li className="nav-item search-item">
                                         <div id="search-bar" className="border-right d-none d-lg-block">
-                                            <form action="" autoComplete="on">
-                                                <input id="search" className="text-dark" name="search" type="text"
-                                                       placeholder="Search Here..."/>
+                                            <form onSubmit={handleSearch} autoComplete="on">
+                                                <input
+                                                    id="search"
+                                                    className="text-dark"
+                                                    name="search"
+                                                    type="text"
+                                                    placeholder="Search Here"
+                                                    value={searchTerm}
+                                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                                    onKeyPress={handleKeyPress}
+                                                />
                                                 <a type="submit" className="nav-link text-uppercase me-0"
                                                    href="#">Search</a>
                                             </form>

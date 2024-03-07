@@ -173,7 +173,7 @@ function Product({cartItems, setCartItems}) {
                                         <span className="text-uppercase me-2">Category:</span>
                                         <ul className="select-list list-unstyled d-flex mb-0">
                                             <li data-value="S" className="select-item">
-                                                <NavLink to={`/shop/${product.category_id}`} >
+                                                <NavLink to={`/shop/cat/${product.category_id}`} >
                                                     Happy
                                                 </NavLink>
                                             </li>

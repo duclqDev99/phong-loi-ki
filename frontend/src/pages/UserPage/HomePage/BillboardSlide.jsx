@@ -15,7 +15,7 @@ function Billboard({imageSrc}) {
                             <p className="fs-3">This book is specially designed by concept of
                                 traditional
                                 designs.</p>
-                            <a href="single-product.html" className="btn">Shop now →</a>
+                            {/*<a href="single-product.html" className="btn">Shop now →</a>*/}
                         </div>
                     </div>
                 </div>

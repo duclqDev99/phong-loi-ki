@@ -76,7 +76,7 @@ const createProduct = async (req, res) => {
       res.status(500).send(error.message);
     }
   };
-  
+
   const updateProduct = async (req, res) => {
     try {
       await ProductModel.updateProduct(req.params.id, req.body);
@@ -85,7 +85,7 @@ const createProduct = async (req, res) => {
       res.status(500).send(error.message);
     }
   };
-  
+
   const deleteProduct = async (req, res) => {
     try {
       await ProductModel.deleteProduct(req.params.id);
@@ -94,7 +94,20 @@ const createProduct = async (req, res) => {
       res.status(500).send(error.message);
     }
   };
-  
+
+const searchProduct = async (req, res) => {
+  try {
+    const product = await ProductModel.searchProduct(req.params.search);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).send('Product not found');
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
   module.exports = {
     getAllProducts,
     getProductById,
@@ -103,5 +116,6 @@ const createProduct = async (req, res) => {
     deleteProduct,
     filterProductWithCategory,
     getProductByUser,
-    getProductPuslish
+    getProductPuslish,
+    searchProduct,
   };

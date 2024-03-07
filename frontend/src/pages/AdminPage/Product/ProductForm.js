@@ -1,5 +1,5 @@
 import {useFormik} from 'formik';
-import {string, number, object} from 'yup';
+import {string, number, object, mixed} from 'yup';
 import {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
@@ -18,7 +18,10 @@ const ProductForm = ({
         name: string().required('Product\'s name is required'),
         price: number().required('Product\'s price is required'),
         quantity: number().required('Product\'s quantity is required'),
+        description: string().required('Product\'s description is required'),
         status: string().required('Product\'s status is required'),
+        image: mixed().required('Product\'s image is required'),
+        author: string().required('Product\'s author is required'),
         rating: number().required('Product\'s rating is required'),
     });
 
@@ -38,16 +41,16 @@ const ProductForm = ({
         enableReinitialize: true,
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            const formData = new FormData();
+            /*const formData = new FormData();
             formData.append(
                 "myFile",
                 ...values,
                 values.image.name
-            );
+            );*/
             if (editValues) {
               onSaveEdit(values, editValues.id);
             } else {
-              onCreateProduct(formData);
+              onCreateProduct(values);
             }
             // formik.resetForm();
         },
@@ -129,8 +132,13 @@ const ProductForm = ({
                 name='image'
                 type='file'
                 accept='image/*'
+                /*onChangeField={(event) => {
+                    console.log('event.target.files[0]', event.target.files[0])
+                    formik.setFieldValue('image', event.target.files[0]);
+                }}*/
+                /*value={formik.values.image}
+                onChangeField={formik.handleChange}*/
                 onChangeField={(event) => {
-                    console.log('event.target.files[0]',event.target.files[0])
                     formik.setFieldValue('image', event.target.files[0]);
                 }}
                 error={
@@ -162,6 +170,17 @@ const ProductForm = ({
                         : ''
                 }
             />
+            {/*<div className='card mb-4'>
+                <div className='card-header'>
+                    <h4>Media</h4>
+                </div>
+                <div className='card-body'>
+                    <div className='input-upload'>
+                        <img src='/assets/admin/imgs/theme/upload.svg' alt=''/>
+                        <input className='form-control' type='file'/>
+                    </div>
+                </div>
+            </div>*/}
             <Box display='flex' justifyContent='right' gap='10px'>
                 <Button
                     type='submit'

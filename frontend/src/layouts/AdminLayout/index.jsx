@@ -6,11 +6,19 @@ import {Outlet, useNavigate} from "react-router-dom";
 
 function Admin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
     const navigate = useNavigate();
-    if (!isLogged) {
-        navigate("/login");
-    } else if (!isAdmin) {
-        navigate("/");
-    }
+
+    /*useEffect(() => {
+        const checkAuthentication = () => {
+            if (!isLogged) {
+                navigate("/login");
+            } else if (!isAdmin) {
+                navigate("/");
+            }
+        };
+
+        checkAuthentication();
+    }, [isLogged, isAdmin, navigate]);*/
+
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
 
     const OpenSidebar = () => {

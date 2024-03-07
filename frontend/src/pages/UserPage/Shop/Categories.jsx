@@ -31,7 +31,7 @@ function Categories() {
                         </li>
                         {categories.map((category, index) => (
                             <li className="cat-item">
-                                <NavLink key={index} to={`/shop/${category.id}`}>
+                                <NavLink key={index} to={`/shop/cat/${category.id}`}>
                                     {category.title}
                                 </NavLink>
                             </li>
