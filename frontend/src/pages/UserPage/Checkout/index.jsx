@@ -3,8 +3,7 @@ import {cartReducer, initialState} from "../../../store/reducer/cart";
 import {useNavigate} from "react-router-dom";
 import orderApi from "../../../apis/orderApi";
 
-function Checkout({isLogged, setIsLogged, cartItems}) {
-    console.log(isLogged);
+function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
     const navigate = useNavigate();
     useEffect(() => {
         if (!isLogged) {
@@ -61,6 +60,7 @@ function Checkout({isLogged, setIsLogged, cartItems}) {
         await orderApi.create(formData).then((response) => {
             console.log("Order Success: " + response);
             localStorage.setItem('cartItems', JSON.stringify([]));
+            setCartItems([]);
         }).catch((error) => {
             console.log(error);
         });
@@ -145,7 +145,7 @@ function Checkout({isLogged, setIsLogged, cartItems}) {
                                             <td className="align-middle border-0" data-title="Total">
                                         <span className="price-amount amount text-primary">
                                             <bdi>
-                                                <span className="price-currency-symbol">$</span>{total}
+                                                {total}<span className="price-currency-symbol"> VNĐ</span>
                                             </bdi>
                                         </span>
                                             </td>

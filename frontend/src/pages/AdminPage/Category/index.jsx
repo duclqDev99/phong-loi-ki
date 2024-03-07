@@ -23,7 +23,8 @@ function AdminCategory() {
 
     const handleCreate = async (formData) => {
         await categoryApi.create(formData).then((response) => {
-            setCategories((prev) => [...prev, response]);
+            // setCategories((prev) => [...prev, response]);
+            fetch();
         }).catch((error) => {
             console.log(error);
         });
@@ -33,9 +34,10 @@ function AdminCategory() {
     const handleDelete = async (id) => {
         await categoryApi.delete(id).then((response) => {
             if (response) {
-                setCategories((prev) => {
+                /*setCategories((prev) => {
                     return prev.filter((prev) => prev.id !== id);
-                });
+                });*/
+                fetch();
             }
         });
     };
@@ -43,14 +45,15 @@ function AdminCategory() {
     const handleSaveEdit = async (formData, id) => {
         await categoryApi.update(id, formData).then((response) => {
             if (response) {
-                setCategories((prev) => {
+                /*setCategories((prev) => {
                     return prev.map((item) => {
                         if (item.id === id) {
                             return response;
                         }
                         return item;
                     });
-                });
+                });*/
+                fetch();
                 setEditValues(null);
             }
         });

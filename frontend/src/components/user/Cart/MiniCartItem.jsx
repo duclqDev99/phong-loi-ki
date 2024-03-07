@@ -11,7 +11,7 @@ function MiniCart({ product }) {
                     </NavLink>
                 </h5>
             </div>
-            <span className="text-primary">${product.price * product.quantity}</span>
+            <span className="text-primary">{product.price * product.quantity} VNĐ</span>
         </li>
     );
 }

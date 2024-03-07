@@ -8,7 +8,7 @@ function CartItem({ product, handleDelete }) {
             <td className="align-middle border-0" scope="row">
                 <div className="cart-product-detail d-flex align-items-center">
                     <div className="card-image">
-                        <img src={image} alt="cloth"
+                        <img src={`${process.env.PUBLIC_URL}/images/products/${product.image}`} alt="cloth"
                              className="img-fluid"/>
                     </div>
                     <div className="card-detail ps-3">

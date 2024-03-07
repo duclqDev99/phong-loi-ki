@@ -5,26 +5,9 @@ import { Dropdown } from "react-bootstrap";
 import {cartReducer, initialState} from "../../../store/reducer/cart";
 
 function MiniCart({cartItems = []}) {
-    const [state, dispatch] = useReducer(cartReducer, initialState);
-    const [total, setTotal] = useState(0);
-
-    /*useEffect(() => {
-        const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        setCartItems(storedCartItems);
-    }, []);*/
-
-    /*useEffect(() => {
-        const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        dispatch({ type: 'INITIALIZE_CART', payload: storedCartItems });
-    }, []);*/
-
-    /*useEffect(() => {
-        let temp_total = 0;
-        cartItems.forEach(item => {
-            temp_total += item.price * item.quantity;
-        });
-        setTotal(temp_total);
-    }, []);*/
+    if (!cartItems) {
+        cartItems = [];
+    }
 
     return (
         <Dropdown as="li" className="cart-dropdown nav-item">
@@ -41,18 +24,19 @@ function MiniCart({cartItems = []}) {
                     <span className="text-primary">Your cart</span>
                 </h4>
                 <ul className="list-group mb-3">
-                    {cartItems.map((product, index) => (
+                    {console.log(cartItems.length)}
+                    {cartItems && cartItems.length > 0 ? cartItems.map((product, index) => (
                         <MiniCartItem product={product}/>
-                    ))}
+                    )) : null}
                     <li className="list-group-item bg-transparent border-gray d-flex justify-content-between">
-                        <span className="text-uppercase"><b>Total (USD)</b></span>
-                        <strong>${(() => {
+                        <span className="text-uppercase"><b>Total (VNĐ)</b></span>
+                        <strong>{(() => {
                             let temp_total = 0;
                             cartItems.forEach(item => {
                                 temp_total += item.price * item.quantity;
                             });
                             return temp_total;
-                        })()}</strong>
+                        })()} VNĐ</strong>
                     </li>
                 </ul>
                 <div className="d-flex flex-wrap justify-content-center">

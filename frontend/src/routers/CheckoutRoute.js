@@ -8,7 +8,7 @@ const CheckoutRoute = (isLogged, setIsLogged, cartItems, setCartItems) => ({
     children: [
         {
             path: "",
-            element: <Checkout isLogged={isLogged} setIsLogged={setIsLogged} cartItems={cartItems}/>
+            element: <Checkout isLogged={isLogged} setIsLogged={setIsLogged} cartItems={cartItems} setCartItems={setCartItems}/>
         },
     ]
 });

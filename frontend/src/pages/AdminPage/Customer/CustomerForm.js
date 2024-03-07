@@ -17,6 +17,7 @@ const CustomerForm = ({
     const validationSchema = object({
         username: string().required('Customer\'s username is required'),
         fullname: string().required('Customer\'s fullname is required'),
+        password: string().required('Customer\'s password is required'),
         email: string().required('Customer\'s email is required'),
         phone: string().required('Customer\'s phone is required'),
         gender: string().required('Customer\'s gender is required'),
@@ -26,6 +27,7 @@ const CustomerForm = ({
     let initialValues = {
         username: '',
         fullname: '',
+        password: '',
         email: '',
         phone: '',
         gender: '',
@@ -65,7 +67,7 @@ const CustomerForm = ({
     return (
         <form onSubmit={formik.handleSubmit}>
             <FieldInput
-                label='Username'
+                label='Username *'
                 name='username'
                 value={formik.values.username}
                 onChangeField={formik.handleChange}
@@ -76,7 +78,19 @@ const CustomerForm = ({
                 }
             />
             <FieldInput
-                label='Fullname'
+                label='Password *'
+                name='password'
+                type='password'
+                value={formik.values.password}
+                onChangeField={formik.handleChange}
+                error={
+                    formik.touched.password && Boolean(formik.errors.password)
+                        ? formik.errors.password
+                        : ''
+                }
+            />
+            <FieldInput
+                label='Fullname *'
                 name='fullname'
                 value={formik.values.fullname}
                 onChangeField={formik.handleChange}
@@ -87,7 +101,7 @@ const CustomerForm = ({
                 }
             />
             <FieldInput
-                label='Email'
+                label='Email *'
                 name='email'
                 value={formik.values.email}
                 onChangeField={formik.handleChange}
@@ -98,7 +112,7 @@ const CustomerForm = ({
                 }
             />
             <FieldInput
-                label='Phone'
+                label='Phone *'
                 name='phone'
                 value={formik.values.phone}
                 onChangeField={formik.handleChange}
@@ -121,6 +135,7 @@ const CustomerForm = ({
             <FieldInput
                 label='Birthday'
                 name='birthday'
+                type='date'
                 value={formik.values.birthday}
                 onChangeField={formik.handleChange}
                 error={
