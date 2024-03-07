@@ -15,6 +15,14 @@ const MainRoute = (isLogged, setIsLogged, cartItems, setCartItems) => ({
             path: "",
             element: <Shop />
         },
+        {
+            path: "cat/:id",
+            element: <Shop />
+        },
+        {
+            path: "search/:search",
+            element: <Shop />
+        },
     ]
 })
 

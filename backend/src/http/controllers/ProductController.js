@@ -1,101 +1,116 @@
 const ProductModel = require('../../models/ProductModel');
 
 const getAllProducts = async (req, res) => {
-  try {
-    const products = await ProductModel.getAllProducts();
-    res.json(products);
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
+    try {
+        const products = await ProductModel.getAllProducts();
+        res.json(products);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
 };
 
 const filterProductWithCategory = async (req, res) => {
-  try {
-    const { category_id } = req.params;
+    try {
+        const {category_id} = req.params;
 
-    if (!category_id) {
-      return res.status(400).send({ message: 'Category ID is required' });
+        if (!category_id) {
+            return res.status(400).send({message: 'Category ID is required'});
+        }
+
+        const products = await ProductModel.filterProductWithCategory(category_id);
+
+        return res.status(200).json(products);
+    } catch (error) {
+        console.error('Error fetching products:', error);
+        return res.status(500).send({message: 'Error fetching products'});
     }
-
-    const products = await ProductModel.filterProductWithCategory(category_id);
-
-    return res.status(200).json(products);
-  } catch (error) {
-    console.error('Error fetching products:', error);
-    return res.status(500).send({ message: 'Error fetching products' });
-  }
 };
 
 const getProductById = async (req, res) => {
-  try {
-    const product = await ProductModel.getProductById(req.params.id);
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404).send('Product not found');
+    try {
+        const product = await ProductModel.getProductById(req.params.id);
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
     }
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
 };
 
 const getProductPuslish = async (req, res) => {
-  try {
-    console.log('req', req.params);
-    const product = await ProductModel.getProductPuslish(req.params.status);
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404).send('Product not found');
+    try {
+        console.log('req', req.params);
+        const product = await ProductModel.getProductPuslish(req.params.status);
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
     }
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
 };
 
 const getProductByUser = async (req, res) => {
-  try {
-    const product = await ProductModel.getProductByUser(req.params.user_id);
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404).send('Product not found');
+    try {
+        const product = await ProductModel.getProductByUser(req.params.user_id);
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
     }
-  } catch (error) {
-    res.status(500).send(error.message);
-  }
 };
 
 const createProduct = async (req, res) => {
     console.log(req.file); // Thông tin file được tải lên
     console.log(req.body); // Các trường dữ liệu khác
     try {
-      const id = await ProductModel.createProduct(req.body);
-      res.status(201).json({ id });
+        const fileName = req.file;
+        const id = await ProductModel.createProduct(req.body);
+        // const id = await ProductModel.createProduct({ ...req.body, image: fileName });
+        res.status(201).json({id});
     } catch (error) {
-      res.status(500).send(error.message);
+        res.status(500).send(error.message);
     }
-  };
-  
-  const updateProduct = async (req, res) => {
+};
+
+const updateProduct = async (req, res) => {
     try {
-      await ProductModel.updateProduct(req.params.id, req.body);
-      res.status(200).send('Product updated successfully');
+        await ProductModel.updateProduct(req.params.id, req.body);
+        res.status(200).send('Product updated successfully');
     } catch (error) {
-      res.status(500).send(error.message);
+        res.status(500).send(error.message);
     }
-  };
-  
-  const deleteProduct = async (req, res) => {
+};
+
+const deleteProduct = async (req, res) => {
     try {
-      await ProductModel.deleteProduct(req.params.id);
-      res.status(200).send('Product deleted successfully');
+        await ProductModel.deleteProduct(req.params.id);
+        res.status(200).send('Product deleted successfully');
     } catch (error) {
-      res.status(500).send(error.message);
+        res.status(500).send(error.message);
     }
-  };
-  
-  module.exports = {
+};
+
+const searchProduct = async (req, res) => {
+    try {
+        const product = await ProductModel.searchProduct(req.params.search);
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+module.exports = {
     getAllProducts,
     getProductById,
     createProduct,
@@ -103,5 +118,6 @@ const createProduct = async (req, res) => {
     deleteProduct,
     filterProductWithCategory,
     getProductByUser,
-    getProductPuslish
-  };
+    getProductPuslish,
+    searchProduct,
+};

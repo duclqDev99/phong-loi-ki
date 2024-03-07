@@ -6,11 +6,32 @@ import {Outlet, useNavigate} from "react-router-dom";
 
 function Admin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
     const navigate = useNavigate();
-    if (!isLogged) {
-        navigate("/login");
-    } else if (!isAdmin) {
-        navigate("/");
-    }
+
+    useEffect(() => {
+        const user = JSON.parse(localStorage.getItem('user'));
+        if (!user) {
+            navigate("/login");
+        } else if (!user.is_admin) {
+            navigate("/");
+        }
+        console.log(user);
+    }, []);
+
+    /*useEffect(() => {
+        console.log("isLogged:", isLogged);
+        console.log("isAdmin:", isAdmin);
+
+        const checkAuthentication = () => {
+            if (!isLogged) {
+                navigate("/login");
+            } else if (!isAdmin) {
+                navigate("/");
+            }
+        };
+
+        checkAuthentication();
+    }, [isLogged, isAdmin]);*/
+
     const [openSidebarToggle, setOpenSidebarToggle] = useState(false);
 
     const OpenSidebar = () => {

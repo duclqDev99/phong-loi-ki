@@ -1,6 +1,6 @@
 import {useFormik} from 'formik';
-import {string, number, object} from 'yup';
-import {useEffect} from 'react';
+import {string, number, object, mixed} from 'yup';
+import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import FieldInput from '../../../components/admin/form/field/FieldInput';
@@ -18,9 +18,14 @@ const ProductForm = ({
         name: string().required('Product\'s name is required'),
         price: number().required('Product\'s price is required'),
         quantity: number().required('Product\'s quantity is required'),
+        description: string().required('Product\'s description is required'),
         status: string().required('Product\'s status is required'),
+        image: mixed().required('Product\'s image is required'),
+        author: string().required('Product\'s author is required'),
         rating: number().required('Product\'s rating is required'),
     });
+
+    const [imageTmp, setImageTmp] = useState({});
 
     let initialValues = {
         name: '',
@@ -39,17 +44,18 @@ const ProductForm = ({
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             const formData = new FormData();
-            formData.append(
+            /*formData.append(
                 "myFile",
                 ...values,
                 values.image.name
-            );
+            );*/
+            console.log(values);
             if (editValues) {
               onSaveEdit(values, editValues.id);
             } else {
-              onCreateProduct(formData);
+              onCreateProduct(values);
             }
-            // formik.resetForm();
+            formik.resetForm();
         },
     });
 
@@ -57,6 +63,17 @@ const ProductForm = ({
         onReset();
         formik.resetForm();
     };
+
+    /*const handleFileUpload = () => {
+        let reader = new FileReader();
+        let file = imageTmp;
+        reader.onloadend = () => {
+            this.setState({
+                file: reader.result
+            });
+        };
+        reader.readAsDataURL(file);
+    };*/
 
     useEffect(() => {
         if (editValues) {
@@ -130,9 +147,16 @@ const ProductForm = ({
                 type='file'
                 accept='image/*'
                 onChangeField={(event) => {
-                    console.log('event.target.files[0]',event.target.files[0])
+                    console.log('event.target.files[0]', event.target.files[0]);
                     formik.setFieldValue('image', event.target.files[0]);
+                    setImageTmp(event.target.files[0]);
                 }}
+                /*value={formik.values.image}
+                onChangeField={formik.handleChange}*/
+                /*onChangeField={(event) => {
+                    formik.setFieldValue('image', event.target.files[0]);
+                    setImageTmp(event.target.files[0]);
+                }}*/
                 error={
                     formik.touched.image && Boolean(formik.errors.image)
                         ? formik.errors.image

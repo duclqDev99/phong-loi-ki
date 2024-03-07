@@ -7,16 +7,16 @@ const getAllProducts = () => {
 };
 
 const getProductById = (id) => {
-  return db('products').where('id', id).first();    
+  return db('products').where('id', id).first();
 };
 
 const getProductByUser = (user_id) => {
-    return db('products').where('user_id', user_id).select('*');    
+    return db('products').where('user_id', user_id).select('*');
   };
 
   const getProductPuslish = (status) => {
     console.log('sad', db('products').where('status', 1).select('*'));
-    return db('products').where('status', status).select('*');    
+    return db('products').where('status', status).select('*');
   };
 
 const filterProductWithCategory = async (category_id) => {
@@ -27,10 +27,10 @@ const filterProductWithCategory = async (category_id) => {
   };
 
 const createProduct = async (product) => {
-    const trx = await db.transaction(); 
+    const trx = await db.transaction();
     try {
         const ids = await trx('products').insert(product);
-        
+
         await trx.commit();
 
         return ids;
@@ -41,10 +41,10 @@ const createProduct = async (product) => {
 };
 
 const updateProduct = async (id, product) => {
-    const trx = await db.transaction(); 
+    const trx = await db.transaction();
     try {
         await trx('products').where('id', id).update(product);
-        
+
         await trx.commit();
 
         return id;
@@ -55,10 +55,10 @@ const updateProduct = async (id, product) => {
 };
 
 const deleteProduct = async (id) => {
-    const trx = await db.transaction(); 
+    const trx = await db.transaction();
     try {
         await trx('products').where('id', id).del();
-        
+
         await trx.commit();
 
         return id;
@@ -66,6 +66,10 @@ const deleteProduct = async (id) => {
         await trx.rollback();
         throw error;
     }
+};
+
+const searchProduct = (search) => {
+    return db('products').where('name', 'like', `%${search}%`).select('*');
 };
 
 module.exports = {
@@ -76,5 +80,6 @@ module.exports = {
   deleteProduct,
   filterProductWithCategory,
   getProductByUser,
-  getProductPuslish
+  getProductPuslish,
+    searchProduct,
 };

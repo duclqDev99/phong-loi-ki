@@ -19,6 +19,9 @@ const productApi = {
     getProductsByCate: (categoryId) => {
         return baseGet(`products/filter/${categoryId}`);
     },
+    searchProduct: (search) => {
+        return baseGet(`products/search/${search}`);
+    },
 };
 
 export default productApi;

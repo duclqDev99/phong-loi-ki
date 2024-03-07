@@ -10,7 +10,7 @@ import axios from 'axios';
 function AdminProduct() {
     const [products, setProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
-    const [editValues, setEditValues] = useState({});
+    const [editValues, setEditValues] = useState(null);
 
     const fetch = async () => {
         await productApi.getList().then((response) => {
@@ -22,7 +22,7 @@ function AdminProduct() {
     };
 
     const handleCreate = async (formData) => {
-        console.log('formDataformData',formData)
+        console.log(formData)
         // await axios.post('products/create', formData, {
         //     headers: {
         //       'Content-Type': 'multipart/form-data'
@@ -36,7 +36,7 @@ function AdminProduct() {
         }).catch((error) => {
             console.log(error);
         });
-        // setShowModal(false);
+        setShowModal(false);
     };
 
     const handleDelete = async (id) => {
@@ -76,6 +76,7 @@ function AdminProduct() {
     };
 
     const handleClose = () => {
+        setEditValues(null);
         setShowModal(false);
     };
 
