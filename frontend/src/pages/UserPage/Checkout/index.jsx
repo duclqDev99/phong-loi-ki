@@ -26,10 +26,12 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
     const handleOrder = (event) => {
         event.preventDefault();
 
+        if (!fullname || !address || !phone || !email) {
+            alert('Vui lòng điền vào tất cả các trường bắt buộc.');
+            return;
+        }
+
         const user = JSON.parse(localStorage.getItem('user'));
-        /*if (!user) {
-            navigate("/login");
-        }*/
 
         const customerInfo = {
             id_user: user.id,
@@ -65,19 +67,6 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
             console.log(error);
         });
     };
-
-
-    /*useEffect(() => {
-        const storedCartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-        dispatch({ type: 'INITIALIZE_CART', payload: storedCartItems });
-
-        setCartItems(storedCartItems);
-        let temp_total = 0;
-        storedCartItems.forEach(item => {
-            temp_total += item.price * item.quantity;
-        });
-        setTotal(temp_total);
-    }, []);*/
 
     return (
         <section className="shopify-cart checkout-wrap padding-medium">
