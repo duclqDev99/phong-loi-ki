@@ -17,7 +17,7 @@ function CartItem({ product, handleDelete }) {
                                 { product.name }
                             </NavLink>
                         </h5>
-                        <span className="item-price text-primary fs-4">${ product.price }</span>
+                        <span className="item-price text-primary fs-4">{ product.price } VNĐ</span>
                     </div>
                 </div>
             </td>
@@ -30,7 +30,7 @@ function CartItem({ product, handleDelete }) {
                 </div>
             </td>
             <td className="align-middle border-0"><span
-                className="item-price text-primary fs-3 fw-medium">${ product.price * product.quantity }</span></td>
+                className="item-price text-primary fs-3 fw-medium">{ product.price * product.quantity } VNĐ</span></td>
             <td className="align-middle border-0 cart-remove">
                 <button onClick={() => handleDelete(product.id)}>X</button>
             </td>

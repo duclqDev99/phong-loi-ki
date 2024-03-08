@@ -1,9 +1,11 @@
 import React, {useEffect, useReducer, useState} from 'react';
-import {cartReducer, initialState} from "../../../store/reducer/cart";
 import {useNavigate} from "react-router-dom";
 import orderApi from "../../../apis/orderApi";
+import OrderSuccessPopup from './OrderSuccessPopup';
+
 
 function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
+    const [orderSuccess, setOrderSuccess] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         if (!isLogged) {
@@ -56,6 +58,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
         console.log('Order placed with data:', formData);
 
         handleCreate(formData);
+
     };
 
     const handleCreate = async (formData) => {
@@ -63,9 +66,14 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
             console.log("Order Success: " + response);
             localStorage.setItem('cartItems', JSON.stringify([]));
             setCartItems([]);
+            setOrderSuccess(true);
         }).catch((error) => {
             console.log(error);
         });
+    };
+
+    const handleClosePopup = () => {
+        setOrderSuccess(false);
     };
 
     return (
@@ -154,6 +162,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
                     </div>
                 </form>
             </div>
+            <OrderSuccessPopup open={orderSuccess} onClose={handleClosePopup} />
         </section>
     );
 }
