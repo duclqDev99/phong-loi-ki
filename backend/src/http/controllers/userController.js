@@ -27,7 +27,8 @@ const loginUser = async (req, res) => {
   try {
     const user = await userModel.getUserByUsername(req.body.username);
     const pass = await req.body.password;
-    if (user && bcrypt.compare(pass + 10, user.password)) {
+    const hashedPassword = await bcrypt.hash(pass, 10);
+    if (user && (hashedPassword == user.password)) {
       res.json(user);
     } else {
       res.status(404).send('User not found');

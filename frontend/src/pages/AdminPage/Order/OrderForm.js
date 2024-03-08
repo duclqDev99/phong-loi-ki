@@ -38,7 +38,7 @@ const OrderForm = ({
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             if (editValues) {
-              onSaveEdit(values, editValues.id);
+              onSaveEdit(editValues.id, values);
             } else {
               onCreate(values);
             }

@@ -17,7 +17,7 @@ const CustomerForm = ({
     const validationSchema = object({
         username: string().required('Customer\'s username is required'),
         fullname: string().required('Customer\'s fullname is required'),
-        /*password: string().required('Customer\'s password is required'),*/
+        password: string().required('Customer\'s password is required'),
         email: string().required('Customer\'s email is required'),
         phone: string().required('Customer\'s phone is required'),
         gender: string().required('Customer\'s gender is required'),
@@ -85,7 +85,9 @@ const CustomerForm = ({
                 value={formik.values.password}
                 onChangeField={formik.handleChange}
                 error={
-                    formik.touched.password && Boolean(formik.errors.password)
+                    (!editValues || (editValues && formik.values.password)) &&
+                    formik.touched.password &&
+                    Boolean(formik.errors.password)
                         ? formik.errors.password
                         : ''
                 }

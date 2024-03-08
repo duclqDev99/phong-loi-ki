@@ -55,19 +55,24 @@ const createUser = async (user) => {
 
 const updateUser = async (id, user) => {
   const trx = await db.transaction();
-  // const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+
+  var updateData = {
+    username: user.username,
+    fullname: user.fullname,
+    email: user.email,
+    phone: user.phone,
+    gender: user.gender,
+    birthday: user.birthday,
+    updated_at: new Date()
+  }
+
+  if (user.password) {
+    updateData.password = await bcrypt.hash(user.password, saltRounds);
+  }
+
 
   try {
-    await trx(tableName).where('id', id).update({
-      username: user.username,
-      // password: hashedPassword,
-      fullname: user.fullname,
-      email: user.email,
-      phone: user.phone,
-      gender: user.gender,
-      birthday: user.birthday,
-      updated_at: new Date()
-    });
+    await trx(tableName).where('id', id).update(updateData);
 
     await trx.commit();
   } catch (error) {
