@@ -1,5 +1,5 @@
 import {useFormik} from 'formik';
-import {string, number, object} from 'yup';
+import {string, number, object, date} from 'yup';
 import {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
@@ -17,11 +17,11 @@ const CustomerForm = ({
     const validationSchema = object({
         username: string().required('Customer\'s username is required'),
         fullname: string().required('Customer\'s fullname is required'),
-        password: string().required('Customer\'s password is required'),
+        /*password: string().required('Customer\'s password is required'),*/
         email: string().required('Customer\'s email is required'),
         phone: string().required('Customer\'s phone is required'),
         gender: string().required('Customer\'s gender is required'),
-        birthday: string().required('Customer\'s birthday is required'),
+        birthday: date().required('Customer\'s birthday is required'),
     });
 
     let initialValues = {
@@ -81,6 +81,7 @@ const CustomerForm = ({
                 label='Password *'
                 name='password'
                 type='password'
+                placeholder='To leave blank if you do not want to change the password'
                 value={formik.values.password}
                 onChangeField={formik.handleChange}
                 error={
