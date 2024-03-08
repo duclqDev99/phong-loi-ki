@@ -31,7 +31,8 @@ function AdminCategory() {
 
     const handleCreate = async (formData) => {
         await customerApi.create(formData).then((response) => {
-            setCustomers((prev) => [...prev, response]);
+            /*setCustomers((prev) => [...prev, response]);*/
+            fetch();
         }).catch((error) => {
             console.log(error);
         });
@@ -41,9 +42,10 @@ function AdminCategory() {
     const handleDelete = async (id) => {
         await customerApi.delete(id).then((response) => {
             if (response) {
-                setCustomers((prev) => {
+                /*setCustomers((prev) => {
                     return prev.filter((prev) => prev.id !== id);
-                });
+                });*/
+                fetch();
             }
         });
     };
