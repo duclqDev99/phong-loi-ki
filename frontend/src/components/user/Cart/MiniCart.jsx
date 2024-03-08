@@ -8,6 +8,15 @@ function MiniCart({cartItems = []}) {
     if (!cartItems) {
         cartItems = [];
     }
+    function formatVND(value) {
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0, 
+        });
+    
+        return formatter.format(value).replace('₫', 'VNĐ');
+    }
 
     return (
         <Dropdown as="li" className="cart-dropdown nav-item">
@@ -16,19 +25,19 @@ function MiniCart({cartItems = []}) {
                 className="nav-link text-uppercase me-0"
                 id="cart-dropdown"
             >
-                Cart
+                Giỏ Hàng
             </Dropdown.Toggle>
 
             <Dropdown.Menu className="dropdown-menu-end p-3">
                 <h4 className="d-flex justify-content-between align-items-center mb-3">
-                    <span className="text-primary">Your cart</span>
+                    <span className="text-primary">GIỎ HÀNG CỦA BẠN</span>
                 </h4>
                 <ul className="list-group mb-3">
                     {cartItems && cartItems.length > 0 ? cartItems.map((product, index) => (
-                        <MiniCartItem product={product}/>
+                        <MiniCartItem product={product} />
                     )) : null}
                     <li className="list-group-item bg-transparent border-gray d-flex justify-content-between">
-                        <span className="text-uppercase"><b>Total (VNĐ)</b></span>
+                        <span className="text-uppercase"><b>TỔNG: </b></span>
                         {/*<strong>{(() => {
                             let temp_total = 0;
                             cartItems.forEach(item => {

@@ -1,5 +1,5 @@
 import React from 'react';
-import logo from '../../../assets/user/images/main-logo.png';
+import logo from '../../../assets/user/images/main-logo.jpg';
 import {NavLink} from "react-router-dom";
 
 function Footer() {
@@ -11,19 +11,17 @@ function Footer() {
                         <div className="row d-flex flex-wrap justify-content-between">
                             <div className="col-lg-3 col-sm-6 pb-3">
                                 <div className="footer-menu">
-                                    <img src={logo} alt="Logo" className="mb-2"/>
-                                    <p>Nunc tristique facilisis consectetur vivamus ut porta porta aliquam vitae
-                                        vehicula
-                                        leo nullam urna lectus.</p>
+                                    <img style={{width: '100px'}} src={logo} alt="Logo" className="mb-2"/>
+                                    <p>Bây giờ chúng ta hãy sống thoải mái như một cánh cửa dẫn đến từng nhà, một số phương tiện của cuộc sống và không có chiếc giường đựng bình.</p>
                                 </div>
                             </div>
                             <div className="col-lg-2 col-sm-6 pb-3">
                                 <div className="footer-menu">
-                                    <h4 className="widget-title pb-2">Quick Links</h4>
+                                    <h4 className="widget-title pb-2">CHỌN NHANH</h4>
                                     <ul className="menu-list list-unstyled">
                                         <li className="menu-item text-uppercase pb-2">
                                             <NavLink to="/" >
-                                                Home
+                                                Trang Chủ
                                             </NavLink>
                                         </li>
                                         <li className="menu-item text-uppercase pb-2">
@@ -31,14 +29,14 @@ function Footer() {
                                                 Shop
                                             </NavLink>
                                         </li>
-                                        <li className="menu-item text-uppercase pb-2">
+                                        <li className="menu-item text-uppercase pb-2">  
                                             <NavLink to="/cart" >
-                                                Cart
+                                                Giỏ Hàng
                                             </NavLink>
                                         </li>
                                         <li className="menu-item text-uppercase pb-2">
                                             <NavLink to="/login" >
-                                                Account
+                                                Tài Khoản
                                             </NavLink>
                                         </li>
                                     </ul>
@@ -46,13 +44,13 @@ function Footer() {
                             </div>
                             <div className="col-lg-3 col-sm-6 pb-3">
                                 <div className="footer-menu contact-item">
-                                    <h4 className="widget-title pb-2">Contact info</h4>
+                                    <h4 className="widget-title pb-2">Thông Tin Liên Lạc</h4>
                                     <ul className="menu-list list-unstyled">
                                         <li className="menu-item pb-2">
                                             <a href="#">Tea Berry, Marinette, USA</a>
                                         </li>
                                         <li className="menu-item pb-2">
-                                            <a href="#">+55 111 222 333 44</a>
+                                            <a href="#">+84 78 143 234</a>
                                         </li>
                                         <li className="menu-item pb-2">
                                             <a href="mailto:">yourinfo@gmail.com</a>
@@ -62,8 +60,8 @@ function Footer() {
                             </div>
                             <div className="col-lg-3 col-sm-6 pb-3">
                                 <div className="footer-menu">
-                                    <h4 className="widget-title pb-2">Social info</h4>
-                                    <p>You can follow us on our social platforms to get updates.</p>
+                                    <h4 className="widget-title pb-2">THÔNG TIN XÃ HỘI</h4>
+                                    <p>Bạn có thể theo dõi chúng tôi trên các nền tảng xã hội của chúng tôi để nhận được thông tin cập nhật.</p>
                                     <div className="social-links">
                                         <ul className="d-flex list-unstyled">
                                             <li>

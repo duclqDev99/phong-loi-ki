@@ -22,11 +22,11 @@ function Categories() {
         <aside className="col-md-3">
             <div className="sidebar">
                 <div className="widget-product-categories pt-5">
-                    <h5 className="widget-title text-uppercase">Categories</h5>
+                    <h5 className="widget-title text-uppercase">Thể Loại</h5>
                     <ul className="product-categories sidebar-list list-unstyled">
                         <li className="cat-item">
                             <NavLink to={`/shop`}>
-                                All
+                                Tất Cả
                             </NavLink>
                         </li>
                         {categories.map((category, index) => (

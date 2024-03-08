@@ -53,6 +53,16 @@ function Product({cartItems, setCartItems}) {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     };
 
+    function formatVND(value) {
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0, 
+        });
+    
+        return formatter.format(value).replace('₫', 'VNĐ');
+    }
+
     useEffect(() => {
         localStorage.setItem('cartItems', JSON.stringify(cartItems));
     }, [cartItems]);
@@ -130,7 +140,7 @@ function Product({cartItems, setCartItems}) {
                                     </div>
                                 </div>
                                 <div className="product-price my-3">
-                                    <span className="fs-1 text-primary">{product.price} VNĐ</span>
+                                    <span className="fs-1 text-primary">{formatVND(product.price)} VNĐ</span>
                                 </div>
                                 <p>{product.description}</p>
                                 <hr></hr>

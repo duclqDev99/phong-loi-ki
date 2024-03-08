@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import logo from '../../../assets/user/images/main-logo.png';
+import logo from '../../../assets/user/images/main-logo.jpg';
 import {NavLink, useNavigate} from 'react-router-dom';
 import { Dropdown } from "react-bootstrap";
 import MiniCart from "../Cart/MiniCart";
@@ -38,7 +38,7 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
             <nav id="header-nav" className="navbar navbar-expand-lg px-3">
                 <div className="container">
                     <NavLink to="/" className="navbar-brand d-lg-none">
-                        <img src={logo} alt="Logo" className="footer-logo"/>
+                        <img style={{width: '50px'}} src={logo} alt="Logo" className="footer-logo"/>
                     </NavLink>
                     <button className="navbar-toggler d-flex d-lg-none order-3 p-2" type="button"
                             data-bs-toggle="offcanvas" data-bs-target="#bdNavbar" aria-controls="bdNavbar"
@@ -48,7 +48,7 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
                          aria-labelledby="bdNavbarOffcanvasLabel">
                         <div className="offcanvas-header px-4 pb-0">
                             <a className="navbar-brand" href="/">
-                                <img src={logo} alt="Logo" className="footer-logo"/>
+                                <img style={{width: '50px'}} src={logo} alt="Logo" className="footer-logo"/>
                             </a>
                             <button type="button" className="btn-close btn-close-black" data-bs-dismiss="offcanvas"
                                     aria-label="Close" data-bs-target="#bdNavbar"></button>
@@ -60,7 +60,7 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
                                 <ul className="list-unstyled d-lg-flex justify-content-md-between align-items-center">
                                     <li className="nav-item">
                                         <NavLink to="/" className="nav-link text-uppercase ms-0">
-                                            Home
+                                            Trang Chủ
                                         </NavLink>
                                     </li>
                                     <li className="nav-item">
@@ -74,7 +74,7 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
                                             className="nav-link text-uppercase dropdown-toggle ms-0"
                                             id="dropdown-basic"
                                         >
-                                            Category
+                                            Thể Loại
                                             <svg className="bi" width="18" height="18">
                                                 <use xlinkHref="#chevron-down"></use>
                                             </svg>
@@ -93,7 +93,7 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
                                 </ul>
 
                                 <NavLink to="/" className="nav-link text-uppercase ms-0">
-                                    <img src={logo} alt="Logo" className="mb-2"/>
+                                    <img style={{width: '50px'}} src={logo} alt="Logo" className="mb-2"/>
                                 </NavLink>
 
                                 <ul className="list-unstyled d-lg-flex justify-content-between align-items-center">
@@ -105,24 +105,24 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
                                                     className="text-dark"
                                                     name="search"
                                                     type="text"
-                                                    placeholder="Search Here"
+                                                    placeholder="..."
                                                     value={searchTerm}
                                                     onChange={(e) => setSearchTerm(e.target.value)}
                                                     onKeyPress={handleKeyPress}
                                                 />
                                                 <a type="submit" className="nav-link text-uppercase me-0"
-                                                   href="#">Search</a>
+                                                   href="#">Tìm Kiếm</a>
                                             </form>
                                         </div>
                                     </li>
                                     <li className="nav-item">
                                         {!isLogged ? (
                                             <NavLink to="/login" className="nav-link text-uppercase me-0">
-                                                Login
+                                                Đăng Nhập
                                             </NavLink>
                                         ) : (
                                             <NavLink to="/logout" className="nav-link text-uppercase me-0">
-                                                Logout
+                                                Đăng Xuất
                                             </NavLink>
                                         )}
 

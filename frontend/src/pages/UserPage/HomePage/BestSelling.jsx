@@ -33,10 +33,10 @@ function BestSelling() {
     return (
         <section id="products" className="product-store position-relative padding-medium pb-0">
             <div className="container display-header d-flex flex-wrap justify-content-between pb-4">
-                <h3 className="mt-3">newly released book</h3>
+                <h3 className="mt-3">SÁCH MỚI PHÁT HÀNH</h3>
                 <div className="btn-right d-flex flex-wrap align-items-center">
                     <NavLink to={`/shop/`}>
-                        View all items →
+                        Xem tất cả các mục →
                     </NavLink>
                 </div>
             </div>

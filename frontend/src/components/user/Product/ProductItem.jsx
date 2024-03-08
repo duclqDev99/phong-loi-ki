@@ -3,6 +3,17 @@ import image from "../../../assets/user/images/product-item1.jpg";
 import {NavLink} from "react-router-dom";
 
 function ProductItem({ classItem, product = null }) {
+
+    function formatVND(value) {
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0, 
+        });
+    
+        return formatter.format(value).replace('₫', 'VNĐ');
+    }
+
     return (
         <div className={classItem}>
             <div className="image-holder" style={{ textAlign: 'center' }}>
@@ -17,7 +28,7 @@ function ProductItem({ classItem, product = null }) {
                         {product.name}
                     </NavLink>
                 </h5>
-                <span className="item-price text-primary fs-4">{ product.price } VNĐ</span>
+                <span className="item-price text-primary fs-4">{ formatVND(product.price) }</span>
                 {/*<div className="cart-button mt-1">
                     <a href="/cart"
                        className="btn">Add to cart</a>

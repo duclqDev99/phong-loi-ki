@@ -3,6 +3,16 @@ import image from "../../../assets/user/images/cart-img2.jpg";
 import {NavLink} from "react-router-dom";
 
 function CartItem({ product, handleDelete }) {
+    function formatVND(value) {
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0, 
+        });
+    
+        return formatter.format(value).replace('₫', 'VNĐ');
+    }
+
     return (
         <tr className="border-bottom border-gray">
             <td className="align-middle border-0" scope="row">
@@ -17,7 +27,7 @@ function CartItem({ product, handleDelete }) {
                                 { product.name }
                             </NavLink>
                         </h5>
-                        <span className="item-price text-primary fs-4">{ product.price } VNĐ</span>
+                        <span className="item-price text-primary fs-4">{ formatVND(product.price) }</span>
                     </div>
                 </div>
             </td>
@@ -30,7 +40,7 @@ function CartItem({ product, handleDelete }) {
                 </div>
             </td>
             <td className="align-middle border-0"><span
-                className="item-price text-primary fs-3 fw-medium">{ product.price * product.quantity } VNĐ</span></td>
+                className="item-price text-primary fs-3 fw-medium">{ formatVND(product.price * product.quantity) }</span></td>
             <td className="align-middle border-0 cart-remove">
                 <button onClick={() => handleDelete(product.id)}>X</button>
             </td>
