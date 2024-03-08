@@ -23,7 +23,7 @@ const CategoryForm = ({
     let initialValues = {
         title: '',
         description: '',
-        status: '',
+        status: '1',
     };
 
     const formik = useFormik({

@@ -1,54 +1,56 @@
 import React from 'react'
 import
-{BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,
-  BsListCheck, BsMenuButtonWideFill, BsFillGearFill}
- from 'react-icons/bs'
+{
+    BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,
+    BsListCheck, BsMenuButtonWideFill, BsFillGearFill
+}
+    from 'react-icons/bs'
 import {NavLink} from "react-router-dom";
 
 function Sidebar({openSidebarToggle, OpenSidebar}) {
-  return (
-    <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive": ""}>
+    return (
+        <aside id="sidebar" className={openSidebarToggle ? "sidebar-responsive" : ""}>
 
 
-        <ul className='sidebar-list'>
-            <li className='sidebar-list-item'>
+            <ul className='sidebar-list'>
                 <NavLink to="/admin">
-                    <BsGrid1X2Fill className='icon'/> Dashboard
+                    <li className='sidebar-list-item'>
+                        <BsGrid1X2Fill className='icon'/> Dashboard
+                    </li>
                 </NavLink>
-            </li>
-            <li className='sidebar-list-item'>
                 <NavLink to="/admin/product">
-                    <BsFillArchiveFill className='icon'/> Products
+                    <li className='sidebar-list-item'>
+                        <BsFillArchiveFill className='icon'/> Products
+                    </li>
                 </NavLink>
-            </li>
-            <li className='sidebar-list-item'>
                 <NavLink to="/admin/category">
-                    <BsFillGrid3X3GapFill className='icon'/> Categories
+                    <li className='sidebar-list-item'>
+                        <BsFillGrid3X3GapFill className='icon'/> Categories
+                    </li>
                 </NavLink>
-            </li>
-            <li className='sidebar-list-item'>
                 <NavLink to="/admin/customer">
-                    <BsPeopleFill className='icon'/> Customers
+                    <li className='sidebar-list-item'>
+                        <BsPeopleFill className='icon'/> Customers
+                    </li>
                 </NavLink>
-            </li>
-            <li className='sidebar-list-item'>
+                <NavLink to="/admin/order">
+                    <li className='sidebar-list-item'>
+                        <BsFillGearFill className='icon'/> Orders
+                    </li>
+                </NavLink>
                 <NavLink to="/">
-                    <BsGrid1X2Fill className='icon'/> Go to shopping
+                    <li className='sidebar-list-item'>
+                        <BsGrid1X2Fill className='icon'/> Go to shopping
+                    </li>
                 </NavLink>
-            </li>
-            <li className='sidebar-list-item'>
                 <NavLink to="/logout">
-                    <BsGrid1X2Fill className='icon'/> Logout
+                    <li className='sidebar-list-item'>
+                        <BsGrid1X2Fill className='icon'/> Logout
+                    </li>
                 </NavLink>
-            </li>
-            {/*<li className='sidebar-list-item'>
-                <a href="/admin/order">
-                    <BsFillGearFill className='icon'/> Orders
-                </a>
-            </li>*/}
-        </ul>
-    </aside>
-  )
+            </ul>
+        </aside>
+    )
 }
 
 export default Sidebar

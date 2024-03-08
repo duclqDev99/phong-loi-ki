@@ -51,6 +51,50 @@ const Status = ({ status }) => {
           />
         );
       }
+      case "processing": {
+        return (
+            <Chip
+                icon={<Check />}
+                label='Processing'
+                color='secondary'
+                size='small'
+                variant='outlined'
+            />
+        );
+      }
+      case "transporting": {
+        return (
+            <Chip
+                icon={<Check />}
+                label='Transporting'
+                color='secondary'
+                size='small'
+                variant='outlined'
+            />
+        );
+      }
+      case "success": {
+        return (
+            <Chip
+                icon={<Check />}
+                label='Success'
+                color='primary'
+                size='small'
+                variant='outlined'
+            />
+        );
+      }
+      case "cancel": {
+        return (
+            <Chip
+                icon={<Close />}
+                label='Cancel'
+                color='warning'
+                size='small'
+                variant='outlined'
+            />
+        );
+      }
     }
   };
 

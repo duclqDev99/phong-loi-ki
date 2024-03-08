@@ -1,5 +1,5 @@
 import {useFormik} from 'formik';
-import {string, number, object} from 'yup';
+import {string, object} from 'yup';
 import {useEffect} from 'react';
 import PropTypes from 'prop-types';
 
@@ -8,30 +8,28 @@ import FieldTextArea from '../../../components/admin/form/field/FieldTextArea';
 import FieldSelect from '../../../components/admin/form/field/FieldSelect';
 import {Box, Button} from '@mui/material';
 
-const CustomerForm = ({
+const OrderForm = ({
                          editValues,
                          onCreate,
                          onSaveEdit,
                          onReset,
                      }) => {
     const validationSchema = object({
-        username: string().required('Customer\'s username is required'),
-        fullname: string().required('Customer\'s fullname is required'),
-        password: string().required('Customer\'s password is required'),
-        email: string().required('Customer\'s email is required'),
-        phone: string().required('Customer\'s phone is required'),
-        gender: string().required('Customer\'s gender is required'),
-        birthday: string().required('Customer\'s birthday is required'),
+        fullname: string().required('Order\'s fullname is required'),
+        total_amount: string().required('Order\'s total amount is required'),
+        address: string().required('Order\'s address is required'),
+        phone: string().required('Order\'s phone is required'),
+        email: string().required('Order\'s email is required'),
+        status: string().required('Order\'s status is required'),
     });
 
     let initialValues = {
-        username: '',
         fullname: '',
-        password: '',
-        email: '',
+        total_amount: '',
+        address: '',
         phone: '',
-        gender: '',
-        birthday: '',
+        email: '',
+        status: '',
     };
 
     const formik = useFormik({
@@ -55,42 +53,19 @@ const CustomerForm = ({
 
     useEffect(() => {
         if (editValues) {
-            formik.setFieldValue('username', editValues.username);
             formik.setFieldValue('fullname', editValues.fullname);
-            formik.setFieldValue('email', editValues.email);
+            formik.setFieldValue('total_amount', editValues.total_amount);
+            formik.setFieldValue('address', editValues.address);
             formik.setFieldValue('phone', editValues.phone);
-            formik.setFieldValue('gender', editValues.gender);
-            formik.setFieldValue('birthday', editValues.birthday);
+            formik.setFieldValue('email', editValues.email);
+            formik.setFieldValue('status', editValues.status);
         }
     }, [editValues]);
 
     return (
         <form onSubmit={formik.handleSubmit}>
             <FieldInput
-                label='Username *'
-                name='username'
-                value={formik.values.username}
-                onChangeField={formik.handleChange}
-                error={
-                    formik.touched.username && Boolean(formik.errors.username)
-                        ? formik.errors.username
-                        : ''
-                }
-            />
-            <FieldInput
-                label='Password *'
-                name='password'
-                type='password'
-                value={formik.values.password}
-                onChangeField={formik.handleChange}
-                error={
-                    formik.touched.password && Boolean(formik.errors.password)
-                        ? formik.errors.password
-                        : ''
-                }
-            />
-            <FieldInput
-                label='Fullname *'
+                label='Fullname'
                 name='fullname'
                 value={formik.values.fullname}
                 onChangeField={formik.handleChange}
@@ -101,18 +76,29 @@ const CustomerForm = ({
                 }
             />
             <FieldInput
-                label='Email *'
-                name='email'
-                value={formik.values.email}
+                label='Total Amount'
+                name='total_amount'
+                value={formik.values.total_amount}
                 onChangeField={formik.handleChange}
                 error={
-                    formik.touched.email && Boolean(formik.errors.email)
-                        ? formik.errors.email
+                    formik.touched.total_amount && Boolean(formik.errors.total_amount)
+                        ? formik.errors.total_amount
                         : ''
                 }
             />
             <FieldInput
-                label='Phone *'
+                label='Address'
+                name='address'
+                value={formik.values.address}
+                onChangeField={formik.handleChange}
+                error={
+                    formik.touched.address && Boolean(formik.errors.address)
+                        ? formik.errors.address
+                        : ''
+                }
+            />
+            <FieldInput
+                label='Phone'
                 name='phone'
                 value={formik.values.phone}
                 onChangeField={formik.handleChange}
@@ -122,27 +108,28 @@ const CustomerForm = ({
                         : ''
                 }
             />
-            <FieldSelect
-                label='Gender'
-                name='gender'
-                dataSet={[
-                    {label: 'Female', value: 'Female'},
-                    {label: 'Male', value: 'Male'},
-                ]}
-                value={formik.values.gender}
-                onChangeField={formik.handleChange}
-            />
             <FieldInput
-                label='Birthday'
-                name='birthday'
-                type='date'
-                value={formik.values.birthday}
+                label='Email'
+                name='email'
+                value={formik.values.email}
                 onChangeField={formik.handleChange}
                 error={
-                    formik.touched.birthday && Boolean(formik.errors.birthday)
-                        ? formik.errors.birthday
+                    formik.touched.email && Boolean(formik.errors.email)
+                        ? formik.errors.email
                         : ''
                 }
+            />
+            <FieldSelect
+                label='Status'
+                name='status'
+                dataSet={[
+                    {label: 'Processing', value: 'processing'},
+                    {label: 'Transporting', value: 'transporting'},
+                    {label: 'Success', value: 'success'},
+                    {label: 'Cancel', value: 'cancel'},
+                ]}
+                value={formik.values.status}
+                onChangeField={formik.handleChange}
             />
             <Box display='flex' justifyContent='right' gap='10px'>
                 <Button
@@ -166,11 +153,11 @@ const CustomerForm = ({
     );
 };
 
-CustomerForm.propTypes = {
+OrderForm.propTypes = {
     editValues: PropTypes.object,
     onCreate: PropTypes.func,
     onSaveEdit: PropTypes.func,
     onReset: PropTypes.func,
 };
 
-export default CustomerForm;
+export default OrderForm;

@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from '@mui/material';
 import { Add } from '@mui/icons-material';
-import CategoryTable from "./CategoryTable";
-import CategoryForm from "./CategoryForm";
-import categoryApi from "../../../apis/categoryApi";
+import OrderTable from "./OrderTable";
+import OrderForm from "./OrderForm";
+import orderApi from "../../../apis/orderApi";
 import DialogWrapper from '../../../components/admin/dialogWapper';
 
-function AdminCategory() {
+function AdminOrder() {
     const [categories, setCategories] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [editValues, setEditValues] = useState(null);
 
     const fetch = async () => {
-        await categoryApi.getList().then((response) => {
+        await orderApi.getList().then((response) => {
             console.log(response);
             setCategories(response);
         }).catch((error) => {
@@ -22,7 +22,7 @@ function AdminCategory() {
     };
 
     const handleCreate = async (formData) => {
-        await categoryApi.create(formData).then((response) => {
+        await orderApi.create(formData).then((response) => {
             // setCategories((prev) => [...prev, response]);
             fetch();
         }).catch((error) => {
@@ -32,7 +32,7 @@ function AdminCategory() {
     };
 
     const handleDelete = async (id) => {
-        await categoryApi.delete(id).then((response) => {
+        await orderApi.delete(id).then((response) => {
             if (response) {
                 /*setCategories((prev) => {
                     return prev.filter((prev) => prev.id !== id);
@@ -43,7 +43,7 @@ function AdminCategory() {
     };
 
     const handleSaveEdit = async (formData, id) => {
-        await categoryApi.update(id, formData).then((response) => {
+        await orderApi.update(id, formData).then((response) => {
             if (response) {
                 /*setCategories((prev) => {
                     return prev.map((item) => {
@@ -81,14 +81,14 @@ function AdminCategory() {
     return (
         <main className="main-container">
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px'}}>
-                <span style={{fontSize: 24, color: "black"}}>Manage Category</span>
+                <span style={{fontSize: 24, color: "black"}}>Manage Order</span>
                 <div className="add-product-button">
-                    <Button
+                    {/*<Button
                         onClick={() => setShowModal(true)}
                         endIcon={<Add/>}
                     >
                         Create
-                    </Button>
+                    </Button>*/}
                 </div>
             </div>
 
@@ -97,7 +97,7 @@ function AdminCategory() {
                 open={showModal}
                 onClose={handleClose}
             >
-                <CategoryForm
+                <OrderForm
                     editValues={editValues}
                     onCreate={handleCreate}
                     onSaveEdit={handleSaveEdit}
@@ -105,7 +105,7 @@ function AdminCategory() {
                 />
             </DialogWrapper>
 
-            <CategoryTable
+            <OrderTable
                 rows={categories}
                 onDelete={handleDelete}
                 onEdit={handleEdit}
@@ -114,4 +114,4 @@ function AdminCategory() {
     );
 };
 
-export default AdminCategory;
+export default AdminOrder;

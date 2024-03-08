@@ -799,3 +799,9 @@ h5.widget-title {
 .post-navigation:focus svg {
     fill: var(--primary-color);
 }
+
+.product-image {
+    height: 350px;
+    width: auto;
+    object-fit: cover;
+}

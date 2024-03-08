@@ -106,7 +106,7 @@ function Product({cartItems, setCartItems}) {
                                         <div className="swiper-slide swiper-slide-visible swiper-slide-active"
                                              style={{width: 483, opacity: 1, transform: 'translate3d(0, 0, 0)'}}
                                              role="group" aria-label="1 / 2">
-                                            <img src={product.image ? product.image : image1} alt="single-product"
+                                            <img src={`${process.env.PUBLIC_URL}/images/products/${product.image}`} alt="single-product"
                                                  className="img-fluid"/>
                                         </div>
                                         {/*<div className="swiper-slide swiper-slide-next" role="group" aria-label="2 / 2"
@@ -130,7 +130,7 @@ function Product({cartItems, setCartItems}) {
                                     </div>
                                 </div>
                                 <div className="product-price my-3">
-                                    <span className="fs-1 text-primary">${product.price}</span>
+                                    <span className="fs-1 text-primary">{product.price} VNĐ</span>
                                 </div>
                                 <p>{product.description}</p>
                                 <hr></hr>

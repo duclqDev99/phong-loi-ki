@@ -43,14 +43,15 @@ function AdminCategory() {
     const handleSaveEdit = async (formData, id) => {
         await customerApi.update(formData, id).then((response) => {
             if (response) {
-                setCustomers((prev) => {
+                /*setCustomers((prev) => {
                     return prev.map((item) => {
                         if (item.id === id) {
                             return response;
                         }
                         return item;
                     });
-                });
+                });*/
+                fetch();
                 setEditValues(null);
             }
         });

@@ -5,10 +5,10 @@ import {NavLink} from "react-router-dom";
 function ProductItem({ classItem, product = null }) {
     return (
         <div className={classItem}>
-            <div className="image-holder">
+            <div className="image-holder" style={{ textAlign: 'center' }}>
                 <NavLink to={`/product/${product.id}`}>
-                    <img src={image} alt="product-item"
-                         className="img-fluid"/>
+                    <img src={`${process.env.PUBLIC_URL}/images/products/${product.image}`} alt="product-item"
+                         className="img-fluid product-image"/>
                 </NavLink>
             </div>
             <div className="card-detail text-center pt-3 pb-2">
@@ -17,7 +17,7 @@ function ProductItem({ classItem, product = null }) {
                         {product.name}
                     </NavLink>
                 </h5>
-                <span className="item-price text-primary fs-4">${ product.price }</span>
+                <span className="item-price text-primary fs-4">{ product.price } VNĐ</span>
                 {/*<div className="cart-button mt-1">
                     <a href="/cart"
                        className="btn">Add to cart</a>
