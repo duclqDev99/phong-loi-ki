@@ -5,6 +5,7 @@ import CustomerForm from "./CustomerForm";
 import CustomerTable from "./CustomerTable";
 import customerApi from "../../../apis/customerApi";
 import DialogWrapper from '../../../components/admin/dialogWapper';
+const moment = require('moment');
 
 function AdminCategory() {
     const [customers, setCustomers] = useState([]);
@@ -13,7 +14,14 @@ function AdminCategory() {
 
     const fetch = async () => {
         await customerApi.getList().then((response) => {
-            setCustomers(response);
+            const modifiedCustomers = response.map(customer => {
+                return {
+                    ...customer,
+                    birthday: moment(customer.birthday).format('YYYY-MM-DD')
+                };
+            });
+            setCustomers(modifiedCustomers);
+            console.log(modifiedCustomers);
         }).catch((error) => {
             console.log(error);
             setCustomers([]);
@@ -41,16 +49,13 @@ function AdminCategory() {
     };
 
     const handleSaveEdit = async (formData, id) => {
-        await customerApi.update(formData, id).then((response) => {
+        if (formData.password == null || formData.password == "") {
+            delete formData.password;
+        }
+
+        await customerApi.update(id, formData).then((response) => {
+            console.log(formData);
             if (response) {
-                /*setCustomers((prev) => {
-                    return prev.map((item) => {
-                        if (item.id === id) {
-                            return response;
-                        }
-                        return item;
-                    });
-                });*/
                 fetch();
                 setEditValues(null);
             }

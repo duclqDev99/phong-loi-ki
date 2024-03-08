@@ -55,12 +55,12 @@ const createUser = async (user) => {
 
 const updateUser = async (id, user) => {
   const trx = await db.transaction();
-  const hashedPassword = await bcrypt.hash(user.password, saltRounds);
+  // const hashedPassword = await bcrypt.hash(user.password, saltRounds);
 
   try {
     await trx(tableName).where('id', id).update({
       username: user.username,
-      password: hashedPassword,
+      // password: hashedPassword,
       fullname: user.fullname,
       email: user.email,
       phone: user.phone,
