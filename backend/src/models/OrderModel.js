@@ -5,15 +5,15 @@ const db = knex(knexConfig.development);
 const tableName = 'orders';
 
 const findAll = () => {
-  return db(tableName).select('*');
+    return db(tableName).select('*');
 };
 
 const findById = (id) => {
-  return db(tableName).where('id', id).first();
+    return db(tableName).where('id', id).first();
 };
 
 // const create = async (order) => {
-//     const trx = await db.transaction(); 
+//     const trx = await db.transaction();
 //     try {
 //         const ids = await db(tableName).insert(order);
 //         await trx.commit();
@@ -26,33 +26,37 @@ const findById = (id) => {
 
 const create = async (order) => {
     try {
-      const result = await db.transaction(async trx => {
-        const [orderId] = await trx('orders').insert({
-          id_user: order.id_user,
-          total_amount: order.total_amount,
-          status: 1 
-        }, 'id');
-  
-        const orderDetails = order.products.map(product => ({
-          id_order: orderId,
-          id_product: product.id,
-          quantity: product.quantity,
-          sub_total: 0 
-        }));
-  
-        await trx('order_detail').insert(orderDetails);
-  
-        return orderId; 
-      });
-  
-      console.log(`Đơn hàng đã được tạo thành công với ID: ${result}`);
+        const result = await db.transaction(async trx => {
+            const [orderId] = await trx('orders').insert({
+                id_user: order.id_user,
+                fullname: order.fullname,
+                total_amount: order.total_amount,
+                address: order.address,
+                phone: order.phone,
+                email: order.email,
+                status: 'processing'
+            }, 'id');
+
+            const orderDetails = order.products.map(product => ({
+                id_order: orderId,
+                id_product: product.id,
+                quantity: product.quantity,
+                sub_total: 0
+            }));
+
+            await trx('order_detail').insert(orderDetails);
+
+            return orderId;
+        });
+
+        console.log(`Đơn hàng đã được tạo thành công với ID: ${result}`);
     } catch (error) {
-      console.error(`Lỗi khi tạo đơn hàng: ${error.message}`);
+        console.error(`Lỗi khi tạo đơn hàng: ${error.message}`);
     }
-  }
+}
 
 const update = async (id, order) => {
-    const trx = await db.transaction(); 
+    const trx = await db.transaction();
     try {
         await db(tableName).where('id', id).update(order);
         await trx.commit();
@@ -64,7 +68,7 @@ const update = async (id, order) => {
 };
 
 const deleteById = async (id) => {
-    const trx = await db.transaction(); 
+    const trx = await db.transaction();
     try {
         await db(tableName).where('id', id).del();
         await trx.commit();
@@ -76,9 +80,9 @@ const deleteById = async (id) => {
 };
 
 module.exports = {
-  findAll,
-  findById,
-  create,
-  update,
-  deleteById,
+    findAll,
+    findById,
+    create,
+    update,
+    deleteById,
 };
