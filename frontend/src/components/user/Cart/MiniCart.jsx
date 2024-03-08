@@ -24,24 +24,28 @@ function MiniCart({cartItems = []}) {
                     <span className="text-primary">Your cart</span>
                 </h4>
                 <ul className="list-group mb-3">
-                    {console.log(cartItems.length)}
                     {cartItems && cartItems.length > 0 ? cartItems.map((product, index) => (
                         <MiniCartItem product={product}/>
                     )) : null}
                     <li className="list-group-item bg-transparent border-gray d-flex justify-content-between">
                         <span className="text-uppercase"><b>Total (VNĐ)</b></span>
-                        <strong>{(() => {
+                        {/*<strong>{(() => {
                             let temp_total = 0;
                             cartItems.forEach(item => {
                                 temp_total += item.price * item.quantity;
                             });
                             return temp_total;
-                        })()} VNĐ</strong>
+                        })()} VNĐ</strong>*/}
+                        <strong>
+                            {Array.isArray(cartItems) && cartItems.length > 0
+                                ? cartItems.map(item => item.price * item.quantity).reduce((total, subtotal) => total + subtotal, 0) + ' VNĐ'
+                                : '0 VNĐ'}
+                        </strong>
                     </li>
                 </ul>
                 <div className="d-flex flex-wrap justify-content-center">
                     <NavLink to="/cart" className="w-100 btn btn-dark mb-1">
-                        View Cart
+                    View Cart
                     </NavLink>
                 </div>
             </Dropdown.Menu>

@@ -14,13 +14,13 @@ function CartTotal({ isCheckoutStep = false, cartItems }) {
                         <td className="align-middle border-0" data-title="Total">
                                         <span className="price-amount amount text-primary">
                                             <bdi>
-                                                <span className="price-currency-symbol">$</span>{(() => {
-                                                let temp_total = 0;
-                                                cartItems.forEach(item => {
-                                                    temp_total += item.price * item.quantity;
-                                                });
-                                                return temp_total;
-                                            })()}
+                                                {(() => {
+                                                    let temp_total = 0;
+                                                    cartItems.forEach(item => {
+                                                        temp_total += item.price * item.quantity;
+                                                    });
+                                                    return temp_total;
+                                                })()}<span className="price-currency-symbol"> VNĐ</span>
                                             </bdi>
                                         </span>
                         </td>
