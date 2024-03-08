@@ -2,7 +2,7 @@ import {baseDelele, baseGet, basePost, basePut} from './baseApi';
 
 const orderApi = {
     getList: (params) => {
-        return baseGet('products', params);
+        return baseGet('orderRoutes', params);
     },
     create: (formData) => {
         return basePost('orderRoutes/create', formData);
