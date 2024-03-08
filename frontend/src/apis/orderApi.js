@@ -8,7 +8,7 @@ const orderApi = {
         return basePost('orderRoutes/create', formData);
     },
     update: (productId, formData) => {
-        return basePut(`orderRoutes/update/${productId}`, formData);
+        return basePost(`orderRoutes/update/${productId}`, formData);
     },
     delete: (productId) => {
         return baseDelele(`orderRoutes/delete/${productId}`);
