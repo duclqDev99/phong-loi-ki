@@ -15,14 +15,13 @@ const ProductForm = ({
                          onReset,
                      }) => {
     const validationSchema = object({
-        name: string().required('Product\'s name is required'),
-        price: number().required('Product\'s price is required'),
-        quantity: number().required('Product\'s quantity is required'),
-        description: string().required('Product\'s description is required'),
-        status: string().required('Product\'s status is required'),
-        image: mixed().required('Product\'s image is required'),
-        author: string().required('Product\'s author is required'),
-        rating: number().required('Product\'s rating is required'),
+        name: string().required('Tên sản phẩm là bắt buộc'),
+        price: number().required('Giá sản phẩm là bắt buộc'),
+        quantity: number().required('Số lượng sản phẩm là bắt buộc'),
+        status: string().required('Trạng thái sản phẩm là bắt buộc'),
+        image: mixed().required('Hình ảnh sản phẩm là bắt buộc'),
+        author: string().required('Tác giả sản phẩm là bắt buộc'),
+        rating: number().required('Đánh giá sản phẩm là bắt buộc'),
     });
 
     const [imageTmp, setImageTmp] = useState({});
@@ -49,7 +48,6 @@ const ProductForm = ({
                 ...values,
                 values.image.name
             );*/
-            console.log(values);
             if (editValues) {
               onSaveEdit(values, editValues.id);
             } else {
@@ -91,7 +89,7 @@ const ProductForm = ({
     return (
         <form onSubmit={formik.handleSubmit}>
             <FieldInput
-                label='Name'
+                label='Tên'
                 name='name'
                 value={formik.values.name}
                 onChangeField={formik.handleChange}
@@ -100,9 +98,10 @@ const ProductForm = ({
                         ? formik.errors.name
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Price'
+                label='Giá'
                 name='price'
                 type='number'
                 value={formik.values.price}
@@ -112,9 +111,10 @@ const ProductForm = ({
                         ? formik.errors.price
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Quantity'
+                label='Số lượng'
                 name='quantity'
                 type='number'
                 value={formik.values.quantity}
@@ -124,15 +124,10 @@ const ProductForm = ({
                         ? formik.errors.quantity
                         : ''
                 }
-            />
-            <FieldTextArea
-                label='Description'
-                name='description'
-                value={formik.values.description}
-                onChangeField={formik.handleChange}
+                isRequired={true}
             />
             <FieldSelect
-                label='Status'
+                label='Trạng thái'
                 name='status'
                 dataSet={[
                     {label: 'Active', value: 1},
@@ -140,7 +135,8 @@ const ProductForm = ({
                 ]}
                 value={formik.values.status}
                 onChangeField={formik.handleChange}
-            />
+                isRequired={true}  
+          />
             <FieldInput
                 label='Image'
                 name='image'
@@ -162,9 +158,10 @@ const ProductForm = ({
                         ? formik.errors.image
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Author'
+                label='Tác giả'
                 name='author'
                 value={formik.values.author}
                 onChangeField={formik.handleChange}
@@ -173,6 +170,7 @@ const ProductForm = ({
                         ? formik.errors.author
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
                 label='Rating'
@@ -185,6 +183,13 @@ const ProductForm = ({
                         ? formik.errors.rating
                         : ''
                 }
+                isRequired={true}
+            />
+            <FieldTextArea
+                label='Mô tả'
+                name='description'
+                value={formik.values.description}
+                onChangeField={formik.handleChange}
             />
             <Box display='flex' justifyContent='right' gap='10px'>
                 <Button

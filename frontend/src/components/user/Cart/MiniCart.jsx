@@ -54,7 +54,7 @@ function MiniCart({cartItems = []}) {
                 </ul>
                 <div className="d-flex flex-wrap justify-content-center">
                     <NavLink to="/cart" className="w-100 btn btn-dark mb-1">
-                    View Cart
+                        Xem giỏ hàng
                     </NavLink>
                 </div>
             </Dropdown.Menu>

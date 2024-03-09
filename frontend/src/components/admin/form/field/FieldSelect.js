@@ -9,10 +9,11 @@ const FieldSelect = ({
   error,
   dataSet,
   onChangeField,
+  isRequired, 
 }) => {
   return (
     <div className={classes ?? 'mb-4'}>
-      {label && <label className='form-label'>{label}</label>}
+      {label} {isRequired && <span style={{ color: 'red' }}> *</span>}
       {dataSet && (
         <select
           className='form-select'

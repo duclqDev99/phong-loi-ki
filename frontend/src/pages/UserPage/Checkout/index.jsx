@@ -2,6 +2,7 @@ import React, {useEffect, useReducer, useState} from 'react';
 import {useNavigate} from "react-router-dom";
 import orderApi from "../../../apis/orderApi";
 import OrderSuccessPopup from './OrderSuccessPopup';
+import { colors } from '@mui/material';
 
 
 function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
@@ -54,11 +55,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
             ...customerInfo,
             products: products
         };
-
-        console.log('Order placed with data:', formData);
-
         handleCreate(formData);
-
     };
 
     const handleCreate = async (formData) => {
@@ -76,17 +73,27 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
         setOrderSuccess(false);
     };
 
+    function formatVND(value) {
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0, 
+        });
+    
+        return formatter.format(value).replace('₫', 'VNĐ');
+    }
+
     return (
         <section className="shopify-cart checkout-wrap padding-medium">
             <div className="container">
                 <form className="form-group">
                     <div className="row d-flex flex-wrap">
                         <div className="col-lg-6">
-                            <h3 className="pb-4">Billing Details</h3>
+                            <h3 className="pb-4">CHI TIẾT THANH TOÁN</h3>
                             <div className="billing-details">
 
                                 <div className="py-3">
-                                    <label htmlFor="lname">Full Name*</label>
+                                    <label htmlFor="lname">Tên <span style={{color:'red'}}>*</span></label>
                                     <input type="text"
                                            id="fullname"
                                            name="fullname"
@@ -97,11 +104,10 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
                                 </div>
 
                                 <div className="py-3">
-                                    <label htmlFor="address">Street Address*</label>
+                                    <label htmlFor="address">Địa chỉ <span style={{color:'red'}}>*</span></label>
                                     <input type="text"
                                            id="address"
                                            name="address"
-                                           placeholder="House number and street name, district, ward and city"
                                            value={address}
                                            onChange={(e) => setAddress(e.target.value)}
                                            className="w-100"
@@ -109,7 +115,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
                                 </div>
 
                                 <div className="py-3">
-                                    <label htmlFor="email">Phone *</label>
+                                    <label htmlFor="email">Số điện thoại <span style={{color:'red'}}>*</span></label>
                                     <input type="text"
                                            id="phone"
                                            name="phone"
@@ -120,7 +126,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
                                 </div>
 
                                 <div className="py-3">
-                                    <label htmlFor="email">Email address *</label>
+                                    <label htmlFor="email">Email <span style={{color:'red'}}>*</span></label>
                                     <input type="text"
                                            id="email"
                                            name="email"
@@ -133,16 +139,16 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
                         </div>
                         <div className="col-lg-6">
                             <div>
-                                <h3 className="pb-4">Cart Total</h3>
+                                <h3 className="pb-4">TỔNG GIỎ HÀNG</h3>
                                 <div className="total-price pb-5">
                                     <table cellSpacing="0" className="table text-uppercase">
                                         <tbody>
                                         <tr className="order-total pt-2 pb-2 border-bottom border-gray">
-                                            <th className="fw-light">Total</th>
+                                            <th className="fw-light">TỔNG CỘNG:</th>
                                             <td className="align-middle border-0" data-title="Total">
                                         <span className="price-amount amount text-primary">
                                             <bdi>
-                                                {total}<span className="price-currency-symbol"> VNĐ</span>
+                                                {formatVND(total)}<span className="price-currency-symbol"> VNĐ</span>
                                             </bdi>
                                         </span>
                                             </td>
@@ -154,7 +160,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
                             <div className="your-order mt-5">
                                 <div className="total-price">
                                     <button type="submit" name="submit" className="btn btn-dark w-100" onClick={handleOrder}>
-                                        Place an order
+                                        Đặt hàng
                                     </button>
                                 </div>
                             </div>

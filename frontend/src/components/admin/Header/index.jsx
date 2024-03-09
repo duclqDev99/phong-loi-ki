@@ -10,7 +10,7 @@ function Index({OpenSidebar}) {
         </div>
         <div className='header-right'>
             <NavLink to="/admin" >
-                <BsCart3 className='icon_header'/> BOOK SHOP
+                <BsCart3 className='icon_header'/> PHONG LÔI KÍ SHOP
             </NavLink>
         </div>
     </header>

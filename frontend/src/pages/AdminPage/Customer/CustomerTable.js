@@ -14,13 +14,13 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
         },
         {
             field: 'username',
-            headerName: 'Username',
+            headerName: 'Tên đăng nhập',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
         },
         {
-            field: 'fullname',
+            field: 'Tên',
             headerName: 'Fullname',
             flex: 1,
             headerAlign: 'center',
@@ -35,21 +35,21 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
         },
         {
             field: 'phone',
-            headerName: 'Phone',
+            headerName: 'Số điện thoại',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
         },
         {
             field: 'gender',
-            headerName: 'Gender',
+            headerName: 'Giới tính',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
         },
         {
             field: 'birthday',
-            headerName: 'Birthday',
+            headerName: 'Ngày sinh',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
@@ -57,19 +57,19 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
         {
             field: 'actions',
             type: 'actions',
-            headerName: 'Action',
+            headerName: 'Hành động',
             getActions: (params) => [
                 <GridActionsCellItem
                     key='update'
                     icon={<Update/>}
-                    label='Update'
+                    label='Cập nhật'
                     onClick={() => onEdit(params.row)}
                     showInMenu
                 />,
                 <GridActionsCellItem
                     key='delete'
                     icon={<Delete/>}
-                    label='Delete'
+                    label='Xóa'
                     onClick={() => onDelete(params.id)}
                     showInMenu
                 />,

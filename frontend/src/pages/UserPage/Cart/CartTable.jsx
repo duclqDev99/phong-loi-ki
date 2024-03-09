@@ -8,9 +8,9 @@ function CartTable({ cartItems, handleDelete }) {
             <table className="table">
                 <thead className="text-uppercase">
                 <tr>
-                    <th scope="col" className="fw-light">Product</th>
-                    <th scope="col" className="fw-light">Quantity</th>
-                    <th scope="col" className="fw-light">Subtotal</th>
+                    <th scope="col" className="fw-light">Sản phẩm</th>
+                    <th scope="col" className="fw-light">Số lượng</th>
+                    <th scope="col" className="fw-light">Tổng tiền</th>
                     <th scope="col" className="fw-light"></th>
                 </tr>
                 </thead>

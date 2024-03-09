@@ -35,22 +35,22 @@ const CustomerForm = ({
         password: '',
         email: '',
         phone: '',
-        gender: '',
+        gender: 'Female',
         birthday: '',
     };
 
     useEffect((() => {
         const temp_schema = {
-            username: string().required('Customer\'s username is required'),
-            fullname: string().required('Customer\'s fullname is required'),
-            email: string().required('Customer\'s email is required'),
-            phone: string().required('Customer\'s phone is required'),
-            gender: string().required('Customer\'s gender is required'),
-            birthday: date().required('Customer\'s birthday is required'),
+            username: string().required('Tên đăng nhập của khách hàng là bắt buộc'),
+            fullname: string().required('Họ tên của khách hàng là bắt buộc'),
+            email: string().required('Email của khách hàng là bắt buộc'),
+            phone: string().required('Số điện thoại của khách hàng là bắt buộc'),
+            gender: string().required('Giới tính của khách hàng là bắt buộc'),
+            birthday: date().required('Ngày sinh của khách hàng là bắt buộc'),
         };
 
         if (!editValues) {
-            temp_schema.password = string().required('Customer\'s password is required');
+            temp_schema.password = string().required('Mật khẩu của khách hàng là bắt buộc');
         }
 
         setValidationSchema(object(temp_schema));
@@ -89,7 +89,7 @@ const CustomerForm = ({
     return (
         <form onSubmit={formik.handleSubmit}>
             <FieldInput
-                label='Username *'
+                label='Tên đăng nhập'
                 name='username'
                 value={formik.values.username}
                 onChangeField={formik.handleChange}
@@ -98,9 +98,10 @@ const CustomerForm = ({
                         ? formik.errors.username
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Password *'
+                label='Mật khẩu'
                 name='password'
                 type='password'
                 value={formik.values.password}
@@ -110,9 +111,10 @@ const CustomerForm = ({
                         ? formik.errors.password
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Fullname *'
+                label='Tên'
                 name='fullname'
                 value={formik.values.fullname}
                 onChangeField={formik.handleChange}
@@ -121,9 +123,10 @@ const CustomerForm = ({
                         ? formik.errors.fullname
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Email *'
+                label='Email'
                 name='email'
                 value={formik.values.email}
                 onChangeField={formik.handleChange}
@@ -132,9 +135,10 @@ const CustomerForm = ({
                         ? formik.errors.email
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Phone *'
+                label='Số điện thoại'
                 name='phone'
                 value={formik.values.phone}
                 onChangeField={formik.handleChange}
@@ -143,9 +147,10 @@ const CustomerForm = ({
                         ? formik.errors.phone
                         : ''
                 }
+                isRequired={true}
             />
             <FieldSelect
-                label='Gender'
+                label='Giới tính'
                 name='gender'
                 dataSet={[
                     {label: 'Female', value: 'Female'},
@@ -153,9 +158,10 @@ const CustomerForm = ({
                 ]}
                 value={formik.values.gender}
                 onChangeField={formik.handleChange}
+                isRequired={true}
             />
             <FieldInput
-                label='Birthday'
+                label='Ngày sinh'
                 name='birthday'
                 type='date'
                 value={formik.values.birthday}
@@ -165,6 +171,7 @@ const CustomerForm = ({
                         ? formik.errors.birthday
                         : ''
                 }
+                isRequired={true}
             />
             <Box display='flex' justifyContent='right' gap='10px'>
                 <Button

@@ -10,7 +10,7 @@ function AdditionalInformation() {
             <CartTotal isCheckoutStep={true}/>
             <div className="your-order mt-5">
                 <div className="total-price">
-                    <button type="submit" name="submit" className="btn btn-dark w-100">Place an order </button>
+                    <button type="submit" name="submit" className="btn btn-dark w-100">Đặt hàng</button>
                 </div>
             </div>
         </div>

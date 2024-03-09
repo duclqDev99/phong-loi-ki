@@ -14,28 +14,28 @@ const OrderTable = ({ rows, onDelete, onEdit }) => {
     },
     {
       field: 'fullname',
-      headerName: 'Fullname',
+      headerName: 'Tên',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: 'phone',
-      headerName: 'Phone Number',
+      headerName: 'Sô điện thoại',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: 'total_amount',
-      headerName: 'Total Amount',
+      headerName: 'Tổng tiền',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: 'status',
-      headerName: 'Status',
+      headerName: 'Trạng thái',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
@@ -44,19 +44,19 @@ const OrderTable = ({ rows, onDelete, onEdit }) => {
     {
       field: 'actions',
       type: 'actions',
-      headerName: 'Action',
+      headerName: 'Hành động',
       getActions: (params) => [
         <GridActionsCellItem
           key='update'
           icon={<Update />}
-          label='Update'
+          label='Cập nhật'
           onClick={() => onEdit(params.row)}
           showInMenu
         />,
         <GridActionsCellItem
           key='delete'
           icon={<Delete />}
-          label='Delete'
+          label='Xóa'
           onClick={() => onDelete(params.id)}
           showInMenu
         />,

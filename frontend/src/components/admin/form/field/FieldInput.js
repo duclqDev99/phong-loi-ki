@@ -12,6 +12,7 @@ const FieldInput = ({
                         style,
                         onChangeField,
                         accept,
+                        isRequired, 
                     }) => {
 
     return (
@@ -22,12 +23,12 @@ const FieldInput = ({
                     className='form-label'
                     style={{ textTransform: 'capitalize' }}
                 >
-                    {label}
+                    {label} {isRequired && <span style={{ color: 'red' }}> *</span>}
                 </label>
             )}
             <input
                 type={type ?? 'text'}
-                placeholder={placeholder ?? 'Type here'}
+                placeholder={placeholder ?? ''}
                 className='form-control'
                 value={value}
                 name={name}
