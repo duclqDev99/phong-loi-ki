@@ -1,6 +1,6 @@
 import {useFormik} from 'formik';
 import {string, number, object, date} from 'yup';
-import {useEffect} from 'react';
+import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import FieldInput from '../../../components/admin/form/field/FieldInput';
@@ -14,7 +14,7 @@ const CustomerForm = ({
                          onSaveEdit,
                          onReset,
                      }) => {
-    const validationSchema = object({
+    /*const validationSchema = object({
         username: string().required('Customer\'s username is required'),
         fullname: string().required('Customer\'s fullname is required'),
         password: string().required('Customer\'s password is required'),
@@ -22,7 +22,12 @@ const CustomerForm = ({
         phone: string().required('Customer\'s phone is required'),
         gender: string().required('Customer\'s gender is required'),
         birthday: date().required('Customer\'s birthday is required'),
-    });
+    });*/
+    const [validationSchema, setValidationSchema] = useState(null);
+
+    /*if (!editValues) {
+
+    }*/
 
     let initialValues = {
         username: '',
@@ -33,6 +38,23 @@ const CustomerForm = ({
         gender: '',
         birthday: '',
     };
+
+    useEffect((() => {
+        const temp_schema = {
+            username: string().required('Customer\'s username is required'),
+            fullname: string().required('Customer\'s fullname is required'),
+            email: string().required('Customer\'s email is required'),
+            phone: string().required('Customer\'s phone is required'),
+            gender: string().required('Customer\'s gender is required'),
+            birthday: date().required('Customer\'s birthday is required'),
+        };
+
+        if (!editValues) {
+            temp_schema.password = string().required('Customer\'s password is required');
+        }
+
+        setValidationSchema(object(temp_schema));
+    }), [])
 
     const formik = useFormik({
         initialValues,
@@ -81,13 +103,10 @@ const CustomerForm = ({
                 label='Password *'
                 name='password'
                 type='password'
-                placeholder='To leave blank if you do not want to change the password'
                 value={formik.values.password}
                 onChangeField={formik.handleChange}
                 error={
-                    (!editValues || (editValues && formik.values.password)) &&
-                    formik.touched.password &&
-                    Boolean(formik.errors.password)
+                    formik.touched.password && Boolean(formik.errors.password)
                         ? formik.errors.password
                         : ''
                 }
