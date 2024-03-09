@@ -8,6 +8,7 @@ import LoginRoute from "./LoginRoute";
 import ProductRoute from "./ProductRoute";
 import ShopRoute from "./ShopRoute";
 import LogoutRoute from "./LogoutRoute";
+import RegisterRoute from "./RegisterRoute";
 import {useState} from "react";
 
 export default function ThemeRoutes() {
@@ -40,6 +41,7 @@ export default function ThemeRoutes() {
         CartRoute(isLogged, setIsLogged, cartItems, setCartItems),
         CheckoutRoute(isLogged, setIsLogged, cartItems, setCartItems),
         LoginRoute(isLogged, setIsLogged, cartItems, setCartItems),
+        RegisterRoute(isLogged, setIsLogged, cartItems, setCartItems),
         LogoutRoute(isLogged, setIsLogged, cartItems, setCartItems),
         ProductRoute(isLogged, setIsLogged, cartItems, setCartItems),
         ShopRoute(isLogged, setIsLogged, cartItems, setCartItems)

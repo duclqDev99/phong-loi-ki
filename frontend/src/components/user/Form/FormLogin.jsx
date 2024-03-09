@@ -1,6 +1,6 @@
 import React, {useState} from "react";
 import customerApi from "../../../apis/customerApi";
-import {useNavigate} from "react-router-dom";
+import {NavLink, useNavigate} from "react-router-dom";
 
 function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
     const [username, setUsername] = useState("");
@@ -59,6 +59,13 @@ function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
+            <label className="py-3">
+                <span className="label-body">
+                    <NavLink to={"/register"} className="fw-bold">
+                        Đăng ký
+                    </NavLink>
+                </span>
+            </label>
             <button
                 type="submit"
                 name="submit"
