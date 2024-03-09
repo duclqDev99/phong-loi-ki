@@ -42,7 +42,7 @@ function AdminOrder() {
         });
     };
 
-    const handleSaveEdit = async (formData, id) => {
+    const handleSaveEdit = async (id, formData) => {
         await orderApi.update(id, formData).then((response) => {
             if (response) {
                 /*setCategories((prev) => {
@@ -81,7 +81,7 @@ function AdminOrder() {
     return (
         <main className="main-container">
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px'}}>
-                <span style={{fontSize: 24, color: "black"}}>Manage Order</span>
+                <span style={{fontSize: 24, color: "black"}}>Quản lý đơn hàng</span>
                 <div className="add-product-button">
                     {/*<Button
                         onClick={() => setShowModal(true)}

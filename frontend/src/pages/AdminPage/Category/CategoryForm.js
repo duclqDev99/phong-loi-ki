@@ -89,7 +89,7 @@ const CategoryForm = ({
                     color='secondary'
                     variant='contained'
                 >
-                    {editValues ? 'Edit' : 'Save'}
+                    Lưu
                 </Button>
                 <Button
                     onClick={handleReset}
@@ -97,7 +97,7 @@ const CategoryForm = ({
                     color='warning'
                     variant='contained'
                 >
-                    Close
+                    Đóng
                 </Button>
             </Box>
         </form>

@@ -1,6 +1,10 @@
 import { Chip } from '@mui/material';
 import PropTypes from 'prop-types';
 import { Check, Close } from '@mui/icons-material';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
+import HourglassBottomIcon from '@mui/icons-material/HourglassBottom';
+import CancelIcon from '@mui/icons-material/Cancel';
+import CheckBoxIcon from '@mui/icons-material/CheckBox';
 
 const Status = ({ status }) => {
   const Comp = () => {
@@ -54,9 +58,9 @@ const Status = ({ status }) => {
       case "processing": {
         return (
             <Chip
-                icon={<Check />}
+                icon={<HourglassBottomIcon />}
                 label='Processing'
-                color='secondary'
+                color='warning'
                 size='small'
                 variant='outlined'
             />
@@ -65,7 +69,7 @@ const Status = ({ status }) => {
       case "transporting": {
         return (
             <Chip
-                icon={<Check />}
+                icon={<LocalShippingIcon />}
                 label='Transporting'
                 color='secondary'
                 size='small'
@@ -76,7 +80,7 @@ const Status = ({ status }) => {
       case "success": {
         return (
             <Chip
-                icon={<Check />}
+                icon={<CheckBoxIcon />}
                 label='Success'
                 color='primary'
                 size='small'
@@ -87,9 +91,9 @@ const Status = ({ status }) => {
       case "cancel": {
         return (
             <Chip
-                icon={<Close />}
+                icon={<CancelIcon />}
                 label='Cancel'
-                color='warning'
+                color='error'
                 size='small'
                 variant='outlined'
             />

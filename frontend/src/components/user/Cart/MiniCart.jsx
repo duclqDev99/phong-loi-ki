@@ -12,9 +12,9 @@ function MiniCart({cartItems = []}) {
         const formatter = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND',
-            minimumFractionDigits: 0, 
+            minimumFractionDigits: 0,
         });
-    
+
         return formatter.format(value).replace('₫', 'VNĐ');
     }
 
@@ -54,7 +54,7 @@ function MiniCart({cartItems = []}) {
                 </ul>
                 <div className="d-flex flex-wrap justify-content-center">
                     <NavLink to="/cart" className="w-100 btn btn-dark mb-1">
-                    View Cart
+                        Chi tiết giỏ hàng
                     </NavLink>
                 </div>
             </Dropdown.Menu>

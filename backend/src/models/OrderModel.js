@@ -40,8 +40,9 @@ const create = async (order) => {
             const orderDetails = order.products.map(product => ({
                 id_order: orderId,
                 id_product: product.id,
+                product_name: product.name,
                 quantity: product.quantity,
-                sub_total: 0
+                sub_total: product.subtotal
             }));
 
             await trx('order_detail').insert(orderDetails);

@@ -14,14 +14,14 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
         },
         {
             field: 'username',
-            headerName: 'Username',
+            headerName: 'Tên Đăng Nhập',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
         },
         {
             field: 'fullname',
-            headerName: 'Fullname',
+            headerName: 'Họ Tên',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
@@ -35,21 +35,21 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
         },
         {
             field: 'phone',
-            headerName: 'Phone',
+            headerName: 'Điện Thoại',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
         },
         {
             field: 'gender',
-            headerName: 'Gender',
+            headerName: 'Giới Tính',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
         },
         {
             field: 'birthday',
-            headerName: 'Birthday',
+            headerName: 'Ngày Sinh',
             flex: 1,
             headerAlign: 'center',
             align: 'center',
@@ -57,19 +57,19 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
         {
             field: 'actions',
             type: 'actions',
-            headerName: 'Action',
+            headerName: 'Hành Động',
             getActions: (params) => [
                 <GridActionsCellItem
                     key='update'
                     icon={<Update/>}
-                    label='Update'
+                    label='Cập Nhật'
                     onClick={() => onEdit(params.row)}
                     showInMenu
                 />,
                 <GridActionsCellItem
                     key='delete'
                     icon={<Delete/>}
-                    label='Delete'
+                    label='Xóa'
                     onClick={() => onDelete(params.id)}
                     showInMenu
                 />,

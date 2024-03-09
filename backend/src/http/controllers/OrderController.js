@@ -1,4 +1,5 @@
 const OrderModel = require('../../models/OrderModel');
+const OrderDetailModel = require('../../models/OrderDetailModel');
 
 const getOrders = async (req, res) => {
   try {
@@ -14,6 +15,19 @@ const getOrderById = async (req, res) => {
     const order = await OrderModel.findById(req.params.id);
     if (order) {
       res.json(order);
+    } else {
+      res.status(404).send('Order not found');
+    }
+  } catch (error) {
+    res.status(500).send(error.message);
+  }
+};
+
+const getProductsByOrderId = async (req, res) => {
+  try {
+    const order_detail = await OrderDetailModel.findByOrderId(req.params.id);
+    if (order_detail) {
+      res.json(order_detail);
     } else {
       res.status(404).send('Order not found');
     }
@@ -52,6 +66,7 @@ const deleteOrder = async (req, res) => {
 module.exports = {
   getOrders,
   getOrderById,
+  getProductsByOrderId,
   createOrder,
   updateOrder,
   deleteOrder,
