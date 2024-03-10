@@ -26,12 +26,12 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
 
-    const handleOrder = (event) => {
-        event.preventDefault();
+        const handleOrder = (event) => {
+            event.preventDefault();
 
-        if (!fullname || !address || !phone || !email) {
-            alert('Vui lòng điền vào tất cả các trường bắt buộc.');
-            return;
+            if (!fullname || !address || !phone || !email) {
+                alert('Vui lòng điền vào tất cả các trường bắt buộc.');
+                return;
         }
 
         const user = JSON.parse(localStorage.getItem('user'));

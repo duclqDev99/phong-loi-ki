@@ -13,6 +13,7 @@ const ProductForm = ({
                          onCreateProduct,
                          onSaveEdit,
                          onReset,
+                         categories,
                      }) => {
     const validationSchema = object({
         name: string().required('Tên sản phẩm là bắt buộc'),
@@ -35,6 +36,7 @@ const ProductForm = ({
         image: '',
         author: '',
         rating: 0,
+        category_id: categories[0]?.id ?? 1,
     };
 
     const formik = useFormik({
@@ -43,15 +45,25 @@ const ProductForm = ({
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             const formData = new FormData();
+            formData.append('name', values.name);
+            formData.append('price', values.price);
+            formData.append('quantity', values.quantity);
+            formData.append('description', values.description);
+            formData.append('status', values.status);
+            formData.append('image', values.image); // Thêm file hình ảnh
+            formData.append('author', values.author);
+            formData.append('rating', values.rating);
+            formData.append('category_id', values.category_id);
+            console.log('values',values)
             /*formData.append(
                 "myFile",
                 ...values,
                 values.image.name
             );*/
             if (editValues) {
-              onSaveEdit(values, editValues.id);
+              onSaveEdit(formData, editValues.id);
             } else {
-              onCreateProduct(values);
+              onCreateProduct(formData);
             }
             formik.resetForm();
         },
@@ -83,6 +95,7 @@ const ProductForm = ({
             formik.setFieldValue('image', editValues.image);
             formik.setFieldValue('author', editValues.author);
             formik.setFieldValue('rating', editValues.rating);
+            formik.setFieldValue('category_id', editValues.category_id);
         }
     }, [editValues]);
 
@@ -127,6 +140,14 @@ const ProductForm = ({
                 isRequired={true}
             />
             <FieldSelect
+                label='Loại'
+                name='category_id'
+                dataSet={categories}
+                value={formik.values.category_id}
+                onChangeField={formik.handleChange}
+                isRequired={true}  
+            />
+            <FieldSelect
                 label='Trạng thái'
                 name='status'
                 dataSet={[
@@ -136,7 +157,7 @@ const ProductForm = ({
                 value={formik.values.status}
                 onChangeField={formik.handleChange}
                 isRequired={true}  
-          />
+            />
             <FieldInput
                 label='Image'
                 name='image'

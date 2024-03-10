@@ -8,12 +8,12 @@ const saltRounds = 10;
 const tableName = 'users';
 
 async function findAll() {
-  const rows = await db(tableName).select('*');
+  const rows = await db(tableName).select('*').orderBy('id', 'desc');
   return rows;
 }
 
 const getUsers = async () => {
-  const rows = await db(tableName).select('*');
+  const rows = await db(tableName).select('*').orderBy('id', 'desc');
   return rows;
 };
 

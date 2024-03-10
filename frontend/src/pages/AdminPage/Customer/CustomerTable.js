@@ -20,8 +20,8 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
             align: 'center',
         },
         {
-            field: 'Tên',
-            headerName: 'Fullname',
+            field: 'fullname',
+            headerName: 'Tên',
             flex: 1,
             headerAlign: 'center',
             align: 'center',

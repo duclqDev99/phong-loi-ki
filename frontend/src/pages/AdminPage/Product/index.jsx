@@ -4,6 +4,7 @@ import { Add, CleaningServices } from '@mui/icons-material';
 import ProductForm from "./ProductForm";
 import ProductTable from "./ProductTable";
 import productApi from "../../../apis/productApi";
+import categoryApi from "../../../apis/categoryApi";
 import DialogWrapper from '../../../components/admin/dialogWapper';
 import axios from 'axios';
 
@@ -11,6 +12,7 @@ function AdminProduct() {
     const [products, setProducts] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [editValues, setEditValues] = useState(null);
+    const [categories, setCategories] = useState([]);
 
     const fetch = async () => {
         await productApi.getList().then((response) => {
@@ -21,8 +23,16 @@ function AdminProduct() {
         });
     };
 
+    const getData = async () => {
+        let categories = await categoryApi.getList()
+        const transformedData = categories.map(item => ({
+            value: item.id,
+            label: item.title,
+        }));
+        setCategories(transformedData)
+    }
+
     const handleCreate = async (formData) => {
-        console.log(formData)
         // await axios.post('products/create', formData, {
         //     headers: {
         //       'Content-Type': 'multipart/form-data'
@@ -81,13 +91,13 @@ function AdminProduct() {
     };
 
     const handleEdit = (values) => {
-        console.log('values',values)
         setEditValues(values);
         setShowModal(true);
     };
 
     useEffect(() => {
         fetch();
+        getData();
     }, []);
 
     return (
@@ -114,6 +124,7 @@ function AdminProduct() {
                     onCreateProduct={handleCreate}
                     onSaveEdit={handleSaveEdit}
                     onReset={handleReset}
+                    categories={categories}
                 />
             </DialogWrapper>
 

@@ -5,7 +5,7 @@ const db = knex(knexConfig.development);
 const tableName = 'categories';
 
 const findAll = () => {
-  return db(tableName).select('*');
+  return db(tableName).select('*').orderBy('id', 'desc');
 };
 
 const findById = (id) => {

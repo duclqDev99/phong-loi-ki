@@ -70,8 +70,13 @@ const createProduct = async (req, res) => {
     console.log(req.file); // Thông tin file được tải lên
     console.log(req.body); // Các trường dữ liệu khác
     try {
-        const fileName = req.file;
-        const id = await ProductModel.createProduct(req.body);
+        const fileName = req.file.path; // Lấy đường dẫn file
+        const productData = {
+            ...req.body,
+            image: fileName // Thêm đường dẫn file vào dữ liệu sản phẩm
+        };
+        // console.log('productData',productData);
+        const id = await ProductModel.createProduct(productData);
         // const id = await ProductModel.createProduct({ ...req.body, image: fileName });
         res.status(201).json({id});
     } catch (error) {
