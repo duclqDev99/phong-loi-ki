@@ -1,15 +1,31 @@
 import React, {useState} from "react";
 import customerApi from "../../../apis/customerApi";
 import {NavLink, useNavigate} from "react-router-dom";
+import CustomerForm from "../../../pages/AdminPage/Customer/CustomerForm";
+import DialogWrapper from "../../admin/dialogWapper";
 
 function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [noti, setNoti] = useState("");
+
     const navigate = useNavigate();
     const handleLogin = (event) => {
         event.preventDefault();
         console.log("Username:", username);
         console.log("Password:", password);
+
+        if (!username || username === "") {
+            setNoti("Tên đăng nhập không được để trống!");
+            setShowModal(true);
+            return;
+        } else if (!password || password === "") {
+            setNoti("Mật khẩu không được để trống!");
+            setShowModal(true);
+            return;
+        }
+
         const formData = {
             username: username,
             password: password,
@@ -28,11 +44,17 @@ function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
             navigate('/');
         }).catch((error) => {
             console.log(error);
+            setNoti(error.response.data);
+            setShowModal(true);
         });
     };
 
+    const handleClose = () => {
+        setShowModal(false);
+    };
+
     return (
-        <form>
+        <form onSubmit={handleLogin}>
             <div className="form-group py-3">
                 <label htmlFor="sign-in">Tên đăng nhập *</label>
                 <input
@@ -69,11 +91,17 @@ function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
             <button
                 type="submit"
                 name="submit"
-                onClick={handleLogin}
                 className="btn btn-dark w-100 my-3"
             >
                 Đăng nhập
             </button>
+            <DialogWrapper
+                title={"Lưu ý"}
+                open={showModal}
+                onClose={handleClose}
+            >
+                {noti}
+            </DialogWrapper>
         </form>
     );
 }
