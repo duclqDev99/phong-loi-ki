@@ -7,6 +7,7 @@ import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ReceiptIcon from '@mui/icons-material/Receipt';
+import CloseIcon from '@mui/icons-material/Close';
 
 function Sidebar({openSidebarToggle, OpenSidebar}) {
     return (
@@ -14,8 +15,24 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
 
 
             <ul className='sidebar-list'>
+                {
+                    openSidebarToggle &&
+                    <li className='sidebar-list-item' style={{color: 'white'}}>
+                        <button style={{
+                            top: 10,
+                            right: 10,
+                            background: 'none',
+                            color: 'white',
+                            border: 'none',
+                            position: 'absolute'
+                        }}>
+                            <CloseIcon className='icon' style={{top: 10, right: 10}}
+                                       onClick={() => OpenSidebar(false)}/>
+                        </button>
+                    </li>
+                }
                 <NavLink to="/admin">
-                    <li className='sidebar-list-item' style={{ color: 'white'}}>
+                    <li className='sidebar-list-item' style={{color: 'white'}}>
                         <DashboardIcon className='icon'/> Bảng Điều Khiển
                     </li>
                 </NavLink>

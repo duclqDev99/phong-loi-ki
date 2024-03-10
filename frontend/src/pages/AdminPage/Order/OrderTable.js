@@ -65,7 +65,7 @@ const OrderTable = ({ rows, onDelete, onEdit }) => {
   ];
 
   return (
-    <Box height='100%'>
+    <Box >
       <DataGrid
         columns={columns}
         rows={rows}

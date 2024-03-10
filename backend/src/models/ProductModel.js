@@ -29,6 +29,7 @@ const filterProductWithCategory = async (category_id) => {
 const createProduct = async (product) => {
     const trx = await db.transaction();
     try {
+        product.image = product.image.originalname;
         const ids = await trx('products').insert(product);
 
         await trx.commit();
