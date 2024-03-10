@@ -2,6 +2,7 @@ import {useFormik} from 'formik';
 import {string, number, object, mixed} from 'yup';
 import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
+import axios from "axios";
 
 import FieldInput from '../../../components/admin/form/field/FieldInput';
 import FieldTextArea from '../../../components/admin/form/field/FieldTextArea';
@@ -25,7 +26,7 @@ const ProductForm = ({
         rating: number().required('Đánh giá sản phẩm là bắt buộc'),
     });
 
-    const [imageTmp, setImageTmp] = useState({});
+    const [imageTmp, setImageTmp] = useState([]);
 
     let initialValues = {
         name: '',
@@ -39,12 +40,19 @@ const ProductForm = ({
         category_id: categories[0]?.id ?? 1,
     };
 
+
+
     const formik = useFormik({
         initialValues,
         enableReinitialize: true,
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-            const formData = new FormData();
+
+            /*const uploadedImages = new FormData();
+            const { data } = await axios.post(`http://localhost:5000/api/products/upload/image`, formData);*/
+
+
+            /*const formData = new FormData();
             formData.append('name', values.name);
             formData.append('price', values.price);
             formData.append('quantity', values.quantity);
@@ -54,16 +62,18 @@ const ProductForm = ({
             formData.append('author', values.author);
             formData.append('rating', values.rating);
             formData.append('category_id', values.category_id);
-            console.log('values',values)
+            console.log('values',values)*/
             /*formData.append(
                 "myFile",
                 ...values,
                 values.image.name
             );*/
+            /*values.image = values.image.name;*/
             if (editValues) {
-              onSaveEdit(formData, editValues.id);
+              onSaveEdit(values, editValues.id);
             } else {
-              onCreateProduct(formData);
+                console.log(values);
+                onCreateProduct(values);
             }
             formik.resetForm();
         },
@@ -100,7 +110,7 @@ const ProductForm = ({
     }, [editValues]);
 
     return (
-        <form onSubmit={formik.handleSubmit}>
+        <form onSubmit={formik.handleSubmit} encType="multipart/form-data">
             <FieldInput
                 label='Tên'
                 name='name'
@@ -145,7 +155,7 @@ const ProductForm = ({
                 dataSet={categories}
                 value={formik.values.category_id}
                 onChangeField={formik.handleChange}
-                isRequired={true}  
+                isRequired={true}
             />
             <FieldSelect
                 label='Trạng thái'
@@ -156,24 +166,19 @@ const ProductForm = ({
                 ]}
                 value={formik.values.status}
                 onChangeField={formik.handleChange}
-                isRequired={true}  
+                isRequired={true}
             />
             <FieldInput
                 label='Image'
                 name='image'
                 type='file'
                 accept='image/*'
+                value={formik.values?.image ?? ""}
                 onChangeField={(event) => {
                     console.log('event.target.files[0]', event.target.files[0]);
                     formik.setFieldValue('image', event.target.files[0]);
                     setImageTmp(event.target.files[0]);
                 }}
-                /*value={formik.values.image}
-                onChangeField={formik.handleChange}*/
-                /*onChangeField={(event) => {
-                    formik.setFieldValue('image', event.target.files[0]);
-                    setImageTmp(event.target.files[0]);
-                }}*/
                 error={
                     formik.touched.image && Boolean(formik.errors.image)
                         ? formik.errors.image
