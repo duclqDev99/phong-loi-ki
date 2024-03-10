@@ -44,6 +44,10 @@ const createProduct = async (product) => {
 const updateProduct = async (id, product) => {
     const trx = await db.transaction();
     try {
+        if (product.image) {
+            product.image = product.image.originalname;
+        }
+
         await trx('products').where('id', id).update(product);
 
         await trx.commit();

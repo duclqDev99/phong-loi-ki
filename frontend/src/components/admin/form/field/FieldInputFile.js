@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 import ValidateNotification from '../validation/ValidateNotification';
+import {useEffect, useState} from "react";
+import {Box} from "@mui/material";
 
-const FieldInput = ({
+const FieldInputFile = ({
                         label,
                         value,
                         name,
@@ -13,7 +15,13 @@ const FieldInput = ({
                         onChangeField,
                         accept,
                         isRequired,
+                        span
                     }) => {
+    const [imageTmp, setImageTmp] = useState(span ?? "");
+
+    useEffect(() => {
+        setImageTmp(span ?? "");
+    }, [span]);
 
     return (
         <div className={classes ?? 'mb-4'} style={style ? {...style} : {}}>
@@ -21,28 +29,31 @@ const FieldInput = ({
                 <label
                     htmlFor='title'
                     className='form-label'
-                    style={{ textTransform: 'capitalize', color: "black" }}
+                    style={{textTransform: 'capitalize', color: "black"}}
                 >
-                    {label} {isRequired && <span style={{ color: 'red' }}> *</span>}
+                    {label} {isRequired && <span style={{color: 'red'}}> *</span>}
                 </label>
             )}
-            <input
-                type={type ?? 'text'}
-                placeholder={placeholder ?? ''}
-                className='form-control'
-                value={value}
-                name={name}
-                onChange={onChangeField}
-                id={name}
-                accept={accept ?? ''}
-                style={{ borderBottom: '1px solid #CED4DA' }}
-            />
+            <Box display="flex">
+                <input
+                    type={type ?? 'text'}
+                    placeholder={placeholder ?? ''}
+                    className='form-control'
+                    value={value}
+                    name={name}
+                    onChange={onChangeField}
+                    id={name}
+                    accept={accept ?? ''}
+                    style={{borderBottom: '1px solid #CED4DA', color: 'transparent', width: '20%'}}
+                />
+                <span>{imageTmp ?? ""}</span>
+            </Box>
             {error && <ValidateNotification message={error}/>}
         </div>
     );
 };
 
-FieldInput.propTypes = {
+FieldInputFile.propTypes = {
     label: PropTypes.string,
     value: PropTypes.any,
     name: PropTypes.string,
@@ -53,6 +64,7 @@ FieldInput.propTypes = {
     style: PropTypes.object,
     onChangeField: PropTypes.func,
     accept: PropTypes.string,
+    span: PropTypes.string,
 };
 
-export default FieldInput;
+export default FieldInputFile;

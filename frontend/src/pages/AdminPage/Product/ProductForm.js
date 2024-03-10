@@ -1,13 +1,13 @@
 import {useFormik} from 'formik';
-import {string, number, object, mixed} from 'yup';
+import {string, number, object, mixed, date} from 'yup';
 import {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
-import axios from "axios";
 
 import FieldInput from '../../../components/admin/form/field/FieldInput';
 import FieldTextArea from '../../../components/admin/form/field/FieldTextArea';
 import FieldSelect from '../../../components/admin/form/field/FieldSelect';
 import {Box, Button} from '@mui/material';
+import FieldInputFile from "../../../components/admin/form/field/FieldInputFile";
 
 const ProductForm = ({
                          editValues,
@@ -16,17 +16,35 @@ const ProductForm = ({
                          onReset,
                          categories,
                      }) => {
-    const validationSchema = object({
+
+    const [validationSchema, setValidationSchema] = useState(null);
+
+    useEffect((() => {
+        const temp_schema = {
+            name: string().required('Tên sản phẩm là bắt buộc'),
+            price: number().required('Giá sản phẩm là bắt buộc'),
+            quantity: number().required('Số lượng sản phẩm là bắt buộc'),
+            status: string().required('Trạng thái sản phẩm là bắt buộc'),
+            author: string().required('Tác giả sản phẩm là bắt buộc'),
+            rating: number().required('Đánh giá sản phẩm là bắt buộc'),
+        };
+
+        if (!editValues) {
+            temp_schema.image = mixed().required('Hình ảnh sản phẩm là bắt buộc');
+        }
+
+        setValidationSchema(object(temp_schema));
+    }), [editValues])
+    /*const validationSchema = {
         name: string().required('Tên sản phẩm là bắt buộc'),
         price: number().required('Giá sản phẩm là bắt buộc'),
         quantity: number().required('Số lượng sản phẩm là bắt buộc'),
         status: string().required('Trạng thái sản phẩm là bắt buộc'),
-        image: mixed().required('Hình ảnh sản phẩm là bắt buộc'),
         author: string().required('Tác giả sản phẩm là bắt buộc'),
         rating: number().required('Đánh giá sản phẩm là bắt buộc'),
-    });
+    };*/
 
-    const [imageTmp, setImageTmp] = useState([]);
+    const [imageTmp, setImageTmp] = useState("");
 
     let initialValues = {
         name: '',
@@ -40,36 +58,16 @@ const ProductForm = ({
         category_id: categories[0]?.id ?? 1,
     };
 
-
-
     const formik = useFormik({
         initialValues,
         enableReinitialize: true,
         validationSchema: validationSchema,
         onSubmit: async (values) => {
-
-            /*const uploadedImages = new FormData();
-            const { data } = await axios.post(`http://localhost:5000/api/products/upload/image`, formData);*/
-
-
-            /*const formData = new FormData();
-            formData.append('name', values.name);
-            formData.append('price', values.price);
-            formData.append('quantity', values.quantity);
-            formData.append('description', values.description);
-            formData.append('status', values.status);
-            formData.append('image', values.image); // Thêm file hình ảnh
-            formData.append('author', values.author);
-            formData.append('rating', values.rating);
-            formData.append('category_id', values.category_id);
-            console.log('values',values)*/
-            /*formData.append(
-                "myFile",
-                ...values,
-                values.image.name
-            );*/
-            /*values.image = values.image.name;*/
             if (editValues) {
+                if (!values.image || values.image === "") {
+                    delete values.image;
+                }
+                console.log(values);
               onSaveEdit(values, editValues.id);
             } else {
                 console.log(values);
@@ -84,28 +82,19 @@ const ProductForm = ({
         formik.resetForm();
     };
 
-    /*const handleFileUpload = () => {
-        let reader = new FileReader();
-        let file = imageTmp;
-        reader.onloadend = () => {
-            this.setState({
-                file: reader.result
-            });
-        };
-        reader.readAsDataURL(file);
-    };*/
-
     useEffect(() => {
         if (editValues) {
+            setImageTmp(editValues.image);
             formik.setFieldValue('name', editValues.name);
             formik.setFieldValue('price', editValues.price);
             formik.setFieldValue('quantity', editValues.quantity);
             formik.setFieldValue('description', editValues.description);
             formik.setFieldValue('status', editValues.status);
-            formik.setFieldValue('image', editValues.image);
             formik.setFieldValue('author', editValues.author);
             formik.setFieldValue('rating', editValues.rating);
             formik.setFieldValue('category_id', editValues.category_id);
+        } else {
+            setImageTmp("");
         }
     }, [editValues]);
 
@@ -168,24 +157,39 @@ const ProductForm = ({
                 onChangeField={formik.handleChange}
                 isRequired={true}
             />
-            <FieldInput
-                label='Image'
-                name='image'
-                type='file'
-                accept='image/*'
-                value={formik.values?.image ?? ""}
-                onChangeField={(event) => {
-                    console.log('event.target.files[0]', event.target.files[0]);
-                    formik.setFieldValue('image', event.target.files[0]);
-                    setImageTmp(event.target.files[0]);
-                }}
+                <FieldInputFile
+                    label='Image'
+                    name='image'
+                    type='file'
+                    accept='image/*'
+                    span={imageTmp ? imageTmp : ""}
+                    onChangeField={(event) => {
+                        console.log('event.target.files[0]', event.target.files[0]);
+                        formik.setFieldValue('image', event.target.files[0]);
+                        setImageTmp(event.target.files[0]?.name || ''); // Lấy tên file
+                    }}
+                    error={
+                        formik.touched.image && Boolean(formik.errors.image)
+                            ? formik.errors.image
+                            : ''
+                    }
+                    isRequired={true}
+                />
+
+            {/*<FieldInput
+                label='Old image'
+                name='image_old'
+                type='text'
+                value={formik.values.image}
+                onChangeField={formik.handleChange}
                 error={
                     formik.touched.image && Boolean(formik.errors.image)
                         ? formik.errors.image
                         : ''
                 }
                 isRequired={true}
-            />
+            />*/}
+
             <FieldInput
                 label='Tác giả'
                 name='author'

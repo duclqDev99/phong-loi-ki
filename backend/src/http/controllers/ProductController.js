@@ -110,7 +110,13 @@ const uploadImage = async (req, res) => {
 
 const updateProduct = async (req, res) => {
     try {
-        await ProductModel.updateProduct(req.params.id, req.body);
+        const productData = req.body;
+        if (req.file) {
+            const image = req.file;
+            productData.image = image;
+        }
+
+        await ProductModel.updateProduct(req.params.id, productData);
         res.status(200).send('Product updated successfully');
     } catch (error) {
         res.status(500).send(error.message);
