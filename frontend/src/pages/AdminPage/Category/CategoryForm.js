@@ -15,9 +15,8 @@ const CategoryForm = ({
                          onReset,
                      }) => {
     const validationSchema = object({
-        title: string().required('Category\'s title is required'),
-        description: string().required('Category\'s description is required'),
-        status: string().required('Category\'s status is required'),
+        title: string().required('Tiêu đề của danh mục là bắt buộc'),
+        status: string().required('Trạng thái của danh mục là bắt buộc'),
     });
 
     let initialValues = {
@@ -56,7 +55,7 @@ const CategoryForm = ({
     return (
         <form onSubmit={formik.handleSubmit}>
             <FieldInput
-                label='Title'
+                label='Tiêu đề'
                 name='title'
                 value={formik.values.title}
                 onChangeField={formik.handleChange}
@@ -65,21 +64,23 @@ const CategoryForm = ({
                         ? formik.errors.title
                         : ''
                 }
-            />
-            <FieldTextArea
-                label='Description'
-                name='description'
-                value={formik.values.description}
-                onChangeField={formik.handleChange}
+                isRequired={true}
             />
             <FieldSelect
-                label='Status'
+                label='Trạng thái'
                 name='status'
                 dataSet={[
                     {label: 'Active', value: 1},
                     {label: 'Inactive', value: 0},
                 ]}
                 value={formik.values.status}
+                onChangeField={formik.handleChange}
+                isRequired={true}
+            />
+            <FieldTextArea
+                label='Mô tả'
+                name='description'
+                value={formik.values.description}
                 onChangeField={formik.handleChange}
             />
             <Box display='flex' justifyContent='right' gap='10px'>

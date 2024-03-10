@@ -21,7 +21,7 @@ const ProductTable = ({ rows, onDeleteProduct, onEdit }) => {
     },
     {
       field: 'quantity',
-      headerName: 'Số Lượng',
+      headerName: 'Số lượng',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
@@ -35,7 +35,7 @@ const ProductTable = ({ rows, onDeleteProduct, onEdit }) => {
     },
     {
       field: 'rating',
-      headerName: 'Đánh Giá',
+      headerName: 'Xếp hạng',
       flex: 1,
       headerAlign: 'center',
       align: 'center',

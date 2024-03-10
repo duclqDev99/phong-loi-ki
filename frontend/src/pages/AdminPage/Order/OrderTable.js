@@ -14,7 +14,7 @@ const OrderTable = ({ rows, onDelete, onEdit }) => {
     },
     {
       field: 'fullname',
-      headerName: 'Họ Tên',
+      headerName: 'Tên',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
@@ -44,7 +44,7 @@ const OrderTable = ({ rows, onDelete, onEdit }) => {
     {
       field: 'actions',
       type: 'actions',
-      headerName: 'Action',
+      headerName: 'Hành động',
       getActions: (params) => [
         <GridActionsCellItem
           key='update'

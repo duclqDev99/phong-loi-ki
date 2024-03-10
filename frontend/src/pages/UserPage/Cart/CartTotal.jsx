@@ -2,15 +2,23 @@ import React, {useEffect, useState} from "react";
 import {NavLink} from "react-router-dom";
 
 function CartTotal({ isCheckoutStep = false, cartItems }) {
-
+    function formatVND(value) {
+        const formatter = new Intl.NumberFormat('vi-VN', {
+            style: 'currency',
+            currency: 'VND',
+            minimumFractionDigits: 0, 
+        });
+    
+        return formatter.format(value).replace('₫', 'VNĐ');
+    }
     return (
         <div >
-            <h3 className="pb-4">Cart Total</h3>
+            <h3 className="pb-4">TỔNG GIỎ HÀNG</h3>
             <div className="total-price pb-5">
                 <table cellSpacing="0" className="table text-uppercase">
                     <tbody>
                     <tr className="order-total pt-2 pb-2 border-bottom border-gray">
-                        <th className="fw-light">Total</th>
+                        <th className="fw-light">TỔNG CỘNG:</th>
                         <td className="align-middle border-0" data-title="Total">
                                         <span className="price-amount amount text-primary">
                                             <bdi>
@@ -19,8 +27,8 @@ function CartTotal({ isCheckoutStep = false, cartItems }) {
                                                     cartItems.forEach(item => {
                                                         temp_total += item.price * item.quantity;
                                                     });
-                                                    return temp_total;
-                                                })()}<span className="price-currency-symbol"> VNĐ</span>
+                                                    return formatVND(temp_total);
+                                                })()}
                                             </bdi>
                                         </span>
                         </td>
@@ -31,10 +39,10 @@ function CartTotal({ isCheckoutStep = false, cartItems }) {
             { !isCheckoutStep && (
                 <div className="button-wrap">
                     <NavLink to={`/shop`} className="btn btn-dark me-2 mb-2">
-                        Continue Shopping
+                        Tiếp tục mua sắm
                     </NavLink>
                     <NavLink to={`/checkout`} className="btn btn-primary me-2 mb-2">
-                        Proceed to checkout
+                        Thanh toán
                     </NavLink>
                 </div>
             )}

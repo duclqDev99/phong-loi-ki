@@ -42,7 +42,7 @@ const CategoryTable = ({ rows, onDelete, onEdit }) => {
         <GridActionsCellItem
           key='update'
           icon={<Update />}
-          label='Cập Nhật'
+          label='Cập nhật'
           onClick={() => onEdit(params.row)}
           showInMenu
         />,

@@ -35,7 +35,7 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
         },
         {
             field: 'phone',
-            headerName: 'Điện Thoại',
+            headerName: 'Số điện thoại',
             flex: 1,
             headerAlign: 'center',
             align: 'center',

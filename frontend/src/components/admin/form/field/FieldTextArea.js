@@ -8,12 +8,11 @@ const FieldTextArea = ({ label, value, name, onChangeField }) => {
         style={{ textTransform: 'capitalize' }} 
       >{label}</label>
       <textarea
-        placeholder='Type here'
         className='form-control'
         name={name}
         onChange={onChangeField}
         value={value}
-        style={{ borderBottom: '1px solid #CED4DA' }} 
+        style={{ borderBottom: '1px solid #CED4DA', height: '100px'  }} 
       ></textarea>
     </div>
   );

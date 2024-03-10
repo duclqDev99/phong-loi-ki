@@ -168,19 +168,19 @@ function Product({cartItems, setCartItems}) {
                                     </div>
                                     <div className="action-buttons my-4 d-flex flex-wrap">
                                         <button className="btn btn-dark" onClick={handleAddToCart}>
-                                            Add to cart
+                                            Thêm giỏ hàng
                                         </button>
                                     </div>
                                     {showSuccessMessage && (
-                                        <div className="btn btn-dark" role="alert">
-                                            Product added to cart successfully!
+                                        <div className="alert alert-success" role="alert">
+                                            Sản phẩm đã được thêm vào giỏ hàng thành công!
                                         </div>
                                     )}
                                 </div>
                                 <hr></hr>
                                 <div className="meta-product">
                                     <div className="meta-item d-flex mb-1">
-                                        <span className="text-uppercase me-2">Category:</span>
+                                        <span className="text-uppercase me-2">Loại:</span>
                                         <ul className="select-list list-unstyled d-flex mb-0">
                                             <li data-value="S" className="select-item">
                                                 <NavLink to={`/shop/cat/${product.category_id}`} >

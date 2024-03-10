@@ -3,7 +3,7 @@ const knexConfig = require('./knex');
 const db = knex(knexConfig.development);
 
 const getAllProducts = () => {
-  return db('products').select('*');
+  return db('products').select('*').orderBy('id', 'desc');
 };
 
 const getProductById = (id) => {

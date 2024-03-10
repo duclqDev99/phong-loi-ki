@@ -13,16 +13,16 @@ const ProductForm = ({
                          onCreateProduct,
                          onSaveEdit,
                          onReset,
+                         categories,
                      }) => {
     const validationSchema = object({
-        name: string().required('Product\'s name is required'),
-        price: number().required('Product\'s price is required'),
-        quantity: number().required('Product\'s quantity is required'),
-        description: string().required('Product\'s description is required'),
-        status: string().required('Product\'s status is required'),
-        image: mixed().required('Product\'s image is required'),
-        author: string().required('Product\'s author is required'),
-        rating: number().required('Product\'s rating is required'),
+        name: string().required('Tên sản phẩm là bắt buộc'),
+        price: number().required('Giá sản phẩm là bắt buộc'),
+        quantity: number().required('Số lượng sản phẩm là bắt buộc'),
+        status: string().required('Trạng thái sản phẩm là bắt buộc'),
+        image: mixed().required('Hình ảnh sản phẩm là bắt buộc'),
+        author: string().required('Tác giả sản phẩm là bắt buộc'),
+        rating: number().required('Đánh giá sản phẩm là bắt buộc'),
     });
 
     const [imageTmp, setImageTmp] = useState({});
@@ -36,6 +36,7 @@ const ProductForm = ({
         image: '',
         author: '',
         rating: 0,
+        category_id: categories[0]?.id ?? 1,
     };
 
     const formik = useFormik({
@@ -44,16 +45,25 @@ const ProductForm = ({
         validationSchema: validationSchema,
         onSubmit: async (values) => {
             const formData = new FormData();
+            formData.append('name', values.name);
+            formData.append('price', values.price);
+            formData.append('quantity', values.quantity);
+            formData.append('description', values.description);
+            formData.append('status', values.status);
+            formData.append('image', values.image); // Thêm file hình ảnh
+            formData.append('author', values.author);
+            formData.append('rating', values.rating);
+            formData.append('category_id', values.category_id);
+            console.log('values',values)
             /*formData.append(
                 "myFile",
                 ...values,
                 values.image.name
             );*/
-            console.log(values);
             if (editValues) {
-              onSaveEdit(values, editValues.id);
+              onSaveEdit(formData, editValues.id);
             } else {
-              onCreateProduct(values);
+              onCreateProduct(formData);
             }
             formik.resetForm();
         },
@@ -85,13 +95,14 @@ const ProductForm = ({
             formik.setFieldValue('image', editValues.image);
             formik.setFieldValue('author', editValues.author);
             formik.setFieldValue('rating', editValues.rating);
+            formik.setFieldValue('category_id', editValues.category_id);
         }
     }, [editValues]);
 
     return (
         <form onSubmit={formik.handleSubmit}>
             <FieldInput
-                label='Name'
+                label='Tên'
                 name='name'
                 value={formik.values.name}
                 onChangeField={formik.handleChange}
@@ -100,9 +111,10 @@ const ProductForm = ({
                         ? formik.errors.name
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Price'
+                label='Giá'
                 name='price'
                 type='number'
                 value={formik.values.price}
@@ -112,9 +124,10 @@ const ProductForm = ({
                         ? formik.errors.price
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Quantity'
+                label='Số lượng'
                 name='quantity'
                 type='number'
                 value={formik.values.quantity}
@@ -124,15 +137,18 @@ const ProductForm = ({
                         ? formik.errors.quantity
                         : ''
                 }
-            />
-            <FieldTextArea
-                label='Description'
-                name='description'
-                value={formik.values.description}
-                onChangeField={formik.handleChange}
+                isRequired={true}
             />
             <FieldSelect
-                label='Status'
+                label='Loại'
+                name='category_id'
+                dataSet={categories}
+                value={formik.values.category_id}
+                onChangeField={formik.handleChange}
+                isRequired={true}  
+            />
+            <FieldSelect
+                label='Trạng thái'
                 name='status'
                 dataSet={[
                     {label: 'Active', value: 1},
@@ -140,6 +156,7 @@ const ProductForm = ({
                 ]}
                 value={formik.values.status}
                 onChangeField={formik.handleChange}
+                isRequired={true}  
             />
             <FieldInput
                 label='Image'
@@ -162,9 +179,10 @@ const ProductForm = ({
                         ? formik.errors.image
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
-                label='Author'
+                label='Tác giả'
                 name='author'
                 value={formik.values.author}
                 onChangeField={formik.handleChange}
@@ -173,6 +191,7 @@ const ProductForm = ({
                         ? formik.errors.author
                         : ''
                 }
+                isRequired={true}
             />
             <FieldInput
                 label='Rating'
@@ -185,6 +204,13 @@ const ProductForm = ({
                         ? formik.errors.rating
                         : ''
                 }
+                isRequired={true}
+            />
+            <FieldTextArea
+                label='Mô tả'
+                name='description'
+                value={formik.values.description}
+                onChangeField={formik.handleChange}
             />
             <Box display='flex' justifyContent='right' gap='10px'>
                 <Button
