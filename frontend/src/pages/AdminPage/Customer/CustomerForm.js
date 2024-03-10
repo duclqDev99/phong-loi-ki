@@ -180,7 +180,7 @@ const CustomerForm = ({
                     color='secondary'
                     variant='contained'
                 >
-                    {editValues ? 'Edit' : 'Save'}
+                    Lưu
                 </Button>
                 <Button
                     onClick={handleReset}
@@ -188,7 +188,7 @@ const CustomerForm = ({
                     color='warning'
                     variant='contained'
                 >
-                    Close
+                    Đóng
                 </Button>
             </Box>
         </form>

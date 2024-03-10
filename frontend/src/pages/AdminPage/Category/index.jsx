@@ -81,7 +81,7 @@ function AdminCategory() {
     return (
         <main className="main-container">
             <div style={{display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '10px'}}>
-                <span style={{fontSize: 24, color: "black"}}>Quản lý loại sản phẩm</span>
+                <span style={{fontSize: 24, color: "black"}}>Quản lý danh mục</span>
                 <div className="add-product-button">
                     <Button
                         onClick={() => setShowModal(true)}

@@ -4,6 +4,9 @@ const orderApi = {
     getList: (params) => {
         return baseGet('orderRoutes', params);
     },
+    getProductsByOrderId: (orderId) => {
+        return baseGet(`orderRoutes/detail/${orderId}`);
+    },
     create: (formData) => {
         return basePost('orderRoutes/create', formData);
     },

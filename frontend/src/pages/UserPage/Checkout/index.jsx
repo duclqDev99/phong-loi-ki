@@ -47,6 +47,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
 
         const products = cartItems.map(item => ({
             id: item.id,
+            name: item.name,
             quantity: item.quantity,
             subtotal: item.quantity * item.price,
         }));

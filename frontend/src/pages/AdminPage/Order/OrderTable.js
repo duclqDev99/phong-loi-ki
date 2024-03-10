@@ -21,21 +21,21 @@ const OrderTable = ({ rows, onDelete, onEdit }) => {
     },
     {
       field: 'phone',
-      headerName: 'Sô điện thoại',
+      headerName: 'Số Điện Thoại',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: 'total_amount',
-      headerName: 'Tổng tiền',
+      headerName: 'Tổng Tiền',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
     },
     {
       field: 'status',
-      headerName: 'Trạng thái',
+      headerName: 'Trạng Thái',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
@@ -49,7 +49,7 @@ const OrderTable = ({ rows, onDelete, onEdit }) => {
         <GridActionsCellItem
           key='update'
           icon={<Update />}
-          label='Cập nhật'
+          label='Cập Nhật'
           onClick={() => onEdit(params.row)}
           showInMenu
         />,

@@ -42,7 +42,7 @@ function AdminOrder() {
         });
     };
 
-    const handleSaveEdit = async (formData, id) => {
+    const handleSaveEdit = async (id, formData) => {
         await orderApi.update(id, formData).then((response) => {
             if (response) {
                 /*setCategories((prev) => {

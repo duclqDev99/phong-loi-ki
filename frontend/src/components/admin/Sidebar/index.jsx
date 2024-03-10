@@ -1,11 +1,12 @@
-import React from 'react'
-import
-{
-    BsCart3, BsGrid1X2Fill, BsFillArchiveFill, BsFillGrid3X3GapFill, BsPeopleFill,
-    BsListCheck, BsMenuButtonWideFill, BsFillGearFill
-}
-    from 'react-icons/bs'
+import React from 'react';
 import {NavLink} from "react-router-dom";
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import CategoryIcon from '@mui/icons-material/Category';
+import MenuBookIcon from '@mui/icons-material/MenuBook';
+import SupervisedUserCircleIcon from '@mui/icons-material/SupervisedUserCircle';
+import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import LogoutIcon from '@mui/icons-material/Logout';
+import ReceiptIcon from '@mui/icons-material/Receipt';
 
 function Sidebar({openSidebarToggle, OpenSidebar}) {
     return (
@@ -15,37 +16,37 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
             <ul className='sidebar-list'>
                 <NavLink to="/admin">
                     <li className='sidebar-list-item' style={{ color: 'white'}}>
-                        <BsGrid1X2Fill className='icon'/> Dashboard
-                    </li>
-                </NavLink>
-                <NavLink to="/admin/product">
-                    <li className='sidebar-list-item' style={{ color: 'white'}}>
-                        <BsFillArchiveFill className='icon'/> Products
+                        <DashboardIcon className='icon'/> Bảng Điều Khiển
                     </li>
                 </NavLink>
                 <NavLink to="/admin/category">
                     <li className='sidebar-list-item' style={{ color: 'white'}}>
-                        <BsFillGrid3X3GapFill className='icon'/> Categories
+                        <CategoryIcon className='icon'/> Danh Mục
+                    </li>
+                </NavLink>
+                <NavLink to="/admin/product">
+                    <li className='sidebar-list-item' style={{ color: 'white'}}>
+                        <MenuBookIcon className='icon'/> Sản Phẩm
                     </li>
                 </NavLink>
                 <NavLink to="/admin/customer">
                     <li className='sidebar-list-item' style={{ color: 'white'}}>
-                        <BsPeopleFill className='icon'/> Customers
+                        <SupervisedUserCircleIcon className='icon'/> Người Dùng
                     </li>
                 </NavLink>
                 <NavLink to="/admin/order">
                     <li className='sidebar-list-item' style={{ color: 'white'}}>
-                        <BsFillGearFill className='icon'/> Orders
+                        <ReceiptIcon className='icon'/> Đơn Hàng
                     </li>
                 </NavLink>
                 <NavLink to="/">
                     <li className='sidebar-list-item' style={{ color: 'white'}}>
-                        <BsGrid1X2Fill className='icon'/> Go to shopping
+                        <ShoppingCartIcon className='icon'/> Đến Cửa Hàng
                     </li>
                 </NavLink>
                 <NavLink to="/logout">
                     <li className='sidebar-list-item' style={{ color: 'white'}}>
-                        <BsGrid1X2Fill className='icon'/> Logout
+                        <LogoutIcon className='icon'/> Đăng Xuất
                     </li>
                 </NavLink>
             </ul>

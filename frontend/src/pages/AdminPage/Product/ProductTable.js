@@ -28,7 +28,7 @@ const ProductTable = ({ rows, onDeleteProduct, onEdit }) => {
     },
     {
       field: 'author',
-      headerName: 'Tác giả',
+      headerName: 'Tác Giả',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
@@ -42,7 +42,7 @@ const ProductTable = ({ rows, onDeleteProduct, onEdit }) => {
     },
     {
       field: 'status',
-      headerName: 'Trạng thái',
+      headerName: 'Trang Thái',
       flex: 1,
       headerAlign: 'center',
       align: 'center',
@@ -51,12 +51,12 @@ const ProductTable = ({ rows, onDeleteProduct, onEdit }) => {
     {
       field: 'actions',
       type: 'actions',
-      headerName: 'Hành động',
+      headerName: 'Hành Động',
       getActions: (params) => [
         <GridActionsCellItem
           key='update'
           icon={<Update />}
-          label='Cập nhật'
+          label='Cập Nhật'
           onClick={() => onEdit(params.row)}
           showInMenu
         />,

@@ -4,6 +4,7 @@ import {NavLink, useNavigate} from 'react-router-dom';
 import { Dropdown } from "react-bootstrap";
 import MiniCart from "../Cart/MiniCart";
 import categoryApi from "../../../apis/categoryApi";
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 function Header({ isLogged = 0, cartItems, setCartItems}) {
     const [categories, setCategories] = useState([]);
@@ -74,10 +75,10 @@ function Header({ isLogged = 0, cartItems, setCartItems}) {
                                             className="nav-link text-uppercase dropdown-toggle ms-0"
                                             id="dropdown-basic"
                                         >
-                                            Thể Loại
-                                            <svg className="bi" width="18" height="18">
+                                            Danh Mục <ArrowDropDownIcon />
+                                            {/*<svg className="bi" width="18" height="18">
                                                 <use xlinkHref="#chevron-down"></use>
-                                            </svg>
+                                            </svg>*/}
                                         </Dropdown.Toggle>
 
                                         <Dropdown.Menu>

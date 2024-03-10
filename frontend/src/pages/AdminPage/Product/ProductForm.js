@@ -219,7 +219,7 @@ const ProductForm = ({
                     color='primary'
                     variant='contained'
                 >
-                    {editValues ? 'Edit' : 'Save'}
+                    Lưu
                 </Button>
                 <Button
                     onClick={handleReset}
@@ -227,7 +227,7 @@ const ProductForm = ({
                     color='secondary'
                     variant='contained'
                 >
-                    Close
+                    Đóng
                 </Button>
             </Box>
         </form>

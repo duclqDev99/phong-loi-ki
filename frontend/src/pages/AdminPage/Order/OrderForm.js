@@ -1,12 +1,14 @@
 import {useFormik} from 'formik';
 import {string, object} from 'yup';
-import {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import PropTypes from 'prop-types';
 
 import FieldInput from '../../../components/admin/form/field/FieldInput';
 import FieldTextArea from '../../../components/admin/form/field/FieldTextArea';
 import FieldSelect from '../../../components/admin/form/field/FieldSelect';
 import {Box, Button} from '@mui/material';
+import DialogWrapper from "../../../components/admin/dialogWapper";
+import DetailOrder from "./DetailOrder";
 
 const OrderForm = ({
                          editValues,
@@ -14,6 +16,17 @@ const OrderForm = ({
                          onSaveEdit,
                          onReset,
                      }) => {
+    const [showModal, setShowModal] = useState(false);
+    const [orderId, setOrderId] = useState(0);
+
+    const handleClose = () => {
+        setShowModal(false);
+    };
+
+    const handleDetail = () => {
+        setShowModal(true);
+    };
+
     const validationSchema = object({
         fullname: string().required('Order\'s fullname is required'),
         total_amount: string().required('Order\'s total amount is required'),
@@ -53,6 +66,8 @@ const OrderForm = ({
 
     useEffect(() => {
         if (editValues) {
+            console.log(orderId);
+            setOrderId(editValues.id);
             formik.setFieldValue('fullname', editValues.fullname);
             formik.setFieldValue('total_amount', editValues.total_amount);
             formik.setFieldValue('address', editValues.address);
@@ -133,12 +148,20 @@ const OrderForm = ({
             />
             <Box display='flex' justifyContent='right' gap='10px'>
                 <Button
+                    onClick={handleDetail}
+                    size='small'
+                    color='primary'
+                    variant='contained'
+                >
+                    Chi tiết
+                </Button>
+                <Button
                     type='submit'
                     size='small'
                     color='secondary'
                     variant='contained'
                 >
-                    {editValues ? 'Edit' : 'Save'}
+                    Lưu
                 </Button>
                 <Button
                     onClick={handleReset}
@@ -146,9 +169,18 @@ const OrderForm = ({
                     color='warning'
                     variant='contained'
                 >
-                    Close
+                    Đóng
                 </Button>
             </Box>
+            <DialogWrapper
+                title={'Chi tết đơn hàng'}
+                open={showModal}
+                onClose={handleClose}
+            >
+                <DetailOrder
+                    orderId={orderId}
+                />
+            </DialogWrapper>
         </form>
     );
 };
