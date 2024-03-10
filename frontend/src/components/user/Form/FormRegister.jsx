@@ -1,5 +1,7 @@
 import React, {useState} from "react";
 import {NavLink, useNavigate} from "react-router-dom";
+import customerApi from "../../../apis/customerApi";
+import DialogWrapper from "../../admin/dialogWapper";
 
 function FormRegister() {
     const [username, setUsername] = useState("");
@@ -9,6 +11,8 @@ function FormRegister() {
     const [phone, setPhone] = useState("");
     const [gender, setGender] = useState("Male");
     const [birthday, setBirthday] = useState("");
+    const [showModal, setShowModal] = useState(false);
+    const [noti, setNoti] = useState("");
 
     const navigate = useNavigate();
     const handleRegister = (event) => {
@@ -20,12 +24,61 @@ function FormRegister() {
         console.log("Phone:", phone);
         console.log("Gender:", gender);
         console.log("Birthday:", birthday);
-        /*const formData = {
+
+        if (!username || username === "") {
+            setNoti("Tên đăng nhập không được để trống!");
+            setShowModal(true);
+            return;
+        } else if (!password || password === "") {
+            setNoti("Mật khẩu không được để trống!");
+            setShowModal(true);
+            return;
+        } else if (!fullname || fullname === "") {
+            setNoti("Họ và tên không được để trống!");
+            setShowModal(true);
+            return;
+        } else if (!email || email === "") {
+            setNoti("Email không được để trống!");
+            setShowModal(true);
+            return;
+        } else if (!phone || phone === "") {
+            setNoti("Số điện thoại không được để trống!");
+            setShowModal(true);
+            return;
+        } else if (!gender || gender === "") {
+            setNoti("Giới tính không được để trống!");
+            setShowModal(true);
+            return;
+        } else if (!birthday || birthday === "") {
+            setNoti("Ngày sinh không được để trống!");
+            setShowModal(true);
+            return;
+        }
+
+        const formData = {
             username: username,
             password: password,
+            fullname: fullname,
+            email: email,
+            phone: phone,
+            gender: gender,
+            birthday: birthday,
         }
-        fetch(formData);*/
+        fetch(formData);
     }
+
+    const fetch = async (formData) => {
+        await customerApi.create(formData).then((response) => {
+            console.log(response);
+            navigate('/login');
+        }).catch((error) => {
+            console.log(error);
+        });
+    };
+
+    const handleClose = () => {
+        setShowModal(false);
+    };
 
     return (
         <form>
@@ -149,6 +202,13 @@ function FormRegister() {
             >
                 Đăng nhập
             </button>
+            <DialogWrapper
+                title={"Lưu ý"}
+                open={showModal}
+                onClose={handleClose}
+            >
+                {noti}
+            </DialogWrapper>
         </form>
     );
 }
