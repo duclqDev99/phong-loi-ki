@@ -10,7 +10,7 @@ router.get('/get_product_puslish/:status', ProductController.getProductPuslish);
 router.get('/filter/:category_id', ProductController.filterProductWithCategory);
 router.post('/create', upload.single('image'), ProductController.createProduct);
 router.post('/upload/image', ProductController.uploadImage);
-router.post('/update/:id', ProductController.updateProduct);
+router.post('/update/:id', upload.single('image'), ProductController.updateProduct);
 router.delete('/delete/:id', ProductController.deleteProduct);
 router.get('/search/:search', ProductController.searchProduct);
 
