@@ -5,7 +5,8 @@ const axiosClient = axios.create({
   baseURL: `http://localhost:3001/api/`,
   headers: {
     'Access-Control-Allow-Origin': '*',
-    'Content-Type': 'multipart/form-data',
+    /*'Content-Type': 'multipart/form-data',*/
+    'Content-Type': 'application/json',
     /*Accept: 'application/json',*/
   },
 });

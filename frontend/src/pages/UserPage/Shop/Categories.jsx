@@ -9,7 +9,6 @@ function Categories() {
         await categoryApi.getList().then((response) => {
             setCategories(response);
         }).catch((error) => {
-            console.log(error);
             setCategories([]);
         });
     };

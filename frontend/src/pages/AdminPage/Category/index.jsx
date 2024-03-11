@@ -13,10 +13,8 @@ function AdminCategory() {
 
     const fetch = async () => {
         await categoryApi.getList().then((response) => {
-            console.log(response);
             setCategories(response);
         }).catch((error) => {
-            console.log(error);
             setCategories([]);
         });
     };

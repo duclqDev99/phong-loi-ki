@@ -13,10 +13,8 @@ function AdminOrder() {
 
     const fetch = async () => {
         await orderApi.getList().then((response) => {
-            console.log(response);
             setCategories(response);
         }).catch((error) => {
-            console.log(error);
             setCategories([]);
         });
     };

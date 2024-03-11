@@ -17,10 +17,8 @@ function Product({cartItems, setCartItems}) {
 
     const fetch = async () => {
         await productApi.getProduct(id).then((response) => {
-            console.log(response);
             setProduct(response);
         }).catch((error) => {
-            console.log(error);
             setProduct([]);
         });
     };
@@ -36,6 +34,14 @@ function Product({cartItems, setCartItems}) {
     }
 
     const handleAddToCart = () => {
+        /*const [cartItems, setCartItems] = useState(() => {
+            const localCart = JSON.parse(localStorage.getItem('cartItems'));
+            return Array.isArray(localCart) ? localCart : [];
+        });*/
+        if (!Array.isArray(cartItems)) {
+            setCartItems([]);
+        }
+
         const existingItem = cartItems && cartItems.length > 0 ? cartItems.find((item) => item.id === product.id) : null;
         // const existingItem = cartItems.find((item) => item.id === product.id);
 
@@ -57,9 +63,9 @@ function Product({cartItems, setCartItems}) {
         const formatter = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND',
-            minimumFractionDigits: 0, 
+            minimumFractionDigits: 0,
         });
-    
+
         return formatter.format(value).replace('₫', 'VNĐ');
     }
 

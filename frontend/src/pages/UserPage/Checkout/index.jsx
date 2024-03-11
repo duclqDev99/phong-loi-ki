@@ -78,9 +78,9 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
         const formatter = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND',
-            minimumFractionDigits: 0, 
+            minimumFractionDigits: 0,
         });
-    
+
         return formatter.format(value).replace('₫', 'VNĐ');
     }
 
@@ -149,7 +149,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
                                             <td className="align-middle border-0" data-title="Total">
                                         <span className="price-amount amount text-primary">
                                             <bdi>
-                                                {formatVND(total)}<span className="price-currency-symbol"> VNĐ</span>
+                                                {formatVND(total)}
                                             </bdi>
                                         </span>
                                             </td>

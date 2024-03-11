@@ -23,7 +23,6 @@ function AdminCategory() {
             setCustomers(modifiedCustomers);
             console.log(modifiedCustomers);
         }).catch((error) => {
-            console.log(error);
             setCustomers([]);
         });
     };
@@ -56,7 +55,6 @@ function AdminCategory() {
         }
 
         await customerApi.update(id, formData).then((response) => {
-            console.log(formData);
             if (response) {
                 fetch();
                 setEditValues(null);
