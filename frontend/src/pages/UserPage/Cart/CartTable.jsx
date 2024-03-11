@@ -15,9 +15,13 @@ function CartTable({ cartItems, handleDelete }) {
                 </tr>
                 </thead>
                 <tbody className="border-top border-gray">
-                    {cartItems.map((item, index) => (
-                        <CartItem product={item} handleDelete={handleDelete}/>
-                    ))}
+                {Array.isArray(cartItems) ? (
+                    cartItems.map((item, index) => (
+                        <CartItem key={index} product={item} handleDelete={handleDelete} />
+                    ))
+                ) : (
+                    <p>Không có sản phẩm trong giỏ hàng</p>
+                )}
                 </tbody>
             </table>
         </div>
