@@ -23,7 +23,10 @@ const getUserById = async (id) => {
 };
 
 const getUserByUsername = async (username) => {
-  const row = await db(tableName).where('username', username).select('*').first();
+  const row = await db(tableName).where('username', username || '').select('*').first();
+  /*console.log(row.toSQL());*/
+  const query = db(tableName).where('username', username || '').select('*').first();
+  console.log(query.toSQL());
   return row;
 };
 

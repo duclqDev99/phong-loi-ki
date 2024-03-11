@@ -7,10 +7,8 @@ function DetailOrder({orderId}) {
 
     const fetch = async () => {
         await orderApi.getProductsByOrderId(orderId).then((response) => {
-            console.log(orderId);
             setProducts(response);
         }).catch((error) => {
-            console.log(error);
             setProducts([]);
         });
     };

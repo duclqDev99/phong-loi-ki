@@ -25,6 +25,8 @@ const getUserById = async (req, res) => {
 
 const loginUser = async (req, res) => {
     try {
+        console.log(req.body.username);
+        console.log(req.body.password);
         const user = await userModel.getUserByUsername(req.body.username);
 
         if (user) {

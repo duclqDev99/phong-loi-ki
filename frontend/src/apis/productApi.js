@@ -1,4 +1,4 @@
-import {baseDelele, baseGet, basePost, basePut} from './baseApi';
+import {baseDelele, baseGet, basePost, basePut} from './baseProductApi';
 
 const header = "Content-Type': 'application/json', Accept: 'application/json',";
 

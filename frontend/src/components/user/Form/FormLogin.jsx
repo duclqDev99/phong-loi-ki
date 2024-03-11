@@ -13,8 +13,6 @@ function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
     const navigate = useNavigate();
     const handleLogin = (event) => {
         event.preventDefault();
-        console.log("Username:", username);
-        console.log("Password:", password);
 
         if (!username || username === "") {
             setNoti("Tên đăng nhập không được để trống!");
@@ -35,7 +33,6 @@ function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
 
     const fetch = async (formData) => {
         await customerApi.login(formData).then((response) => {
-            console.log(response);
             localStorage.setItem('user', JSON.stringify(response));
             setIsLogged(1);
             if (response.is_admin) {
@@ -43,7 +40,6 @@ function FormLogin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
             }
             navigate('/');
         }).catch((error) => {
-            console.log(error);
             setNoti(error.response.data);
             setShowModal(true);
         });

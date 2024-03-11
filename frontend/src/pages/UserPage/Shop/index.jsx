@@ -9,33 +9,26 @@ import ProductItem from "../../../components/user/Product/ProductItem";
 function Shop() {
     const { id } = useParams();
     const { search } = useParams();
-    console.log(id);
     const [products, setProducts] = useState([]);
 
     const fetch = async () => {
         if (search) {
             await productApi.searchProduct(search).then((response) => {
-                console.log(response);
                 setProducts(response);
             }).catch((error) => {
-                console.log(error);
                 setProducts([]);
             });
         }
         else if (id) {
             await productApi.getProductsByCate(id).then((response) => {
-                console.log(response);
                 setProducts(response);
             }).catch((error) => {
-                console.log(error);
                 setProducts([]);
             });
         } else {
             await productApi.getList().then((response) => {
-                console.log(response);
                 setProducts(response);
             }).catch((error) => {
-                console.log(error);
                 setProducts([]);
             });
         }

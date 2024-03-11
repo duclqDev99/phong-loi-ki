@@ -66,7 +66,6 @@ const OrderForm = ({
 
     useEffect(() => {
         if (editValues) {
-            console.log(orderId);
             setOrderId(editValues.id);
             formik.setFieldValue('fullname', editValues.fullname);
             formik.setFieldValue('total_amount', editValues.total_amount);

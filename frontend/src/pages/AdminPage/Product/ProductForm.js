@@ -67,10 +67,8 @@ const ProductForm = ({
                 if (!values.image || values.image === "") {
                     delete values.image;
                 }
-                console.log(values);
-              onSaveEdit(values, editValues.id);
+                onSaveEdit(values, editValues.id);
             } else {
-                console.log(values);
                 onCreateProduct(values);
             }
             formik.resetForm();

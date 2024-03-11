@@ -14,7 +14,6 @@ function Admin({isLogged, setIsLogged, isAdmin, setIsAdmin}) {
         } else if (!user.is_admin) {
             navigate("/");
         }
-        console.log(user);
     }, []);
 
     /*useEffect(() => {

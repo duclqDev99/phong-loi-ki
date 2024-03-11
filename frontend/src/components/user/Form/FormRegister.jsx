@@ -17,13 +17,6 @@ function FormRegister() {
     const navigate = useNavigate();
     const handleRegister = (event) => {
         event.preventDefault();
-        console.log("Username:", username);
-        console.log("Password:", password);
-        console.log("Fullname:", fullname);
-        console.log("Email:", email);
-        console.log("Phone:", phone);
-        console.log("Gender:", gender);
-        console.log("Birthday:", birthday);
 
         if (!username || username === "") {
             setNoti("Tên đăng nhập không được để trống!");

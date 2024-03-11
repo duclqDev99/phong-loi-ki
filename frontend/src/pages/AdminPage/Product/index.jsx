@@ -18,7 +18,6 @@ function AdminProduct() {
         await productApi.getList().then((response) => {
             setProducts(response);
         }).catch((error) => {
-            console.log(error);
             setProducts([]);
         });
     };
@@ -61,7 +60,6 @@ function AdminProduct() {
 
     const handleSaveEdit = async (formData, id) => {
         await productApi.update(id, formData).then((response) => {
-            console.log(response);
             if (response) {
                 /*setProducts((prev) => {
                     return prev.map((item) => {

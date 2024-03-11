@@ -9,16 +9,14 @@ import ProductRoute from "./ProductRoute";
 import ShopRoute from "./ShopRoute";
 import LogoutRoute from "./LogoutRoute";
 import RegisterRoute from "./RegisterRoute";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 export default function ThemeRoutes() {
     const user = JSON.parse(localStorage.getItem('user'));
     const [isLogged, setIsLogged] = useState((() => {
         if (user) {
-            console.log("user");
             return 1;
         } else {
-            console.log("not user");
             return 0;
         }
     })());
@@ -32,8 +30,10 @@ export default function ThemeRoutes() {
         return 0;
     })());
 
-    const local_cart = JSON.parse(localStorage.getItem('cartItems'));
-    const [cartItems, setCartItems] = useState(local_cart ?? []);
+    const [cartItems, setCartItems] = useState(() => {
+        const localCart = JSON.parse(localStorage.getItem('cartItems'));
+        return Array.isArray(localCart) ? localCart : [];
+    });
 
     return useRoutes([
         MainRoute(isLogged, setIsLogged, cartItems, setCartItems),

@@ -18,10 +18,8 @@ function BestSelling() {
 
     const fetch = async () => {
         await productApi.getList().then((response) => {
-            console.log(response);
             setProducts(response);
         }).catch((error) => {
-            console.log(error);
             setProducts([]);
         });
     };
