@@ -182,7 +182,7 @@ function FormRegister() {
             </div>
             <label className="py-3">
                 <span className="label-body">
-                    <NavLink to={"/register"} className="fw-bold">
+                    <NavLink to={"/login"} className="fw-bold">
                         Đăng nhập
                     </NavLink>
                 </span>
@@ -193,7 +193,7 @@ function FormRegister() {
                 onClick={handleRegister}
                 className="btn btn-dark w-100 my-3"
             >
-                Đăng nhập
+                Đăng ký
             </button>
             <DialogWrapper
                 title={"Lưu ý"}
