@@ -14,13 +14,18 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
         }
     }, [isLogged, navigate]);
 
-    const [total, setTotal] = useState((() => {
-        let temp_total = 0;
-        cartItems.forEach(item => {
-            temp_total += item.price * item.quantity;
-        });
-        return temp_total;
-    })());
+    const [total, setTotal] = useState(() => {
+        if (Array.isArray(cartItems) && cartItems.length > 0) {
+            let temp_total = 0;
+            cartItems.forEach(item => {
+                temp_total += item.price * item.quantity;
+            });
+            return temp_total;
+        } else {
+            return 0;
+        }
+    });
+
     const [fullname, setFullname] = useState("");
     const [address, setAddress] = useState("");
     const [phone, setPhone] = useState("");

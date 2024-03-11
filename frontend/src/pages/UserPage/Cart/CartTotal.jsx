@@ -6,9 +6,9 @@ function CartTotal({ isCheckoutStep = false, cartItems }) {
         const formatter = new Intl.NumberFormat('vi-VN', {
             style: 'currency',
             currency: 'VND',
-            minimumFractionDigits: 0, 
+            minimumFractionDigits: 0,
         });
-    
+
         return formatter.format(value).replace('₫', 'VNĐ');
     }
     return (
@@ -22,13 +22,19 @@ function CartTotal({ isCheckoutStep = false, cartItems }) {
                         <td className="align-middle border-0" data-title="Total">
                                         <span className="price-amount amount text-primary">
                                             <bdi>
-                                                {(() => {
-                                                    let temp_total = 0;
-                                                    cartItems.forEach(item => {
-                                                        temp_total += item.price * item.quantity;
-                                                    });
-                                                    return formatVND(temp_total);
-                                                })()}
+                                                {
+                                                    (() => {
+                                                        if (Array.isArray(cartItems) && cartItems.length > 0) {
+                                                            let temp_total = 0;
+                                                            cartItems.forEach(item => {
+                                                                temp_total += item.price * item.quantity;
+                                                            });
+                                                            return formatVND(temp_total);
+                                                        } else {
+                                                            return formatVND(0);
+                                                        }
+                                                    })()
+                                                }
                                             </bdi>
                                         </span>
                         </td>
