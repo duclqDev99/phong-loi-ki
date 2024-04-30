@@ -1,9 +1,7 @@
-import React from 'react';
-import image1 from "../../../assets/user/images/book1.png";
-import image2 from "../../../assets/user/images/book2.png";
-import image3 from "../../../assets/user/images/book3.png";
 import BillboardSlide from "./BillboardSlide";
 import Swiper from 'react-id-swiper';
+import productApi from "../../../apis/productApi";
+import React, {useEffect, useState} from "react";
 
 function Billboard() {
     const params = {
@@ -15,12 +13,26 @@ function Billboard() {
         },
     };
 
+    const [products, setProducts] = useState([]);
+
+    const fetch = async () => {
+        await productApi.getSlider().then((response) => {
+            setProducts(response);
+        }).catch((error) => {
+            setProducts([]);
+        });
+    };
+
+    useEffect(() => {
+        fetch();
+    }, [])
+
     return (
         <section id="billboard" className="bg-gray padding-medium">
             <Swiper {...params}>
-                <BillboardSlide imageSrc={image1}/>
-                <BillboardSlide imageSrc={image2}/>
-                <BillboardSlide imageSrc={image3}/>
+                {products.map((product, index) => (
+                    <BillboardSlide product={product}/>
+                ))}
             </Swiper>
             <div className="main-slider-pagination text-center mt-3"></div>
         </section>

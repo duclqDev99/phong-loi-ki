@@ -3,28 +3,32 @@ const knexConfig = require('./knex');
 const db = knex(knexConfig.development);
 
 const getAllProducts = () => {
-  return db('products').select('*').orderBy('id', 'desc');
+    return db('products').select('*').orderBy('id', 'desc');
 };
 
 const getProductById = (id) => {
-  return db('products').where('id', id).first();
+    return db('products').where('id', id).first();
 };
 
 const getProductByUser = (user_id) => {
     return db('products').where('user_id', user_id).select('*');
-  };
+};
 
-  const getProductPuslish = (status) => {
+const getProductPuslish = (status) => {
     console.log('sad', db('products').where('status', 1).select('*'));
     return db('products').where('status', status).select('*');
-  };
+};
+
+const getProductSlider = () => {
+    return db('products').where('show_on_homepage', 1).select('*');
+};
 
 const filterProductWithCategory = async (category_id) => {
     console.log('category_id', category_id);
     return await db('products')
-    .where({ category_id: category_id })
-    .select('*');
-  };
+        .where({ category_id: category_id })
+        .select('*');
+};
 
 const createProduct = async (product) => {
     const trx = await db.transaction();
@@ -78,13 +82,14 @@ const searchProduct = (search) => {
 };
 
 module.exports = {
-  getAllProducts,
-  getProductById,
-  createProduct,
-  updateProduct,
-  deleteProduct,
-  filterProductWithCategory,
-  getProductByUser,
-  getProductPuslish,
+    getAllProducts,
+    getProductById,
+    createProduct,
+    updateProduct,
+    deleteProduct,
+    filterProductWithCategory,
+    getProductByUser,
+    getProductPuslish,
+    getProductSlider,
     searchProduct,
 };

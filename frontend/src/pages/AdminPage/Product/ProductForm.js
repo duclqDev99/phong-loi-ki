@@ -56,6 +56,7 @@ const ProductForm = ({
         author: '',
         rating: 0,
         category_id: categories[0]?.id ?? 1,
+        show_on_homepage: 0,
     };
 
     const formik = useFormik({
@@ -91,6 +92,8 @@ const ProductForm = ({
             formik.setFieldValue('author', editValues.author);
             formik.setFieldValue('rating', editValues.rating);
             formik.setFieldValue('category_id', editValues.category_id);
+            formik.setFieldValue('show_on_homepage', editValues.show_on_homepage);
+            console.log(editValues);
         } else {
             setImageTmp("");
         }
@@ -152,6 +155,17 @@ const ProductForm = ({
                     {label: 'Inactive', value: 0},
                 ]}
                 value={formik.values.status}
+                onChangeField={formik.handleChange}
+                isRequired={true}
+            />
+            <FieldSelect
+                label='Hiển thị ở Slider'
+                name='show_on_homepage'
+                dataSet={[
+                    {label: 'Enabled', value: 1},
+                    {label: 'Disabled', value: 0},
+                ]}
+                value={formik.values.show_on_homepage}
                 onChangeField={formik.handleChange}
                 isRequired={true}
             />

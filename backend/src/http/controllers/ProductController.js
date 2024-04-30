@@ -55,6 +55,21 @@ const getProductPuslish = async (req, res) => {
     }
 };
 
+const getProductSlider = async (req, res) => {
+    try {
+        console.log('req', req.params);
+        console.log(123);
+        const product = await ProductModel.getProductSlider();
+        if (product) {
+            res.json(product);
+        } else {
+            res.status(404).send('Product not found');
+        }
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
 const getProductByUser = async (req, res) => {
     try {
         const product = await ProductModel.getProductByUser(req.params.user_id);
@@ -155,5 +170,6 @@ module.exports = {
     filterProductWithCategory,
     getProductByUser,
     getProductPuslish,
+    getProductSlider,
     searchProduct,
 };
