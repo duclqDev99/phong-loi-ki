@@ -4,6 +4,7 @@ import AdminProduct from "../pages/AdminPage/Product";
 import AdminCategory from "../pages/AdminPage/Category";
 import AdminCustomer from "../pages/AdminPage/Customer";
 import AdminOrder from "../pages/AdminPage/Order";
+import AdminSlider from "../pages/AdminPage/Slider";
 
 const AdminRoute = ({isLogged, setIsLogged, isAdmin, setIsAdmin}) => ({
     path: '/admin',
@@ -24,6 +25,9 @@ const AdminRoute = ({isLogged, setIsLogged, isAdmin, setIsAdmin}) => ({
         },{
             path: "order",
             element: <AdminOrder />
+        },{
+            path: "slider",
+            element: <AdminSlider />
         },
     ]
 })

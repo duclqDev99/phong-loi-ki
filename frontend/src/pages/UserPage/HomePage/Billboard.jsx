@@ -1,6 +1,6 @@
 import BillboardSlide from "./BillboardSlide";
 import Swiper from 'react-id-swiper';
-import productApi from "../../../apis/productApi";
+import sliderApi from "../../../apis/sliderApi";
 import React, {useEffect, useState} from "react";
 
 function Billboard() {
@@ -13,13 +13,13 @@ function Billboard() {
         },
     };
 
-    const [products, setProducts] = useState([]);
+    const [sliders, setSliders] = useState([]);
 
     const fetch = async () => {
-        await productApi.getSlider().then((response) => {
-            setProducts(response);
+        await sliderApi.getList().then((response) => {
+            setSliders(response);
         }).catch((error) => {
-            setProducts([]);
+            setSliders([]);
         });
     };
 
@@ -30,8 +30,8 @@ function Billboard() {
     return (
         <section id="billboard" className="bg-gray padding-medium">
             <Swiper {...params}>
-                {products.map((product, index) => (
-                    <BillboardSlide product={product}/>
+                {sliders.map((slider, index) => (
+                    <BillboardSlide slider={slider}/>
                 ))}
             </Swiper>
             <div className="main-slider-pagination text-center mt-3"></div>

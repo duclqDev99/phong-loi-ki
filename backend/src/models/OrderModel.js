@@ -34,7 +34,8 @@ const create = async (order) => {
                 address: order.address,
                 phone: order.phone,
                 email: order.email,
-                status: 'processing'
+                status: 'processing',
+                payment: order.payment
             }, 'id');
 
             const orderDetails = order.products.map(product => ({

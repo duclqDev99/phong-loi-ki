@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c323b2b4-c9ec-43d4-9d74-3bdb195328f1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/models/userModel.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/models/userModel.js" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 0
+}</component>
+  <component name="ProjectId" id="2d8uWzgZlSgOxHpyTrSCY74vbvt" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "ttson/20240301",
+    "last_opened_file_path": "C:/Code/phong-loi-ki",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "configurable.group.appearance",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\WebStorm 2023.3.4\\plugins\\javascript-impl\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Code\phong-loi-ki\backend\src\models" />
+      <recent name="C:\Code\phong-loi-ki\backend" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c323b2b4-c9ec-43d4-9d74-3bdb195328f1" name="Changes" comment="" />
+      <created>1709402061365</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1709402061365</updated>
+      <workItem from="1709402062495" duration="3045000" />
+      <workItem from="1709443255556" duration="1890000" />
+      <workItem from="1709446084680" duration="8613000" />
+      <workItem from="1709467955642" duration="6848000" />
+      <workItem from="1709528819225" duration="9137000" />
+      <workItem from="1709657574194" duration="2934000" />
+      <workItem from="1709695247796" duration="7660000" />
+      <workItem from="1709826054448" duration="2016000" />
+      <workItem from="1709870171781" duration="3496000" />
+      <workItem from="1709901924145" duration="2796000" />
+      <workItem from="1709914889070" duration="5505000" />
+      <workItem from="1709960098270" duration="24187000" />
+      <workItem from="1710131868023" duration="2432000" />
+      <workItem from="1710263577341" duration="1251000" />
+      <workItem from="1711379014621" duration="1222000" />
+      <workItem from="1711468800816" duration="3481000" />
+      <workItem from="1711527992511" duration="1617000" />
+      <workItem from="1711558765734" duration="1845000" />
+      <workItem from="1711610355522" duration="732000" />
+      <workItem from="1711732277580" duration="51000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName=".env" />
+  </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ID_ORDER">
+      <list>
+        <option value="Default.Root" />
+        <option value="Default.Author" />
+        <option value="Default.Date" />
+        <option value="Default.Subject" />
+        <option value="Space.CommitStatus" />
+      </list>
+    </option>
+  </component>
+</project>

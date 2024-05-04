@@ -8,6 +8,7 @@ import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import LogoutIcon from '@mui/icons-material/Logout';
 import ReceiptIcon from '@mui/icons-material/Receipt';
 import CloseIcon from '@mui/icons-material/Close';
+import ViewCarouselIcon from '@mui/icons-material/ViewCarousel';
 
 function Sidebar({openSidebarToggle, OpenSidebar}) {
     return (
@@ -54,6 +55,11 @@ function Sidebar({openSidebarToggle, OpenSidebar}) {
                 <NavLink to="/admin/order">
                     <li className='sidebar-list-item' style={{ color: 'white'}}>
                         <ReceiptIcon className='icon'/> Đơn Hàng
+                    </li>
+                </NavLink>
+                <NavLink to="/admin/slider">
+                    <li className='sidebar-list-item' style={{ color: 'white'}}>
+                        <ViewCarouselIcon className='icon'/> Slider
                     </li>
                 </NavLink>
                 <NavLink to="/">

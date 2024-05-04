@@ -146,7 +146,7 @@ function Product({cartItems, setCartItems}) {
                                     </div>
                                 </div>
                                 <div className="product-price my-3">
-                                    <span className="fs-1 text-primary">{formatVND(product.price)} VNĐ</span>
+                                    <span className="fs-1 text-primary">{formatVND(product.price)}</span>
                                 </div>
                                 <p>{product.description}</p>
                                 <hr></hr>
