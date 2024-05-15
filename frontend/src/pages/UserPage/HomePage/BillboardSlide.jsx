@@ -11,14 +11,14 @@ function Billboard({ slider }) {
     const imageStyle = {
         width: '100%', // Hình ảnh sẽ điền toàn bộ container theo chiều rộng
         height: '100%', // Hình ảnh sẽ điền toàn bộ container theo chiều cao
-        objectFit: 'cover', // Hiển thị toàn bộ hình ảnh mà không thay đổi tỉ lệ, và cắt bớt phần thừa nếu cần
+        objectFit: 'fill', // Hiển thị toàn bộ hình ảnh mà không thay đổi tỉ lệ, và cắt bớt phần thừa nếu cần
     };
 
     return (
         <div className="swiper-slide">
             <div className="container" style={containerStyle}>
-                <div className="row">
-                    <div className="col-md-5">
+                <div className="row" style={{height: "100%"}}>
+                    <div className="{/*col-md-5*/}" style={{height: "100%"}}>
                         <img src={`${process.env.PUBLIC_URL}/images/sliders/${slider.image}`} alt="product-img" style={imageStyle} className="img-fluid mb-3" />
                     </div>
                     {/*<div className="col-md-6 d-flex align-items-center">

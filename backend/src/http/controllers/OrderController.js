@@ -38,8 +38,12 @@ const getProductsByOrderId = async (req, res) => {
 
 const createOrder = async (req, res) => {
   try {
-    const id = await OrderModel.create(req.body);
-    res.status(201).json({ id });
+    const result = await OrderModel.create(req.body);
+    console.log(result);
+    if (result == 0) {
+      return res.status(500).send("Đặt hàng thất bại!");
+    }
+    res.status(201).json({ result });
   } catch (error) {
     res.status(500).send(error.message);
   }

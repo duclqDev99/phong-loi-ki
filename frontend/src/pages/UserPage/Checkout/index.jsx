@@ -3,10 +3,12 @@ import {useNavigate} from "react-router-dom";
 import orderApi from "../../../apis/orderApi";
 import OrderSuccessPopup from './OrderSuccessPopup';
 import { colors } from '@mui/material';
+import OrderFailPopup from "./OrderFailPopup";
 
 
 function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
     const [orderSuccess, setOrderSuccess] = useState(false);
+    const [orderFail, setOrderFail] = useState(false);
     const navigate = useNavigate();
     useEffect(() => {
         if (!isLogged) {
@@ -73,12 +75,14 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
             setCartItems([]);
             setOrderSuccess(true);
         }).catch((error) => {
+            setOrderFail(true);
             console.log(error);
         });
     };
 
     const handleClosePopup = () => {
         setOrderSuccess(false);
+        setOrderFail(false);
     };
 
     function formatVND(value) {
@@ -214,6 +218,7 @@ function Checkout({isLogged, setIsLogged, cartItems, setCartItems}) {
                 </form>
             </div>
             <OrderSuccessPopup open={orderSuccess} onClose={handleClosePopup}/>
+            <OrderFailPopup open={orderFail} onClose={handleClosePopup}/>
         </section>
     );
 }
