@@ -41,20 +41,6 @@ const CategoryTable = ({rows, onDelete, onEdit}) => {
             align: 'center',
         },
         {
-            field: 'gender',
-            headerName: 'Giới Tính',
-            flex: 1,
-            headerAlign: 'center',
-            align: 'center',
-        },
-        {
-            field: 'birthday',
-            headerName: 'Ngày Sinh',
-            flex: 1,
-            headerAlign: 'center',
-            align: 'center',
-        },
-        {
             field: 'actions',
             type: 'actions',
             headerName: 'Hành Động',

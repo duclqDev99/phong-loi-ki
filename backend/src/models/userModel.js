@@ -41,8 +41,6 @@ const createUser = async (user) => {
         fullname: user.fullname,
         email: user.email,
         phone: user.phone,
-        gender: user.gender,
-        birthday: user.birthday,
       }).returning('id');
 
       return ids;

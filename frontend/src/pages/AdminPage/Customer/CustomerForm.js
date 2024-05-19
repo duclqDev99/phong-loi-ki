@@ -20,8 +20,6 @@ const CustomerForm = ({
         password: string().required('Customer\'s password is required'),
         email: string().required('Customer\'s email is required'),
         phone: string().required('Customer\'s phone is required'),
-        gender: string().required('Customer\'s gender is required'),
-        birthday: date().required('Customer\'s birthday is required'),
     });*/
     const [validationSchema, setValidationSchema] = useState(null);
 
@@ -35,8 +33,6 @@ const CustomerForm = ({
         password: '',
         email: '',
         phone: '',
-        gender: 'Female',
-        birthday: '',
     };
 
     useEffect((() => {
@@ -45,8 +41,6 @@ const CustomerForm = ({
             fullname: string().required('Họ tên của khách hàng là bắt buộc'),
             email: string().required('Email của khách hàng là bắt buộc'),
             phone: string().required('Số điện thoại của khách hàng là bắt buộc'),
-            gender: string().required('Giới tính của khách hàng là bắt buộc'),
-            birthday: date().required('Ngày sinh của khách hàng là bắt buộc'),
         };
 
         if (!editValues) {
@@ -81,8 +75,6 @@ const CustomerForm = ({
             formik.setFieldValue('fullname', editValues.fullname);
             formik.setFieldValue('email', editValues.email);
             formik.setFieldValue('phone', editValues.phone);
-            formik.setFieldValue('gender', editValues.gender);
-            formik.setFieldValue('birthday', editValues.birthday);
         }
     }, [editValues]);
 
@@ -145,30 +137,6 @@ const CustomerForm = ({
                 error={
                     formik.touched.phone && Boolean(formik.errors.phone)
                         ? formik.errors.phone
-                        : ''
-                }
-                isRequired={true}
-            />
-            <FieldSelect
-                label='Giới tính'
-                name='gender'
-                dataSet={[
-                    {label: 'Female', value: 'Female'},
-                    {label: 'Male', value: 'Male'},
-                ]}
-                value={formik.values.gender}
-                onChangeField={formik.handleChange}
-                isRequired={true}
-            />
-            <FieldInput
-                label='Ngày sinh'
-                name='birthday'
-                type='date'
-                value={formik.values.birthday}
-                onChangeField={formik.handleChange}
-                error={
-                    formik.touched.birthday && Boolean(formik.errors.birthday)
-                        ? formik.errors.birthday
                         : ''
                 }
                 isRequired={true}
